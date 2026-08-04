@@ -392,13 +392,13 @@ nav.mainnav .wrap {
   margin-bottom: 14px;
 }
 .pillar p { color: var(--text-muted); font-size: 18px; }
-.pillar-voice .pillar-sub { color: var(--brand-pink); }
-.pillar-thought .pillar-sub { color: var(--brand-blue); }
-.pillar-ground .pillar-sub { color: var(--brand-yellow); }
+.pillar-voice .pillar-sub { color: var(--brand-lavender); }
+.pillar-thought .pillar-sub { color: var(--brand-yellow); }
+.pillar-ground .pillar-sub { color: var(--brand-sage); }
 
 .pillars-head { color: var(--text); text-align: center; font-size: 32px; margin-bottom: 12px; }
 .pillars-intro { color: var(--text-muted); text-align: center; max-width: 620px; margin: 0 auto 40px; font-size: 17px; }
-.pillar-link { display: inline-block; margin-top: 16px; font-size: 13.5px; font-weight: 600; color: var(--brand-yellow); }
+.pillar-link { display: inline-block; margin-top: 16px; font-size: 13.5px; font-weight: 600; color: var(--brand-sage); }
 .pillar-link:hover { text-decoration: underline; }
 
 .section-dark.familiar h2 { color: var(--text); text-align: center; margin-bottom: 26px; font-size: 32px; }
