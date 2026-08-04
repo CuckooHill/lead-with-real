@@ -385,7 +385,7 @@ nav.mainnav .wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--card-bg);
+  background: #8C8C86;
   overflow: hidden;
 }
 .logo-cell img {
@@ -394,7 +394,6 @@ nav.mainnav .wrap {
   object-fit: contain;
   padding: 18px;
 }
-.logo-cell-dark { background: #1C1C1A; }
 
 /* Explicit column tiers keep the bordered grid looking tidy (12 items) rather
    than relying on auto-fit, which can leave a ragged last row. */
