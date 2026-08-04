@@ -240,6 +240,7 @@ nav.mainnav .wrap {
   box-shadow: 0 4px 14px rgba(0,0,0,0.15);
 }
 .btn-primary:hover { background: var(--cta-bg-hover); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+.hero .btn-primary:hover { background: var(--brand-yellow); color: #262521; }
 .btn-outline {
   background: transparent;
   border-color: var(--cta-bg);
@@ -454,7 +455,9 @@ nav.mainnav .wrap {
   justify-content: center;
   background: #8C8C86;
   overflow: hidden;
+  transition: background 0.2s ease;
 }
+.logo-cell:hover { background: #A8A8A2; }
 .logo-cell img {
   width: 80%;
   height: 80%;
