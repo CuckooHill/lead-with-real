@@ -59,24 +59,23 @@
   --divider: #E4DDCB;
   --shadow: rgba(38, 37, 33, 0.08);
 
-  /* Brand accent set - used per-pillar / per-context, not all at once */
-  --brand-lavender: #E4AAE8;
-  --brand-yellow: #E8DD90;
-  --brand-pink: #E8BBAA;
-  --brand-sage: #97D0A3;
-  --brand-blue: #97AED0;
+  /* Brand accent set - used per-pillar / per-context, not all at once.
+     Darkened here for legibility as text on the (now light-mode) panel bg;
+     dark theme restores the original pastel values below. */
+  --brand-lavender: #A24DA8;
+  --brand-yellow: #A9821B;
+  --brand-pink: #B85F45;
+  --brand-sage: #3F8A54;
+  --brand-blue: #3E6FA0;
   --brand-charcoal: #5E5E5E;
   --brand-cream: #F6F1E4;
 
   --font-display: 'Cooper', Georgia, serif;
   --font-body: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Fixed light text for panels that are ALWAYS dark regardless of site theme
-     (pillars, objections, Case for Visibility sections). Do not redefine this
-     under [data-theme="dark"] — these panels don't flip, so their text can't either. */
-  --panel-text: #F6F1E4;
-  --panel-text-soft: rgba(246, 241, 228, 0.75);
-  --panel-text-softer: rgba(246, 241, 228, 0.65);
+  /* Panel background for pillars/familiar/ticker - now theme-aware instead
+     of being forced dark at all times. */
+  --panel-bg: var(--bg-alt);
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -101,6 +100,16 @@
   --card-bg: #232220;
   --divider: #35332F;
   --shadow: rgba(0, 0, 0, 0.4);
+
+  /* Restore the original pastel brand accents now that the panel behind
+     them is dark again - and force the panel itself dark, matching the
+     site's near-black dark theme rather than the lighter --bg-alt. */
+  --brand-lavender: #E4AAE8;
+  --brand-yellow: #E8DD90;
+  --brand-pink: #E8BBAA;
+  --brand-sage: #97D0A3;
+  --brand-blue: #97AED0;
+  --panel-bg: #141312;
 
   color-scheme: dark;
 }
@@ -191,8 +200,14 @@ nav.mainnav .wrap {
   gap: 28px;
   font-size: 13.5px;
   color: var(--text-muted);
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 .navlinks a:hover { color: var(--text); }
+@media (max-width: 760px) {
+  .navlinks { display: none; }
+}
 
 /* ---------- Theme toggle ---------- */
 .theme-toggle {
@@ -347,16 +362,14 @@ nav.mainnav .wrap {
 .video-title { font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 6px; }
 .video-sub { font-size: 18px; color: var(--text-muted); }
 
-/* ---------- Dark inline section (pillars) ---------- */
+/* ---------- Panel section (pillars, familiar) - now theme-aware ---------- */
 .section-dark {
-  background: var(--bg-inverse);
-  color: var(--panel-text);
+  background: var(--panel-bg);
+  color: var(--text);
   padding: 52px 0;
+  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
 }
-[data-theme="dark"] .section-dark { background: #141312; }
-
-/* Fixed-dark panel background: used for elements that must always render dark,
-   regardless of the site-wide theme toggle (CFV nav/footer). */
 
 .pillars {
   display: grid;
@@ -364,7 +377,7 @@ nav.mainnav .wrap {
   gap: 30px;
 }
 .pillar h3 {
-  color: var(--panel-text);
+  color: var(--text);
   font-size: 24px;
   margin-bottom: 0;
 }
@@ -378,32 +391,36 @@ nav.mainnav .wrap {
   display: block;
   margin-bottom: 14px;
 }
-.pillar p { color: rgba(246,241,228,0.72); font-size: 18px; }
-.pillar-thought .pillar-sub { color: var(--brand-yellow); }
-.pillar-peace .pillar-sub { color: var(--brand-sage); }
-.pillar-real .pillar-sub { color: var(--brand-lavender); }
+.pillar p { color: var(--text-muted); font-size: 18px; }
+.pillar-voice .pillar-sub { color: var(--brand-pink); }
+.pillar-thought .pillar-sub { color: var(--brand-blue); }
+.pillar-ground .pillar-sub { color: var(--brand-yellow); }
 
-.section-dark.familiar h2 { color: var(--panel-text); text-align: center; margin-bottom: 26px; font-size: 32px; }
+.pillars-head { color: var(--text); text-align: center; font-size: 32px; margin-bottom: 12px; }
+.pillars-intro { color: var(--text-muted); text-align: center; max-width: 620px; margin: 0 auto 40px; font-size: 17px; }
+.pillar-link { display: inline-block; margin-top: 16px; font-size: 13.5px; font-weight: 600; color: var(--brand-yellow); }
+.pillar-link:hover { text-decoration: underline; }
+
+.section-dark.familiar h2 { color: var(--text); text-align: center; margin-bottom: 26px; font-size: 32px; }
 .familiar-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px; }
 .familiar-item { display: flex; gap: 14px; }
 .familiar-item .star { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
-.familiar-item p { color: rgba(244,241,234,0.82); font-size: 18px; }
+.familiar-item p { color: var(--text-muted); font-size: 18px; }
 
 /* ---------- Ticker ---------- */
 .ticker {
-  background: var(--bg-inverse);
-  border-top: 1px solid rgba(244,241,234,0.12);
+  background: var(--panel-bg);
+  border-top: 1px solid var(--divider);
   overflow: hidden;
   padding: 14px 0;
 }
-[data-theme="dark"] .ticker { background: #141312; }
 .ticker-track {
   display: inline-flex;
   white-space: nowrap;
   animation: ticker 26s linear infinite;
   font-size: 11.5px;
   letter-spacing: 0.14em;
-  color: rgba(244,241,234,0.65);
+  color: var(--text-muted);
   text-transform: uppercase;
 }
 .ticker-track span { margin: 0 20px; }
@@ -587,6 +604,73 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 .cfv-closing p { color: var(--text-muted); font-size: 18px; margin-bottom: 34px; }
 .cfv-closing .btn-row { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 .cfv-closing .btn-outline { border-color: var(--accent2, var(--accent)); color: var(--text); }
+
+/* ---------- RealGround page components ---------- */
+.cards-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.ground-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 26px 24px;
+  color: var(--text);
+  font-size: 16.5px;
+}
+
+.sound-list { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.sound-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  background: var(--card-bg);
+}
+.sound-play {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.sound-play svg { width: 14px; height: 14px; fill: var(--accent); }
+.sound-body { flex: 1; }
+.sound-title { font-weight: 700; font-size: 14.5px; margin-bottom: 6px; }
+.sound-bar { height: 3px; background: var(--divider); border-radius: 2px; position: relative; }
+.sound-bar::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: var(--accent); border-radius: 2px; }
+
+.client-logos-text { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.client-logos-text span {
+  border: 1px solid var(--card-border);
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.testi-pair { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
+.testi-pair blockquote { font-family: var(--font-display); font-style: italic; font-size: 19px; line-height: 1.5; margin: 0 0 22px; color: var(--text); }
+.testi-pair cite { display: block; font-style: normal; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 24px; }
+.testi-pair img { width: 100%; border-radius: var(--radius-md); object-fit: cover; }
+
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 30px; }
+.testi-card { border-left: 2px solid var(--accent); padding-left: 18px; }
+.testi-card p { font-family: var(--font-display); font-style: italic; font-size: 16px; color: var(--text); margin-bottom: 10px; }
+.testi-card cite { font-style: normal; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+
+.process-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: center; margin-bottom: 10px; }
+.process-step .num {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  font-family: var(--font-display); font-style: italic; color: var(--accent); font-size: 18px;
+}
+.process-step p { font-size: 15.5px; }
+
+@media (max-width: 760px) {
+  .cards-2, .testi-pair, .testi-grid, .process-steps { grid-template-columns: 1fr; }
+}
 
 /* ---------- responsive ---------- */
 @media (max-width: 860px) {
