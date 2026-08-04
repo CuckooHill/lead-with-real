@@ -210,7 +210,7 @@ nav.mainnav .wrap {
 .hero p.lede {
   max-width: 560px;
   margin: 0 auto 26px;
-  font-size: 17px;
+  font-size: 16px;
   color: var(--text-muted);
 }
 
@@ -282,7 +282,7 @@ nav.mainnav .wrap {
 .play-circle:hover { transform: scale(1.06); }
 .play-circle svg { width: 20px; height: 20px; fill: var(--accent); }
 .video-title { font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 6px; }
-.video-sub { font-size: 14px; color: var(--text-muted); }
+.video-sub { font-size: 16px; color: var(--text-muted); }
 
 /* ---------- Dark inline section (pillars) ---------- */
 .section-dark {
@@ -315,7 +315,7 @@ nav.mainnav .wrap {
   display: block;
   margin-bottom: 16px;
 }
-.pillar p { color: rgba(244,241,234,0.72); font-size: 14.5px; }
+.pillar p { color: rgba(244,241,234,0.72); font-size: 16px; }
 
 .section-dark.familiar h2 { color: var(--panel-text); text-align: center; margin-bottom: 26px; font-size: 32px; }
 .familiar-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px; }
@@ -330,6 +330,7 @@ nav.mainnav .wrap {
   overflow: hidden;
   padding: 14px 0;
 }
+[data-theme="dark"] .ticker { background: #0A130F; }
 .ticker-track {
   display: inline-flex;
   white-space: nowrap;
@@ -354,7 +355,7 @@ nav.mainnav .wrap {
 }
 .card-tag { font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
 .card h3 { font-size: 21px; margin-bottom: 12px; }
-.card p { font-size: 14.5px; }
+.card p { font-size: 16px; }
 .card .read-link { display: inline-block; margin-top: 16px; font-size: 13.5px; color: var(--accent); font-weight: 600; }
 
 /* dark-styled cards (case for visibility) */
@@ -366,7 +367,7 @@ nav.mainnav .wrap {
   padding: 28px 24px;
 }
 .card-dark h3 { color: var(--panel-text); font-size: 21px; margin: 10px 0 12px; }
-.card-dark p { color: rgba(244,241,234,0.68); font-size: 14px; }
+.card-dark p { color: rgba(244,241,234,0.68); font-size: 16px; }
 .card-dark .card-tag { color: var(--accent); }
 .card-dark .read-link { color: #7BC98A; }
 
@@ -389,10 +390,11 @@ nav.mainnav .wrap {
   overflow: hidden;
 }
 .logo-cell img {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   object-fit: contain;
-  padding: 18px;
+  margin: auto;
+  display: block;
 }
 
 /* Explicit column tiers keep the bordered grid looking tidy (12 items) rather
@@ -404,11 +406,9 @@ nav.mainnav .wrap {
 @media (max-width: 600px) {
   .logo-grid { grid-template-columns: repeat(2, 1fr); }
   .logo-cell { aspect-ratio: 1.3/1; }
-  .logo-cell img { padding: 14px; }
 }
 @media (max-width: 380px) {
   .logo-cell { aspect-ratio: 1.1/1; }
-  .logo-cell img { padding: 10px; }
 }
 
 /* ---------- Pricing ---------- */
@@ -455,7 +455,7 @@ nav.mainnav .wrap {
 .price-card h3 { font-size: 20px; margin-bottom: 14px; }
 .price-old { text-decoration: line-through; color: var(--text-muted); font-size: 15px; margin-right: 8px; }
 .price-new { font-family: var(--font-display); font-size: 26px; color: var(--accent); font-weight: 700; }
-.price-card p.desc { font-size: 14px; margin: 16px 0 24px; flex-grow: 1; }
+.price-card p.desc { font-size: 16px; margin: 16px 0 24px; flex-grow: 1; }
 .price-card .btn { align-self: flex-start; margin-top: auto; }
 
 /* ---------- Newsletter ---------- */
@@ -469,7 +469,7 @@ nav.mainnav .wrap {
   text-align: center;
 }
 .newsletter-box h3 { font-size: 22px; margin-bottom: 10px; }
-.newsletter-box p { font-size: 13.5px; margin-bottom: 20px; }
+.newsletter-box p { font-size: 16px; margin-bottom: 20px; }
 .field-row { display: flex; gap: 10px; margin-bottom: 12px; }
 input[type="text"], input[type="email"] {
   flex: 1;

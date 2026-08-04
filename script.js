@@ -89,10 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 Cal('init', { origin: 'https://cal.com' });
 Cal('ui', {
-  cssVarsPerTheme: {
-    light: { 'cal-brand': '#1F3A2E' },
-    dark: { 'cal-brand': '#3E7A4C' }
-  },
+  styles: { branding: { brandColor: '#1F3A2E' } },
   hideEventTypeDetails: false,
   layout: 'month_view'
 });
@@ -101,10 +98,41 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[data-cal-link]').forEach(function (el) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
+      if (el.dataset.calBusy) return;
+      el.dataset.calBusy = '1';
+
+      const originalText = el.textContent;
+      el.textContent = 'Loading…';
+      el.style.opacity = '0.7';
+
       Cal('modal', {
         calLink: el.getAttribute('data-cal-link'),
         config: { layout: 'month_view' }
       });
+
+      // Restore button once the embed has visibly opened.
+      const restore = function () {
+        el.textContent = originalText;
+        el.style.opacity = '';
+        delete el.dataset.calBusy;
+      };
+
+      // Poll briefly for the Cal iframe; if it never appears (slow network,
+      // ad-blocker, embed failure), fall back to opening the real booking
+      // page directly rather than leaving the button stuck.
+      let attempts = 0;
+      const poll = setInterval(function () {
+        attempts++;
+        const opened = document.querySelector('iframe[src*="cal.com"]');
+        if (opened) {
+          clearInterval(poll);
+          restore();
+        } else if (attempts >= 14) { // ~3.5s at 250ms
+          clearInterval(poll);
+          restore();
+          window.open(el.getAttribute('href'), '_blank', 'noopener');
+        }
+      }, 250);
     });
   });
 });
