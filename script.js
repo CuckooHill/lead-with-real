@@ -6,8 +6,9 @@
 (function () {
   const root = document.documentElement;
   const stored = localStorage.getItem('lwr-theme');
-  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const initial = stored || (systemDark ? 'dark' : 'light');
+  // Default to dark on first visit, regardless of system preference.
+  // A saved manual choice (from the toggle) always wins after that.
+  const initial = stored || 'dark';
   root.setAttribute('data-theme', initial);
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -106,17 +107,52 @@ Cal('ui', {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+  window.calModalActive = false;
+
+  // Watches for the Cal iframe leaving the DOM (modal closed) and, once it
+  // does, clears our own "modal open" flag AND force-restores page scroll.
+  // This is the actual fix for the double-close bug: if two modal instances
+  // ever got stacked, the page's scroll lock would only release after BOTH
+  // closed. Restoring scroll ourselves, independent of Cal's own internal
+  // state, guarantees the page is always usable the moment nothing Cal-
+  // related is left in the DOM - no dependence on Cal closing cleanly.
+  function watchForClose() {
+    let checks = 0;
+    const poll = setInterval(function () {
+      checks++;
+      const stillOpen = document.querySelector('iframe[src*="cal.com"]');
+      if (!stillOpen || checks > 200) { // hard cap: ~60s, never hang forever
+        clearInterval(poll);
+        window.calModalActive = false;
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+      }
+    }, 300);
+  }
+
   document.querySelectorAll('[data-cal-link]').forEach(function (el) {
     el.addEventListener('click', function (e) {
       const calLink = el.getAttribute('data-cal-link');
       const realUrl = el.getAttribute('href');
 
+      // A modal is already open or mid-open from a previous click (possibly
+      // on a different button). Cal.com stacks a second instance rather
+      // than replacing the first if called again here, which is exactly
+      // what caused "needs closing twice". Block it outright instead -
+      // the user should finish with the modal that's already up.
+      if (window.calModalActive) {
+        e.preventDefault();
+        return;
+      }
+
       function openModal() {
         try {
+          window.calModalActive = true;
           Cal('modal', { calLink: calLink, config: { layout: 'month_view' } });
+          watchForClose();
         } catch (err) {
-          // Cal object existed but the call itself failed - don't leave the
-          // click dead, just go to the real page in the same tab.
+          window.calModalActive = false;
           window.location.href = realUrl;
         }
       }
