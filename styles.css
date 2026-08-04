@@ -49,11 +49,11 @@
   --text: #262521;
   --text-muted: #6B675E;
   --text-inverse: #F6F1E4;
-  --accent: #2E7D52;
-  --accent-soft: rgba(46, 125, 82, 0.12);
-  --cta-bg: #2E7D52;
-  --cta-text: #F6F1E4;
-  --cta-bg-hover: #256844;
+  --accent: #9E32A5;
+  --accent-soft: rgba(158, 50, 165, 0.12);
+  --cta-bg: #D897E0;
+  --cta-text: #262521;
+  --cta-bg-hover: #C87ED4;
   --card-border: #E4DDCB;
   --card-bg: #FFFFFF;
   --divider: #E4DDCB;
@@ -92,11 +92,11 @@
   --text: #F0ECE1;
   --text-muted: #A8A399;
   --text-inverse: #262521;
-  --accent: #4CAF7C;
-  --accent-soft: rgba(76, 175, 124, 0.16);
-  --cta-bg: #4CAF7C;
-  --cta-text: #14211A;
-  --cta-bg-hover: #5FC090;
+  --accent: #E0A8E6;
+  --accent-soft: rgba(224, 168, 230, 0.16);
+  --cta-bg: #D897E0;
+  --cta-text: #262521;
+  --cta-bg-hover: #E0A8E6;
   --card-border: #35332F;
   --card-bg: #232220;
   --divider: #35332F;
@@ -275,9 +275,9 @@ nav.mainnav .wrap {
 
 /* ---------- Stat carousel ---------- */
 .stat-carousel {
-  max-width: 640px;
+  max-width: 720px;
   margin: -40px auto 0;
-  padding: 44px 32px;
+  padding: 48px 40px;
   text-align: center;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -289,11 +289,12 @@ nav.mainnav .wrap {
 .stat-quote {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 19px;
-  line-height: 1.5;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.42;
   color: var(--text);
-  max-width: 560px;
-  margin: 0 auto 18px;
+  max-width: 620px;
+  margin: 0 auto 20px;
 }
 .stat-attr { color: var(--accent); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; margin-bottom: 26px; }
 
@@ -382,7 +383,7 @@ nav.mainnav .wrap {
 .pillar p { color: rgba(246,241,228,0.72); font-size: 18px; }
 .pillar-thought .pillar-sub { color: var(--brand-yellow); }
 .pillar-peace .pillar-sub { color: var(--brand-sage); }
-.pillar-real .pillar-sub { color: var(--brand-blue); }
+.pillar-real .pillar-sub { color: var(--brand-lavender); }
 
 .section-dark.familiar h2 { color: var(--panel-text); text-align: center; margin-bottom: 26px; font-size: 32px; }
 .familiar-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px; }
@@ -629,7 +630,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 
 @media (max-width: 480px) {
   .hero h1 { font-size: 34px; }
-  .stat-quote { font-size: 17px; }
+  .stat-quote { font-size: 19px; }
   .stat-number { font-size: 38px; }
   .pricing-avatar { width: 64px; height: 64px; }
   footer .wrap { flex-direction: column; text-align: left; gap: 8px; }

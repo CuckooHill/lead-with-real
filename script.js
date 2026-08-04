@@ -101,7 +101,7 @@ window.calEmbedFailed = false;
 
 Cal('init', { origin: 'https://cal.com' });
 Cal('ui', {
-  styles: { branding: { brandColor: '#1F3A2E' } },
+  styles: { branding: { brandColor: '#9E32A5' } },
   hideEventTypeDetails: false,
   layout: 'month_view'
 });
