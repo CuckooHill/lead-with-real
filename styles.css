@@ -513,16 +513,13 @@ nav.mainnav .wrap {
 
 /* ---------- Newsletter ---------- */
 .newsletter-box {
-  max-width: 480px;
+  max-width: 760px;
   margin: 0 auto;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-md);
-  padding: 34px 30px;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
-.newsletter-box h3 { font-size: 22px; margin-bottom: 10px; }
-.newsletter-box p { font-size: 18px; margin-bottom: 20px; }
+.newsletter-box .formkit-powered-by-convertkit-container { display: none !important; }
 .field-row { display: flex; gap: 10px; margin-bottom: 12px; }
 input[type="text"], input[type="email"] {
   flex: 1;
