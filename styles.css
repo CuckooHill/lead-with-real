@@ -60,13 +60,12 @@
   --shadow: rgba(38, 37, 33, 0.08);
 
   /* Brand accent set - used per-pillar / per-context, not all at once.
-     Darkened here for legibility as text on the (now light-mode) panel bg;
-     dark theme restores the original pastel values below. */
-  --brand-lavender: #A24DA8;
-  --brand-yellow: #A9821B;
-  --brand-pink: #B85F45;
-  --brand-sage: #3F8A54;
-  --brand-blue: #3E6FA0;
+     Exact hex values from the brand kit reference - same in both themes. */
+  --brand-lavender: #E4AAE8;
+  --brand-yellow: #E8DD90;
+  --brand-pink: #E8BBAA;
+  --brand-sage: #97D0A3;
+  --brand-blue: #97AED0;
   --brand-charcoal: #5E5E5E;
   --brand-cream: #F6F1E4;
 
@@ -101,14 +100,9 @@
   --divider: #35332F;
   --shadow: rgba(0, 0, 0, 0.4);
 
-  /* Restore the original pastel brand accents now that the panel behind
-     them is dark again - and force the panel itself dark, matching the
-     site's near-black dark theme rather than the lighter --bg-alt. */
-  --brand-lavender: #E4AAE8;
-  --brand-yellow: #E8DD90;
-  --brand-pink: #E8BBAA;
-  --brand-sage: #97D0A3;
-  --brand-blue: #97AED0;
+  /* Force the panel dark in dark mode, matching the site's near-black
+     theme rather than the lighter --bg-alt. Brand accents stay the same
+     exact hex values as light mode - see :root. */
   --panel-bg: #141312;
 
   color-scheme: dark;
@@ -389,6 +383,7 @@ nav.mainnav .wrap {
   font-size: 24px;
   line-height: 1.28;
   display: block;
+  min-height: 2.6em;
   margin-bottom: 14px;
 }
 .pillar p { color: var(--text-muted); font-size: 18px; }
@@ -577,13 +572,14 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 
 /* ---------- Case for Visibility hero ---------- */
 .cfv-hero {
-  background: var(--bg);
-  color: var(--text);
-  padding: 64px 0 56px;
+  background: #141312;
+  color: #F4F1EA;
+  padding: 84px 0 68px;
   text-align: center;
 }
-.cfv-hero h1 { color: var(--text); font-weight: 900; font-size: clamp(36px, 5.5vw, 58px); max-width: 820px; margin: 0 auto 20px; }
-.cfv-hero p { color: var(--text-muted); max-width: 540px; margin: 0 auto; font-size: 18px; }
+.cfv-hero .hero-eyebrow { color: var(--brand-sage); margin-bottom: 20px; }
+.cfv-hero h1 { color: #F4F1EA; font-weight: 900; font-size: clamp(40px, 6.5vw, 72px); max-width: 820px; margin: 0 auto 18px; }
+.cfv-hero p { color: rgba(244,241,234,0.72); max-width: 540px; margin: 0 auto; font-size: 18px; }
 
 .section-inverse {
   background: var(--bg);
