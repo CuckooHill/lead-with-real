@@ -75,7 +75,7 @@
 
   /* Panel background for pillars/familiar/ticker - now theme-aware instead
      of being forced dark at all times. */
-  --panel-bg: var(--bg-alt);
+  --panel-bg: var(--bg);
 
   --radius-sm: 8px;
   --radius-md: 14px;
