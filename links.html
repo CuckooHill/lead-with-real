@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jon Kwan — Lead With Real</title>
+<meta name="description" content="All Lead With Real links in one place.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body {
+    background: linear-gradient(180deg, #E9E5DA 0%, #F4F1EA 45%);
+  }
+  [data-theme="dark"] body {
+    background: radial-gradient(ellipse at top, #16261D 0%, #0C1712 65%);
+  }
+
+  .lt-wrap {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 48px 24px 60px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .lt-toggle-row {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+  }
+  .lt-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2.5px solid var(--accent);
+    margin-bottom: 18px;
+  }
+  .lt-wordmark {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .lt-handle {
+    color: var(--accent);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .lt-bio {
+    text-align: center;
+    font-size: 14.5px;
+    color: var(--text-muted);
+    max-width: 340px;
+    margin-bottom: 34px;
+  }
+  .lt-links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .lt-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 14px;
+    border: 1.5px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    text-align: center;
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    box-sizing: border-box;
+  }
+  .lt-link:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+  .lt-link:active { transform: translateY(0); }
+  .lt-link.lt-primary {
+    background: var(--cta-bg);
+    border-color: var(--cta-bg);
+    color: var(--cta-text);
+  }
+  .lt-link.lt-primary:hover { background: var(--cta-bg-hover); border-color: var(--cta-bg-hover); }
+  .lt-link .lt-sub {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0.7;
+    margin-top: 2px;
+  }
+  .lt-link-inner { display: flex; flex-direction: column; }
+  .lt-divider {
+    width: 100%;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 22px 0 4px;
+  }
+  .lt-footer {
+    margin-top: 40px;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    text-align: center;
+  }
+  .lt-footer a { color: var(--accent); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="lt-wrap">
+
+  <div class="lt-toggle-row">
+    <button class="theme-toggle" aria-label="Toggle light and dark theme"></button>
+  </div>
+
+  <img class="lt-avatar" src="images/jon-kwan.jpg" alt="Jon Kwan">
+  <div class="lt-wordmark">Lead With Real.</div>
+  <div class="lt-handle">Jon Kwan</div>
+  <p class="lt-bio">For founders, creators and leaders who want to show up in the world in a way that feels real, aligned and true to who they are.</p>
+
+  <div class="lt-links">
+
+    <a class="lt-link lt-primary" href="https://cal.com/lead-with-real/intro-call" data-cal-link="lead-with-real/intro-call">
+      Let's Connect — Free 20-Min Intro Call
+    </a>
+
+    <div class="lt-divider">Book a session</div>
+
+    <a class="lt-link" href="https://cal.com/lead-with-real/intro-call-power-hour" data-cal-link="lead-with-real/intro-call-power-hour">
+      <span class="lt-link-inner">RealThought Power Hour<span class="lt-sub">£397 · 1 hour</span></span>
+    </a>
+
+    <a class="lt-link" href="https://cal.com/lead-with-real/intro-call-masterclass" data-cal-link="lead-with-real/intro-call-masterclass">
+      <span class="lt-link-inner">Lead With Real Masterclass<span class="lt-sub">£1,997 · full day</span></span>
+    </a>
+
+    <a class="lt-link" href="https://cal.com/lead-with-real/intro-call-retainer" data-cal-link="lead-with-real/intro-call-retainer">
+      <span class="lt-link-inner">Full Lead With Real Retainer<span class="lt-sub">POA · ongoing</span></span>
+    </a>
+
+    <div class="lt-divider">Explore</div>
+
+    <a class="lt-link" href="index.html">Visit the Full Site →</a>
+    <a class="lt-link" href="case-for-visibility.html">The Case For Visibility →</a>
+    <a class="lt-link" href="mailto:jon@leadwithreal.com">Email Jon →</a>
+
+  </div>
+
+  <div class="lt-footer">
+    © 2026 <a href="index.html">Lead With Real</a>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -60,6 +60,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ---------- Cal.com popup embed ----------
+window.calEmbedReady = false;
+window.calEmbedFailed = false;
+
 (function (C, A, L) {
   let p = function (a, ar) { a.q.push(ar); };
   let d = C.document;
@@ -69,7 +72,15 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!cal.loaded) {
       cal.ns = {};
       cal.q = cal.q || [];
-      d.head.appendChild(d.createElement('script')).src = A;
+      const script = d.createElement('script');
+      script.src = A;
+      // These are the ONLY reliable signals that the embed actually works:
+      // onload = script downloaded and ran; onerror = blocked (ad-blocker,
+      // network failure, CSP, etc). Everything below keys off these, not
+      // off arbitrary timers.
+      script.onload = function () { window.calEmbedReady = true; };
+      script.onerror = function () { window.calEmbedFailed = true; };
+      d.head.appendChild(script);
       cal.loaded = true;
     }
     if (ar[0] === L) {
@@ -97,42 +108,62 @@ Cal('ui', {
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[data-cal-link]').forEach(function (el) {
     el.addEventListener('click', function (e) {
-      e.preventDefault();
-      if (el.dataset.calBusy) return;
-      el.dataset.calBusy = '1';
+      const calLink = el.getAttribute('data-cal-link');
+      const realUrl = el.getAttribute('href');
 
+      function openModal() {
+        try {
+          Cal('modal', { calLink: calLink, config: { layout: 'month_view' } });
+        } catch (err) {
+          // Cal object existed but the call itself failed - don't leave the
+          // click dead, just go to the real page in the same tab.
+          window.location.href = realUrl;
+        }
+      }
+
+      // Already confirmed blocked (ad-blocker etc) - don't fight it a
+      // second time, just let this click through as a normal link.
+      if (window.calEmbedFailed) return;
+
+      // Already confirmed working - open instantly, no delay at all.
+      if (window.calEmbedReady) {
+        e.preventDefault();
+        openModal();
+        return;
+      }
+
+      // Script hasn't confirmed ready or failed yet. This window is
+      // normally a couple hundred ms at most (embed.js starts downloading
+      // the moment the page loads, well before any click is possible).
+      // Wait briefly; if it doesn't resolve, fall through to a REAL
+      // same-tab navigation - never an async window.open(), since browsers
+      // (especially mobile) block popups that aren't a direct, synchronous
+      // response to the click. window.location.href has no such
+      // restriction, so this fallback always works.
+      e.preventDefault();
+      if (el.dataset.calWaiting) return; // already waiting on this button
+      el.dataset.calWaiting = '1';
       const originalText = el.textContent;
       el.textContent = 'Loading…';
       el.style.opacity = '0.7';
 
-      Cal('modal', {
-        calLink: el.getAttribute('data-cal-link'),
-        config: { layout: 'month_view' }
-      });
-
-      // Restore button once the embed has visibly opened.
-      const restore = function () {
-        el.textContent = originalText;
-        el.style.opacity = '';
-        delete el.dataset.calBusy;
-      };
-
-      // Poll briefly for the Cal iframe; if it never appears (slow network,
-      // ad-blocker, embed failure), fall back to opening the real booking
-      // page directly rather than leaving the button stuck.
-      let attempts = 0;
-      const poll = setInterval(function () {
-        attempts++;
-        const opened = document.querySelector('iframe[src*="cal.com"]');
-        if (opened) {
-          clearInterval(poll);
-          restore();
-        } else if (attempts >= 14) { // ~3.5s at 250ms
-          clearInterval(poll);
-          restore();
-          window.open(el.getAttribute('href'), '_blank', 'noopener');
+      let waited = 0;
+      const check = setInterval(function () {
+        waited += 100;
+        if (window.calEmbedReady) {
+          clearInterval(check);
+          el.textContent = originalText;
+          el.style.opacity = '';
+          delete el.dataset.calWaiting;
+          openModal();
+        } else if (window.calEmbedFailed || waited >= 1800) {
+          clearInterval(check);
+          el.textContent = originalText;
+          el.style.opacity = '';
+          delete el.dataset.calWaiting;
+          window.location.href = realUrl;
         }
-      }, 250);
+      }, 100);
     });
   });
 });
