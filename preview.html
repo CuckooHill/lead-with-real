@@ -852,6 +852,16 @@ nav.mainnav .wrap {
   justify-content: center;
 }
 .newsletter-box .formkit-powered-by-convertkit-container { display: none !important; }
+/* Tighten the ConvertKit embed's own internal spacing - !important needed
+   since the embed's inline <style> block loads after this stylesheet and
+   would otherwise win the cascade at equal specificity. */
+.formkit-form[data-uid="66c8573bb2"] .formkit-header { margin: 0 0 8px 0 !important; }
+.formkit-form[data-uid="66c8573bb2"] .formkit-subheader { margin: 4px 0 12px !important; }
+.formkit-form[data-uid="66c8573bb2"] .formkit-fields { margin: 12px auto 0 auto !important; }
+.formkit-form[data-uid="66c8573bb2"] .formkit-field,
+.formkit-form[data-uid="66c8573bb2"] .formkit-submit { margin: 0 0 8px 0 !important; }
+.formkit-form[data-uid="66c8573bb2"] .formkit-guarantee { margin: 6px 0 4px 0 !important; }
+
 .field-row { display: flex; gap: 10px; margin-bottom: 12px; }
 input[type="text"], input[type="email"] {
   flex: 1;
@@ -913,11 +923,11 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 .cfv-closing {
   background: var(--bg-alt);
   color: var(--text);
-  padding: 52px 0;
+  padding: 40px 0;
   text-align: center;
 }
-.cfv-closing h2 { color: var(--text); font-weight: 900; font-size: clamp(30px, 4.5vw, 46px); max-width: 780px; margin: 0 auto 16px; }
-.cfv-closing p { color: var(--text-muted); font-size: 18px; margin-bottom: 26px; }
+.cfv-closing h2 { color: var(--text); font-weight: 900; font-size: clamp(30px, 4.5vw, 46px); max-width: 780px; margin: 0 auto 12px; }
+.cfv-closing p { color: var(--text-muted); font-size: 18px; margin-bottom: 18px; }
 .cfv-closing .btn-row { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 .cfv-closing .btn-outline { border-color: var(--accent2, var(--accent)); color: var(--text); }
 .page-visibility .cfv-closing .btn-primary:hover {
@@ -1303,7 +1313,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 </section>
 
 <!-- NEWSLETTER -->
-<section class="section" style="padding-top:0;">
+<section class="section" style="padding-top:0; padding-bottom:32px;">
   <div class="wrap">
     <div class="newsletter-box">
 <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
