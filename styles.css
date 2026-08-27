@@ -717,20 +717,20 @@ nav.mainnav .wrap {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-md);
-  padding: 34px;
+  padding: 26px 28px;
   max-width: 440px;
   width: 100%;
-  max-height: 90vh;
+  max-height: 92vh;
   overflow-y: auto;
   position: relative;
   box-shadow: 0 24px 60px rgba(0,0,0,0.3);
 }
-.lwr-modal h3 { font-size: 24px; margin-bottom: 4px; }
-.lwr-modal-plan { color: var(--accent); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 700; margin-bottom: 22px; }
+.lwr-modal h3 { font-size: 21px; margin-bottom: 2px; }
+.lwr-modal-plan { color: var(--accent); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
 .lwr-modal-close {
   position: absolute;
-  top: 16px; right: 16px;
-  width: 32px; height: 32px;
+  top: 14px; right: 14px;
+  width: 30px; height: 30px;
   border-radius: 50%;
   border: 1px solid var(--card-border);
   background: transparent;
@@ -741,29 +741,39 @@ nav.mainnav .wrap {
 }
 .lwr-modal-close:hover { border-color: var(--accent); }
 
-.lwr-field { margin-bottom: 16px; }
+.lwr-field-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+@media (min-width: 420px) {
+  .lwr-field-row { flex-direction: row; gap: 10px; }
+  .lwr-field-row .lwr-field { flex: 1 1 0; min-width: 0; }
+}
+
+.lwr-field { margin-bottom: 10px; }
 .lwr-field label {
   display: block;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   color: var(--text);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 .lwr-field input[type="text"],
 .lwr-field input[type="email"],
 .lwr-field input[type="tel"] {
   width: 100%;
-  padding: 12px 14px;
+  padding: 10px 12px;
   border: 1px solid var(--card-border);
   border-radius: var(--radius-sm);
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 14.5px;
+  font-size: 14px;
 }
 .lwr-field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 
-.lwr-radio-row { display: flex; flex-direction: column; gap: 10px; }
+.lwr-radio-row { display: flex; flex-direction: column; gap: 8px; }
 .lwr-radio-option {
   display: flex !important;
   align-items: center !important;
@@ -799,10 +809,10 @@ nav.mainnav .wrap {
 .lwr-radio-link::placeholder { color: var(--text-muted); opacity: 0.55; }
 .lwr-radio-link:disabled { opacity: 0.4; cursor: not-allowed; }
 
-.lwr-modal-error { color: #C0392B; font-size: 13px; margin: 4px 0 14px; }
-.lwr-go-btn { width: 100%; justify-content: center; }
+.lwr-modal-error { color: #C0392B; font-size: 12.5px; margin: 2px 0 10px; }
+.lwr-go-btn { width: 100%; justify-content: center; padding: 13px 24px !important; }
 .lwr-go-btn:hover { background: var(--brand-yellow); color: #262521; }
-.lwr-required-note { text-align: center; font-size: 11.5px; margin-top: 12px; }
+.lwr-required-note { text-align: center; font-size: 11px; margin-top: 8px; }
 
 /* ---------- Newsletter ---------- */
 .newsletter-box {
@@ -982,11 +992,15 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   .cfv-closing .btn-row { flex-direction: column; }
   .cfv-closing .btn-row .btn { width: 100%; justify-content: center; }
 
-  .lwr-modal-overlay { padding: 12px; }
-  .lwr-modal { padding: 24px 20px; }
-  .lwr-radio-option { gap: 12px !important; padding: 13px !important; flex-wrap: wrap; }
-  .lwr-radio-option span { width: auto !important; font-size: 13px; }
-  .lwr-radio-option input.lwr-radio-link { flex-basis: 100%; margin-left: 30px; width: calc(100% - 30px) !important; }
+  .lwr-modal-overlay { padding: 10px; }
+  .lwr-modal { padding: 20px 16px; max-height: 95vh; }
+  .lwr-modal h3 { font-size: 19px; }
+  .lwr-modal-plan { margin-bottom: 10px; }
+  .lwr-field { margin-bottom: 8px; }
+  .lwr-radio-row { gap: 6px; }
+  .lwr-radio-option { gap: 8px !important; padding: 9px 10px !important; flex-wrap: nowrap; }
+  .lwr-radio-option span { width: auto !important; font-size: 12.5px; }
+  .lwr-radio-option input.lwr-radio-link { padding: 7px 8px !important; font-size: 12.5px; }
 }
 
 /* Reduced motion */
