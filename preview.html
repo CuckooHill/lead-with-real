@@ -638,16 +638,23 @@ nav.mainnav .wrap {
   justify-content: flex-start;
   text-align: left;
   padding: 0;
-  border-left: none;
-  border-right: none;
-  border-radius: 0;
   margin-bottom: 28px;
+  background: var(--card-bg);
 }
-.cfv-band::before {
-  content: "";
+.cfv-band-img {
   position: absolute;
   inset: 0;
-  background: rgba(20,19,18,0.55);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+.cfv-band-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(20,19,18,0) 0%, rgba(20,19,18,0.75) 100%);
+  z-index: 1;
 }
 .cfv-band-title {
   position: relative;
@@ -1174,7 +1181,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
           <div class="pillar-tile-overlay"></div>
           <div class="pillar-tile-content">
             <h3>RealThought:</h3>
-            <span class="pillar-sub">A bespoke thought leadership content system in your voice.</span>
+            <span class="pillar-sub">Thought leadership content systems for you and your brand.</span>
           </div>
         </div>
         <p>We build human-lead, AI-powered content systems that sound like you and your brand. Real values and points of view brought to life consistently in thought leading, engaging posts.</p>
