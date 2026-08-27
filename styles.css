@@ -642,6 +642,11 @@ nav.mainnav .wrap {
   object-position: center;
   z-index: 0;
 }
+.cfv-band-img-voice {
+  /* The pens photo needs a slightly higher crop than dead-center, or the
+     desktop banner's very thin aspect ratio cuts the pen tops off. */
+  object-position: center 30%;
+}
 .cfv-band-overlay {
   position: absolute;
   inset: 0;
