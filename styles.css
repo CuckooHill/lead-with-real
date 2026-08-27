@@ -306,9 +306,9 @@ nav.mainnav .wrap {
   line-height: 1.42;
   color: var(--text);
   max-width: 620px;
-  margin: 0 auto 20px;
+  margin: 0 auto 16px;
 }
-.stat-attr { color: var(--accent); font-size: 15.5px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; margin-bottom: 26px; }
+.stat-attr { color: var(--accent); font-size: 15.5px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
 .stat-avatar {
   display: block;
   width: 64px;
@@ -316,7 +316,7 @@ nav.mainnav .wrap {
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
-  margin: 0 auto 14px;
+  margin: 0 auto 10px;
   border: 2px solid var(--card-border);
   overflow: hidden;
   background: var(--card-bg);
@@ -344,7 +344,7 @@ nav.mainnav .wrap {
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .stat-number { font-family: var(--font-display); font-size: 48px; font-weight: 700; color: var(--text); }
 .stat-label { font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
-.carousel-dots { display: flex; justify-content: center; gap: 6px; margin-top: 28px; }
+.carousel-dots { display: flex; justify-content: center; gap: 6px; margin-top: 18px; }
 .carousel-dots span { width: 22px; height: 4px; border-radius: 2px; background: var(--divider); transition: background 0.2s; }
 .carousel-dots span.active { background: var(--accent); }
 
@@ -483,6 +483,8 @@ nav.mainnav .wrap {
 .card h3 { font-size: 21px; margin-bottom: 8px; }
 .card p { font-size: 18px; }
 .card .read-link { display: inline-block; margin-top: 16px; font-size: 13.5px; color: var(--accent); font-weight: 600; }
+.card .link-row { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 16px; }
+.card .link-row .read-link { margin-top: 0; }
 
 /* ---------- Logos ---------- */
 .logos-eyebrow { text-align: center; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
