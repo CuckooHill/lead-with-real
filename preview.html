@@ -810,7 +810,7 @@ nav.mainnav .wrap {
   padding: 13px 15px !important;
   cursor: pointer;
 }
-.lwr-radio-option:has(input[type="radio"]:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.lwr-radio-option:has(input[type="checkbox"]:checked) { border-color: var(--accent); background: var(--accent-soft); }
 .lwr-radio-option input[type="radio"] { flex-shrink: 0 !important; accent-color: var(--accent); margin: 0 !important; order: 1; width: 18px; height: 18px; }
 .lwr-radio-option span { font-size: 14px; font-weight: 600; flex-shrink: 0 !important; width: 68px !important; order: 2; }
 .lwr-radio-option input.lwr-radio-link {
@@ -839,7 +839,7 @@ nav.mainnav .wrap {
 .lwr-modal-error { color: #C0392B; font-size: 12.5px; margin: 2px 0 10px; }
 .lwr-go-btn { width: 100%; justify-content: center; padding: 13px 24px !important; }
 .lwr-go-btn:hover { background: var(--brand-yellow); color: #262521; }
-.lwr-required-note { text-align: center; font-size: 11px; margin-top: 8px; }
+.lwr-required-note { text-align: left; font-size: 11px; margin-top: 8px; padding-left: 2px; }
 
 /* ---------- Newsletter ---------- */
 .newsletter-box {
@@ -897,7 +897,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   border-bottom: 1px solid var(--divider);
 }
 .cfv-hero .hero-eyebrow { color: var(--brand-yellow); margin-bottom: 14px; }
-.cfv-hero h1 { color: var(--text); font-weight: 900; font-size: clamp(40px, 6.5vw, 72px); max-width: 820px; margin: 0 auto 14px; }
+.cfv-hero h1 { color: var(--text); font-weight: 900; font-size: clamp(30px, 5vw, 54px); max-width: 820px; margin: 0 auto 14px; }
 .cfv-hero p { color: var(--text-muted); max-width: 540px; margin: 0 auto; font-size: 18px; }
 
 .section-inverse {
@@ -1344,17 +1344,17 @@ a:focus-visible, button:focus-visible, input:focus-visible {
         <label>I want to grow my:*</label>
         <div class="lwr-radio-row">
           <label class="lwr-radio-option">
-            <input type="radio" name="platform" value="LinkedIn" required>
+            <input type="checkbox" name="platform" value="LinkedIn">
             <span>LinkedIn</span>
             <input type="text" class="lwr-radio-link" name="linkedin_link" placeholder="Add a link" disabled>
           </label>
           <label class="lwr-radio-option">
-            <input type="radio" name="platform" value="Instagram" required>
+            <input type="checkbox" name="platform" value="Instagram">
             <span>Instagram</span>
             <input type="text" class="lwr-radio-link" name="instagram_link" placeholder="Add a link" disabled>
           </label>
           <label class="lwr-radio-option">
-            <input type="radio" name="platform" value="Other" required>
+            <input type="checkbox" name="platform" value="Other">
             <span>Other</span>
             <input type="text" class="lwr-radio-link" name="other_link" placeholder="Add links" disabled>
           </label>
@@ -1518,13 +1518,17 @@ document.addEventListener('DOMContentLoaded', function () {
   overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.hidden) closeModal(); });
 
-  // Enable/disable the adjacent link text box based on which radio is picked
-  leadForm.querySelectorAll('input[name="platform"]').forEach(function (radio) {
-    radio.addEventListener('change', function () {
-      leadForm.querySelectorAll('.lwr-radio-link').forEach(function (input) { input.disabled = true; });
-      const linkInput = radio.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
-      linkInput.disabled = false;
-      linkInput.focus();
+  // Each checkbox independently enables/disables its own adjacent link box -
+  // multiple platforms can be selected at once now, each with its own link.
+  leadForm.querySelectorAll('input[name="platform"]').forEach(function (cb) {
+    cb.addEventListener('change', function () {
+      const linkInput = cb.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
+      linkInput.disabled = !cb.checked;
+      if (cb.checked) {
+        linkInput.focus();
+      } else {
+        linkInput.value = '';
+      }
     });
   });
 
@@ -1533,20 +1537,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const name = document.getElementById('lwrName').value.trim();
     const email = document.getElementById('lwrEmail').value.trim();
     const phone = document.getElementById('lwrPhone').value.trim();
-    const platformRadio = leadForm.querySelector('input[name="platform"]:checked');
+    const checkedPlatforms = Array.from(leadForm.querySelectorAll('input[name="platform"]:checked'));
 
-    if (!name || !email || !platformRadio) {
+    if (!name || !email || checkedPlatforms.length === 0) {
       errorMsg.hidden = false;
       return;
     }
     errorMsg.hidden = true;
 
-    const platform = platformRadio.value;
-    // Generalized so it works for LinkedIn, Instagram, Other, or any future
-    // option - just reads the link box sitting inside whichever radio's
-    // option was actually checked, instead of hardcoding each field name.
-    const linkField = platformRadio.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
-    const link = linkField ? linkField.value.trim() : '';
+    // Multiple platforms can now be selected - combine them into the two
+    // Sheet columns as "Platform: link" pairs, joined together, so nothing
+    // is lost even though the Sheet only has one Platform and one Link
+    // column each.
+    const pairs = checkedPlatforms.map(function (cb) {
+      const linkField = cb.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
+      const linkVal = linkField ? linkField.value.trim() : '';
+      return { platform: cb.value, link: linkVal };
+    });
+    const platform = pairs.map(function (p) { return p.platform; }).join(', ');
+    const link = pairs.map(function (p) { return p.platform + ': ' + (p.link || '-'); }).join(' | ');
 
     // Fill the hidden Google Form (field order matches the SETUP note above)
     const gInputs = googleForm.querySelectorAll('input');

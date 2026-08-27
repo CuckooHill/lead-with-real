@@ -135,13 +135,17 @@ document.addEventListener('DOMContentLoaded', function () {
   overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.hidden) closeModal(); });
 
-  // Enable/disable the adjacent link text box based on which radio is picked
-  leadForm.querySelectorAll('input[name="platform"]').forEach(function (radio) {
-    radio.addEventListener('change', function () {
-      leadForm.querySelectorAll('.lwr-radio-link').forEach(function (input) { input.disabled = true; });
-      const linkInput = radio.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
-      linkInput.disabled = false;
-      linkInput.focus();
+  // Each checkbox independently enables/disables its own adjacent link box -
+  // multiple platforms can be selected at once now, each with its own link.
+  leadForm.querySelectorAll('input[name="platform"]').forEach(function (cb) {
+    cb.addEventListener('change', function () {
+      const linkInput = cb.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
+      linkInput.disabled = !cb.checked;
+      if (cb.checked) {
+        linkInput.focus();
+      } else {
+        linkInput.value = '';
+      }
     });
   });
 
@@ -150,20 +154,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const name = document.getElementById('lwrName').value.trim();
     const email = document.getElementById('lwrEmail').value.trim();
     const phone = document.getElementById('lwrPhone').value.trim();
-    const platformRadio = leadForm.querySelector('input[name="platform"]:checked');
+    const checkedPlatforms = Array.from(leadForm.querySelectorAll('input[name="platform"]:checked'));
 
-    if (!name || !email || !platformRadio) {
+    if (!name || !email || checkedPlatforms.length === 0) {
       errorMsg.hidden = false;
       return;
     }
     errorMsg.hidden = true;
 
-    const platform = platformRadio.value;
-    // Generalized so it works for LinkedIn, Instagram, Other, or any future
-    // option - just reads the link box sitting inside whichever radio's
-    // option was actually checked, instead of hardcoding each field name.
-    const linkField = platformRadio.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
-    const link = linkField ? linkField.value.trim() : '';
+    // Multiple platforms can now be selected - combine them into the two
+    // Sheet columns as "Platform: link" pairs, joined together, so nothing
+    // is lost even though the Sheet only has one Platform and one Link
+    // column each.
+    const pairs = checkedPlatforms.map(function (cb) {
+      const linkField = cb.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
+      const linkVal = linkField ? linkField.value.trim() : '';
+      return { platform: cb.value, link: linkVal };
+    });
+    const platform = pairs.map(function (p) { return p.platform; }).join(', ');
+    const link = pairs.map(function (p) { return p.platform + ': ' + (p.link || '-'); }).join(' | ');
 
     // Fill the hidden Google Form (field order matches the SETUP note above)
     const gInputs = googleForm.querySelectorAll('input');
