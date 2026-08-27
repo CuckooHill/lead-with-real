@@ -673,15 +673,24 @@ nav.mainnav .wrap {
   object-fit: cover;
   z-index: 0;
 }
+.pillar-tile-topfade {
+  /* Sits above the raw image, below the bottom-darkening overlay - a subtle
+     vignette darkening the top of the tile so bright sky/whitespace in the
+     source image doesn't feel blown-out against the moodier bottom. */
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%);
+  z-index: 1;
+}
 .pillar-tile-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(to bottom, rgba(20,19,18,0) 0%, rgba(20,19,18,0.7) 100%);
-  z-index: 1;
+  z-index: 2;
 }
 .pillar-tile-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   padding: 20px 22px;
   width: 100%;
 }
