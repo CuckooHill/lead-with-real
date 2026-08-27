@@ -486,6 +486,7 @@ nav.mainnav .wrap {
 
 /* ---------- Logos ---------- */
 .logos-eyebrow { text-align: center; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
+.logos-eyebrow-lg { font-size: 15px; margin-top: 20px; }
 .logos-title { text-align: center; font-size: 32px; margin-bottom: 32px; }
 .logos-title em { color: var(--accent); font-style: italic; }
 .logo-grid {
