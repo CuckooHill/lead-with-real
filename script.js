@@ -176,13 +176,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Once the hidden iframe finishes loading the response, the Google
     // submission has gone through - only then send the user on to Cal.com.
-    hiddenIframe.addEventListener('load', function onLoad() {
-      hiddenIframe.removeEventListener('load', onLoad);
+    // A short fallback timer guarantees this always completes even if the
+    // iframe's load event is delayed or doesn't fire (e.g. before the real
+    // Google Form ID below is wired up) - the modal can never get stuck.
+    let advanced = false;
+    function goToCal() {
+      if (advanced) return;
+      advanced = true;
       closeModal();
       const dest = CAL_LINKS[activePlan];
       if (dest) window.open(dest, '_blank', 'noopener');
+    }
+    hiddenIframe.addEventListener('load', function onLoad() {
+      hiddenIframe.removeEventListener('load', onLoad);
+      goToCal();
     });
     googleForm.submit();
+    setTimeout(goToCal, 2500);
   });
 });
 

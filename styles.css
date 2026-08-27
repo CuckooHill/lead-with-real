@@ -318,6 +318,20 @@ nav.mainnav .wrap {
   object-position: center;
   margin: 0 auto 14px;
   border: 2px solid var(--card-border);
+  overflow: hidden;
+  background: var(--card-bg);
+  color: transparent;
+  font-size: 0;
+}
+.stat-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 20px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  background: var(--accent-soft);
 }
 
 .mini-stats { position: relative; height: 84px; }
@@ -750,29 +764,32 @@ nav.mainnav .wrap {
 
 .lwr-radio-row { display: flex; flex-direction: column; gap: 10px; }
 .lwr-radio-option {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
   border: 1px solid var(--card-border);
   border-radius: var(--radius-sm);
-  padding: 10px 12px;
+  padding: 15px 18px !important;
   cursor: pointer;
 }
 .lwr-radio-option:has(input[type="radio"]:checked) { border-color: var(--accent); background: var(--accent-soft); }
-.lwr-radio-option input[type="radio"] { flex-shrink: 0; accent-color: var(--accent); margin: 0; order: 1; }
-.lwr-radio-option span { font-size: 14px; font-weight: 600; flex-shrink: 0; width: 62px; order: 2; }
+.lwr-radio-option input[type="radio"] { flex-shrink: 0 !important; accent-color: var(--accent); margin: 0 !important; order: 1; width: 18px; height: 18px; }
+.lwr-radio-option span { font-size: 14px; font-weight: 600; flex-shrink: 0 !important; width: 68px !important; order: 2; }
 .lwr-radio-option input.lwr-radio-link {
   /* Overrides the general .lwr-field input[type="text"] { width:100% } rule,
      which was forcing this onto its own line instead of sitting inline
      after the radio + label. min-width:0 lets it actually shrink in the
-     flex row instead of overflowing/wrapping. */
+     flex row instead of overflowing/wrapping. Spacing comes only from the
+     row's own `gap` above - no extra per-child margins, to avoid stacking
+     spacing on narrow screens. !important added throughout this block as a
+     safeguard against any conflicting rule elsewhere in the cascade. */
   order: 3;
-  width: auto;
+  width: auto !important;
   min-width: 0;
   flex: 1 1 auto;
   border: 1px solid var(--card-border);
   border-radius: var(--radius-sm);
-  padding: 8px 10px;
+  padding: 9px 12px !important;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
@@ -963,6 +980,12 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   footer .wrap { flex-direction: column; text-align: left; gap: 8px; }
   .cfv-closing .btn-row { flex-direction: column; }
   .cfv-closing .btn-row .btn { width: 100%; justify-content: center; }
+
+  .lwr-modal-overlay { padding: 12px; }
+  .lwr-modal { padding: 24px 20px; }
+  .lwr-radio-option { gap: 12px !important; padding: 13px !important; flex-wrap: wrap; }
+  .lwr-radio-option span { width: auto !important; font-size: 13px; }
+  .lwr-radio-option input.lwr-radio-link { flex-basis: 100%; margin-left: 30px; width: calc(100% - 30px) !important; }
 }
 
 /* Reduced motion */
