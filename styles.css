@@ -766,10 +766,10 @@ nav.mainnav .wrap {
 .lwr-radio-option {
   display: flex !important;
   align-items: center !important;
-  gap: 20px !important;
+  gap: 14px !important;
   border: 1px solid var(--card-border);
   border-radius: var(--radius-sm);
-  padding: 15px 18px !important;
+  padding: 13px 15px !important;
   cursor: pointer;
 }
 .lwr-radio-option:has(input[type="radio"]:checked) { border-color: var(--accent); background: var(--accent-soft); }
