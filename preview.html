@@ -861,6 +861,11 @@ nav.mainnav .wrap {
 .formkit-form[data-uid="66c8573bb2"] .formkit-field,
 .formkit-form[data-uid="66c8573bb2"] .formkit-submit { margin: 0 0 8px 0 !important; }
 .formkit-form[data-uid="66c8573bb2"] .formkit-guarantee { margin: 6px 0 4px 0 !important; }
+/* The embed's own container padding (20px default, 32px at min-width 600)
+   is the other big contributor to the empty space at the top/bottom of
+   the box - tighten both tiers. */
+.formkit-form[data-uid="66c8573bb2"] [data-style="minimal"] { padding: 20px !important; }
+.formkit-form[data-uid="66c8573bb2"][min-width~="600"] [data-style="minimal"] { padding: 22px 28px !important; }
 
 .field-row { display: flex; gap: 10px; margin-bottom: 12px; }
 input[type="text"], input[type="email"] {
@@ -923,7 +928,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 .cfv-closing {
   background: var(--bg-alt);
   color: var(--text);
-  padding: 40px 0;
+  padding: 40px 0 28px;
   text-align: center;
 }
 .cfv-closing h2 { color: var(--text); font-weight: 900; font-size: clamp(30px, 4.5vw, 46px); max-width: 780px; margin: 0 auto 12px; }
@@ -1307,13 +1312,13 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     <h2>Stop Sounding Like<br>Everyone Else.</h2>
     <p>Start sounding like you. Begin with a free 20-minute call - we'll determine where you are at and where you want to be.</p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="https://cal.com/lead-with-real/intro-call" target="_blank" rel="noopener" data-cal-link="lead-with-real/intro-call">Let's Begin →</a>
+      <button type="button" class="btn btn-primary" data-plan-trigger="intro" data-plan-name="Lead With Real - Intro Call">Let's Begin →</button>
     </div>
   </div>
 </section>
 
 <!-- NEWSLETTER -->
-<section class="section" style="padding-top:0; padding-bottom:32px;">
+<section class="section" style="padding-top:24px; padding-bottom:32px;">
   <div class="wrap">
     <div class="newsletter-box">
 <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
