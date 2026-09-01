@@ -135,13 +135,18 @@ document.addEventListener('DOMContentLoaded', function () {
   overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.hidden) closeModal(); });
 
-  // Each checkbox independently enables/disables its own adjacent link box -
-  // multiple platforms can be selected at once now, each with its own link.
-  leadForm.querySelectorAll('input[name="platform"]').forEach(function (cb) {
+  // Each checkbox now sits inside a platform group (LinkedIn / Instagram /
+  // Other), each with two sub-options (Personal / Brand) sharing one link
+  // field. The link field enables as soon as either sub-option in that
+  // group is checked, and disables (clearing itself) only once both are
+  // unchecked.
+  leadForm.querySelectorAll('.lwr-platform-cb').forEach(function (cb) {
     cb.addEventListener('change', function () {
-      const linkInput = cb.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
-      linkInput.disabled = !cb.checked;
-      if (cb.checked) {
+      const group = cb.closest('.lwr-platform-group');
+      const linkInput = group.querySelector('.lwr-radio-link');
+      const anyChecked = group.querySelectorAll('.lwr-platform-cb:checked').length > 0;
+      linkInput.disabled = !anyChecked;
+      if (anyChecked) {
         linkInput.focus();
       } else {
         linkInput.value = '';
@@ -165,9 +170,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Multiple platforms can now be selected - combine them into the two
     // Sheet columns as "Platform: link" pairs, joined together, so nothing
     // is lost even though the Sheet only has one Platform and one Link
-    // column each.
+    // column each. Link is read from the shared field for that platform
+    // group, since Personal and Brand checkboxes now share one link box.
     const pairs = checkedPlatforms.map(function (cb) {
-      const linkField = cb.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
+      const group = cb.closest('.lwr-platform-group');
+      const linkField = group ? group.querySelector('.lwr-radio-link') : null;
       const linkVal = linkField ? linkField.value.trim() : '';
       return { platform: cb.value, link: linkVal };
     });

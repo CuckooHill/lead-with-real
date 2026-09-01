@@ -794,38 +794,38 @@ nav.mainnav .wrap {
 }
 .lwr-field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 
-.lwr-radio-row { display: flex; flex-direction: column; gap: 8px; }
-.lwr-radio-option {
-  display: flex !important;
-  align-items: center !important;
-  gap: 14px !important;
+.lwr-platform-list { display: flex; flex-direction: column; gap: 6px; }
+.lwr-platform-group {
   border: 1px solid var(--card-border);
   border-radius: var(--radius-sm);
-  padding: 13px 15px !important;
-  cursor: pointer;
+  padding: 8px 10px;
 }
-.lwr-radio-option:has(input[type="checkbox"]:checked) { border-color: var(--accent); background: var(--accent-soft); }
-.lwr-radio-option input[type="radio"] { flex-shrink: 0 !important; accent-color: var(--accent); margin: 0 !important; order: 1; width: 18px; height: 18px; }
-.lwr-radio-option span { font-size: 14px; font-weight: 600; flex-shrink: 0 !important; width: 68px !important; order: 2; }
-.lwr-radio-option input.lwr-radio-link {
-  /* Overrides the general .lwr-field input[type="text"] { width:100% } rule,
-     which was forcing this onto its own line instead of sitting inline
-     after the radio + label. min-width:0 lets it actually shrink in the
-     flex row instead of overflowing/wrapping. Spacing comes only from the
-     row's own `gap` above - no extra per-child margins, to avoid stacking
-     spacing on narrow screens. !important added throughout this block as a
-     safeguard against any conflicting rule elsewhere in the cascade. */
-  order: 3;
-  width: auto !important;
-  min-width: 0;
-  flex: 1 1 auto;
+.lwr-platform-group:has(.lwr-platform-cb:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.lwr-platform-head { display: flex; align-items: center; gap: 14px; margin-bottom: 5px; }
+.lwr-platform-name { font-size: 13px; font-weight: 700; flex-shrink: 0; width: 62px; }
+.lwr-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 3px 9px;
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+}
+.lwr-pill input[type="checkbox"] { width: 12px; height: 12px; margin: 0; accent-color: var(--accent); }
+.lwr-pill:has(input:checked) { border-color: var(--accent); color: var(--text); background: var(--bg); }
+.lwr-platform-group input.lwr-radio-link {
+  width: 100% !important;
   border: 1px solid var(--card-border);
   border-radius: var(--radius-sm);
-  padding: 9px 12px !important;
+  padding: 6px 10px !important;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 13.5px;
+  font-size: 12.5px;
 }
 .lwr-radio-link::placeholder { color: var(--text-muted); opacity: 0.55; }
 .lwr-radio-link:disabled { opacity: 0.4; cursor: not-allowed; }
@@ -1033,10 +1033,10 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   .lwr-modal h3 { font-size: 19px; }
   .lwr-modal-plan { margin-bottom: 10px; }
   .lwr-field { margin-bottom: 8px; }
-  .lwr-radio-row { gap: 6px; }
-  .lwr-radio-option { gap: 8px !important; padding: 9px 10px !important; flex-wrap: nowrap; }
-  .lwr-radio-option span { width: auto !important; font-size: 12.5px; }
-  .lwr-radio-option input.lwr-radio-link { padding: 7px 8px !important; font-size: 12.5px; }
+  .lwr-platform-list { gap: 5px; }
+  .lwr-platform-group { padding: 7px 9px; }
+  .lwr-platform-name { width: auto; margin-right: 2px; }
+  .lwr-platform-group input.lwr-radio-link { padding: 6px 9px !important; font-size: 12px; }
 }
 
 /* Reduced motion */

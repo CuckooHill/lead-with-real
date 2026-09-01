@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lead With Real - Show up in the world, authentically</title>
 <meta name="description" content="For founders, creators and leaders who want to show up in the world in a way that feels real, aligned and true to who they are.">
-<link rel="stylesheet" href="styles.css?v=16">
+<link rel="stylesheet" href="styles.css?v=18">
 </head>
 <body>
 
@@ -306,26 +306,35 @@
 
       <div class="lwr-field">
         <label>I want to grow my:*</label>
-        <div class="lwr-radio-row">
-          <label class="lwr-radio-option">
-            <input type="checkbox" name="platform" value="LinkedIn">
-            <span>LinkedIn</span>
-            <input type="text" class="lwr-radio-link" name="linkedin_link" placeholder="Add a link" disabled>
-          </label>
-          <label class="lwr-radio-option">
-            <input type="checkbox" name="platform" value="Instagram">
-            <span>Instagram</span>
-            <input type="text" class="lwr-radio-link" name="instagram_link" placeholder="Add a link" disabled>
-          </label>
-          <label class="lwr-radio-option">
-            <input type="checkbox" name="platform" value="Other">
-            <span>Other</span>
-            <input type="text" class="lwr-radio-link" name="other_link" placeholder="Add links" disabled>
-          </label>
+        <div class="lwr-platform-list">
+          <div class="lwr-platform-group">
+            <div class="lwr-platform-head">
+              <span class="lwr-platform-name">LinkedIn</span>
+              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="LinkedIn - Personal"><span>Personal</span></label>
+              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="LinkedIn - Brand"><span>Brand</span></label>
+            </div>
+            <input type="text" class="lwr-radio-link" name="linkedin_link" placeholder="Add link(s)" disabled>
+          </div>
+          <div class="lwr-platform-group">
+            <div class="lwr-platform-head">
+              <span class="lwr-platform-name">Instagram</span>
+              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="Instagram - Personal"><span>Personal</span></label>
+              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="Instagram - Brand"><span>Brand</span></label>
+            </div>
+            <input type="text" class="lwr-radio-link" name="instagram_link" placeholder="Add link(s)" disabled>
+          </div>
+          <div class="lwr-platform-group">
+            <div class="lwr-platform-head">
+              <span class="lwr-platform-name">Other</span>
+              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="Other - Personal"><span>Personal</span></label>
+              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="Other - Brand"><span>Brand</span></label>
+            </div>
+            <input type="text" class="lwr-radio-link" name="other_link" placeholder="Add link(s)" disabled>
+          </div>
         </div>
       </div>
 
-      <p class="lwr-modal-error" id="lwrModalError" hidden>Please fill in your name, email, and choose a platform.</p>
+      <p class="lwr-modal-error" id="lwrModalError" hidden>Please fill in your name, email, and choose at least one option.</p>
 
       <button type="submit" class="btn btn-primary lwr-go-btn">Go</button>
       <p class="lwr-required-note">*required</p>
@@ -344,6 +353,6 @@
   <input type="text" name="entry.1503759306">
 </form>
 
-<script src="script.js?v=16"></script>
+<script src="script.js?v=18"></script>
 </body>
 </html>
