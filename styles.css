@@ -274,14 +274,38 @@ nav.mainnav .wrap {
   object-position: center;
   z-index: 0;
   pointer-events: none;
+  /* Slight dim so the video never fights with the copy sitting on top of it */
+  filter: brightness(0.82);
+}
+/* Smooth (not hard-edged) scrim over the video - darkest right under the nav
+   and again toward the bottom, easing off in the middle, so the hero copy
+   and the testimonial card both keep comfortable contrast at any scroll
+   position. Sits above the video, below the actual content. */
+.hero-video-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 9, 8, 0.6) 0%,
+    rgba(10, 9, 8, 0.32) 20%,
+    rgba(10, 9, 8, 0.18) 42%,
+    rgba(10, 9, 8, 0.3) 68%,
+    rgba(10, 9, 8, 0.55) 100%
+  );
 }
 .hero-video-wrap > .hero,
 .hero-video-wrap > .stat-carousel {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
-/* The hero's own gradient becomes a fallback shown only before the video
-   loads/starts playing - the video itself sits on top of it. */
+/* Inside the video wrap the hero's own gradient is replaced by the video -
+   only used as a fallback background before the video has painted. */
+.hero-video-wrap > .hero {
+  background: transparent !important;
+}
 .hero-eyebrow {
   font-family: var(--font-body);
   font-size: 13px;
@@ -302,6 +326,15 @@ nav.mainnav .wrap {
   margin: 0 auto 26px;
   font-size: 18px;
   color: var(--text-muted);
+}
+/* Soft, diffuse shadow (not a hard drop-shadow) so the hero copy stays
+   readable over the moving video background regardless of theme. */
+.hero-video-wrap .hero h1,
+.hero-video-wrap .hero p.lede {
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+.hero-video-wrap .hero .btn-primary {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
 }
 
 /* ---------- Stat carousel ---------- */
