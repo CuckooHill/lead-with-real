@@ -121,6 +121,8 @@ document.addEventListener('DOMContentLoaded', function () {
     leadForm.querySelectorAll('.lwr-type-tab').forEach(function (t, i) {
       t.classList.toggle('active', i === 0);
     });
+    platformState.Personal = {};
+    platformState.Brand = {};
     overlay.hidden = false;
     document.body.style.overflow = 'hidden';
     document.getElementById('lwrName').focus();
@@ -140,15 +142,41 @@ document.addEventListener('DOMContentLoaded', function () {
   overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.hidden) closeModal(); });
 
-  // Personal / Brand tab toggle - a single global switch, not per-platform.
-  // Whichever tab is active gets appended to every checked platform's value
-  // at submit time.
+  // Personal / Brand tab toggle. Each tab keeps its own independent set of
+  // checked platforms + link values - switching tabs saves whatever's
+  // currently on screen into that tab's own state object, then loads the
+  // other tab's state (blank, unless it was already filled in).
   const activeTypeField = document.getElementById('lwrActiveType');
+  const platformState = { Personal: {}, Brand: {} };
+
+  function readDomIntoState(type) {
+    const state = {};
+    leadForm.querySelectorAll('input[name="platform"]').forEach(function (cb) {
+      const linkInput = cb.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
+      state[cb.value] = { checked: cb.checked, link: linkInput.value };
+    });
+    platformState[type] = state;
+  }
+
+  function writeStateIntoDom(type) {
+    const state = platformState[type] || {};
+    leadForm.querySelectorAll('input[name="platform"]').forEach(function (cb) {
+      const linkInput = cb.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
+      const entry = state[cb.value] || { checked: false, link: '' };
+      cb.checked = entry.checked;
+      linkInput.disabled = !entry.checked;
+      linkInput.value = entry.link || '';
+    });
+  }
+
   leadForm.querySelectorAll('.lwr-type-tab').forEach(function (tab) {
     tab.addEventListener('click', function () {
-      leadForm.querySelectorAll('.lwr-type-tab').forEach(function (t) { t.classList.remove('active'); });
-      tab.classList.add('active');
-      activeTypeField.value = tab.getAttribute('data-type');
+      const newType = tab.getAttribute('data-type');
+      if (newType === activeTypeField.value) return;
+      readDomIntoState(activeTypeField.value);
+      activeTypeField.value = newType;
+      writeStateIntoDom(newType);
+      leadForm.querySelectorAll('.lwr-type-tab').forEach(function (t) { t.classList.toggle('active', t === tab); });
     });
   });
 
@@ -171,24 +199,32 @@ document.addEventListener('DOMContentLoaded', function () {
     const name = document.getElementById('lwrName').value.trim();
     const email = document.getElementById('lwrEmail').value.trim();
     const phone = document.getElementById('lwrPhone').value.trim();
-    const checkedPlatforms = Array.from(leadForm.querySelectorAll('input[name="platform"]:checked'));
 
-    if (!name || !email || checkedPlatforms.length === 0) {
+    // Capture whatever's currently on screen into its tab's state before
+    // combining both tabs' saved selections together.
+    readDomIntoState(activeTypeField.value);
+
+    const allPairs = [];
+    ['Personal', 'Brand'].forEach(function (type) {
+      const state = platformState[type] || {};
+      Object.keys(state).forEach(function (platform) {
+        if (state[platform].checked) {
+          allPairs.push({
+            platform: platform + ' (' + type + ')',
+            link: (state[platform].link || '').trim()
+          });
+        }
+      });
+    });
+
+    if (!name || !email || allPairs.length === 0) {
       errorMsg.hidden = false;
       return;
     }
     errorMsg.hidden = true;
 
-    // Combine the active Personal/Brand tab with each checked platform, so
-    // "LinkedIn" + "Brand" tab becomes "LinkedIn (Brand)" in the Sheet.
-    const activeType = activeTypeField.value;
-    const pairs = checkedPlatforms.map(function (cb) {
-      const linkField = cb.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
-      const linkVal = linkField ? linkField.value.trim() : '';
-      return { platform: cb.value + ' (' + activeType + ')', link: linkVal };
-    });
-    const platform = pairs.map(function (p) { return p.platform; }).join(', ');
-    const link = pairs.map(function (p) { return p.platform + ': ' + (p.link || '-'); }).join(' | ');
+    const platform = allPairs.map(function (p) { return p.platform; }).join(', ');
+    const link = allPairs.map(function (p) { return p.platform + ': ' + (p.link || '-'); }).join(' | ');
 
     // Fill the hidden Google Form (field order matches the SETUP note above)
     const gInputs = googleForm.querySelectorAll('input');
