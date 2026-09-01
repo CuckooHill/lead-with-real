@@ -327,11 +327,17 @@ nav.mainnav .wrap {
   font-size: 18px;
   color: var(--text-muted);
 }
-/* Soft, diffuse shadow (not a hard drop-shadow) so the hero copy stays
-   readable over the moving video background regardless of theme. */
+/* Both lines sit on the video, so they stay bright white in both day and
+   night mode rather than following the theme's normal text colour - with a
+   soft, diffuse shadow (not a hard drop-shadow) so they stay readable
+   against the moving footage regardless of theme. */
 .hero-video-wrap .hero h1,
 .hero-video-wrap .hero p.lede {
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.35);
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55), 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+.hero-video-wrap .hero p.lede {
+  font-size: 20px;
 }
 .hero-video-wrap .hero .btn-primary {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
@@ -514,8 +520,14 @@ nav.mainnav .wrap {
 .ticker {
   background: var(--panel-bg);
   border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
   overflow: hidden;
   padding: 14px 0;
+}
+/* The feint bottom rule is a day-mode-only touch - the dark theme keeps its
+   original single top border. */
+[data-theme="dark"] .ticker {
+  border-bottom: none;
 }
 .ticker-track {
   display: inline-flex;
@@ -548,6 +560,12 @@ nav.mainnav .wrap {
   border: 1px solid var(--card-border);
   border-radius: var(--radius-md);
   padding: 22px 20px;
+}
+/* Lighten just these 3 research cards in dark mode - roughly midway between
+   the page's near-black background (#1B1A18) and the logo-tile grey
+   (#8C8C86), so they read as a card again instead of near-invisible. */
+[data-theme="dark"] .cards-3 .card {
+  background: #54534F;
 }
 .card-tag { font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
 .card h3 { font-size: 21px; margin-bottom: 8px; }
