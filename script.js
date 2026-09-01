@@ -217,7 +217,8 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    if (!name || !email || allPairs.length === 0) {
+    // Only name and email are required - platform selection is optional.
+    if (!name || !email) {
       errorMsg.hidden = false;
       return;
     }
