@@ -116,6 +116,11 @@ document.addEventListener('DOMContentLoaded', function () {
     errorMsg.hidden = true;
     leadForm.reset();
     document.querySelectorAll('.lwr-radio-link').forEach(function (i) { i.disabled = true; i.value = ''; });
+    const activeTypeReset = document.getElementById('lwrActiveType');
+    if (activeTypeReset) activeTypeReset.value = 'Personal';
+    leadForm.querySelectorAll('.lwr-type-tab').forEach(function (t, i) {
+      t.classList.toggle('active', i === 0);
+    });
     overlay.hidden = false;
     document.body.style.overflow = 'hidden';
     document.getElementById('lwrName').focus();
@@ -135,18 +140,25 @@ document.addEventListener('DOMContentLoaded', function () {
   overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.hidden) closeModal(); });
 
-  // Each checkbox now sits inside a platform group (LinkedIn / Instagram /
-  // Other), each with two sub-options (Personal / Brand) sharing one link
-  // field. The link field enables as soon as either sub-option in that
-  // group is checked, and disables (clearing itself) only once both are
-  // unchecked.
-  leadForm.querySelectorAll('.lwr-platform-cb').forEach(function (cb) {
+  // Personal / Brand tab toggle - a single global switch, not per-platform.
+  // Whichever tab is active gets appended to every checked platform's value
+  // at submit time.
+  const activeTypeField = document.getElementById('lwrActiveType');
+  leadForm.querySelectorAll('.lwr-type-tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      leadForm.querySelectorAll('.lwr-type-tab').forEach(function (t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      activeTypeField.value = tab.getAttribute('data-type');
+    });
+  });
+
+  // Each checkbox independently enables/disables its own adjacent link box -
+  // multiple platforms can be selected at once, each with its own link.
+  leadForm.querySelectorAll('input[name="platform"]').forEach(function (cb) {
     cb.addEventListener('change', function () {
-      const group = cb.closest('.lwr-platform-group');
-      const linkInput = group.querySelector('.lwr-radio-link');
-      const anyChecked = group.querySelectorAll('.lwr-platform-cb:checked').length > 0;
-      linkInput.disabled = !anyChecked;
-      if (anyChecked) {
+      const linkInput = cb.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
+      linkInput.disabled = !cb.checked;
+      if (cb.checked) {
         linkInput.focus();
       } else {
         linkInput.value = '';
@@ -167,16 +179,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     errorMsg.hidden = true;
 
-    // Multiple platforms can now be selected - combine them into the two
-    // Sheet columns as "Platform: link" pairs, joined together, so nothing
-    // is lost even though the Sheet only has one Platform and one Link
-    // column each. Link is read from the shared field for that platform
-    // group, since Personal and Brand checkboxes now share one link box.
+    // Combine the active Personal/Brand tab with each checked platform, so
+    // "LinkedIn" + "Brand" tab becomes "LinkedIn (Brand)" in the Sheet.
+    const activeType = activeTypeField.value;
     const pairs = checkedPlatforms.map(function (cb) {
-      const group = cb.closest('.lwr-platform-group');
-      const linkField = group ? group.querySelector('.lwr-radio-link') : null;
+      const linkField = cb.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
       const linkVal = linkField ? linkField.value.trim() : '';
-      return { platform: cb.value, link: linkVal };
+      return { platform: cb.value + ' (' + activeType + ')', link: linkVal };
     });
     const platform = pairs.map(function (p) { return p.platform; }).join(', ');
     const link = pairs.map(function (p) { return p.platform + ': ' + (p.link || '-'); }).join(' | ');

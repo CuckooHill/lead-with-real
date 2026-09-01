@@ -802,38 +802,46 @@ nav.mainnav .wrap {
 }
 .lwr-field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 
-.lwr-platform-list { display: flex; flex-direction: column; gap: 6px; }
-.lwr-platform-group {
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-sm);
-  padding: 8px 10px;
-}
-.lwr-platform-group:has(.lwr-platform-cb:checked) { border-color: var(--accent); background: var(--accent-soft); }
-.lwr-platform-head { display: flex; align-items: center; gap: 14px; margin-bottom: 5px; }
-.lwr-platform-name { font-size: 13px; font-weight: 700; flex-shrink: 0; width: 62px; }
-.lwr-pill {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12.5px;
-  font-weight: 600;
+.lwr-type-tabs { display: flex; border: 1px solid var(--card-border); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 8px; }
+.lwr-type-tab {
+  flex: 1 1 50%;
+  border: none;
+  background: var(--bg);
   color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 10px;
   cursor: pointer;
-  padding: 11px 18px;
-  border: 1px solid var(--card-border);
-  border-radius: 999px;
 }
-.lwr-pill input[type="checkbox"] { width: 13px; height: 13px; margin: 0; accent-color: var(--accent); }
-.lwr-pill:has(input:checked) { border-color: var(--accent); color: var(--text); background: var(--bg); }
-.lwr-platform-group input.lwr-radio-link {
-  width: 100% !important;
+.lwr-type-tab.active { background: var(--accent); color: #fff; }
+.lwr-type-tab:not(:last-child) { border-right: 1px solid var(--card-border); }
+
+.lwr-radio-row { display: flex; flex-direction: column; gap: 8px; }
+.lwr-radio-option {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
   border: 1px solid var(--card-border);
   border-radius: var(--radius-sm);
-  padding: 6px 10px !important;
+  padding: 13px 15px !important;
+  cursor: pointer;
+}
+.lwr-radio-option:has(input[type="checkbox"]:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.lwr-radio-option input[type="checkbox"] { flex-shrink: 0 !important; accent-color: var(--accent); margin: 0 !important; order: 1; width: 18px; height: 18px; }
+.lwr-radio-option span { font-size: 14px; font-weight: 600; flex-shrink: 0 !important; width: 68px !important; order: 2; }
+.lwr-radio-option input.lwr-radio-link {
+  order: 3;
+  width: auto !important;
+  min-width: 0;
+  flex: 1 1 auto;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px !important;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 12.5px;
+  font-size: 13.5px;
 }
 .lwr-radio-link::placeholder { color: var(--text-muted); opacity: 0.55; }
 .lwr-radio-link:disabled { opacity: 0.4; cursor: not-allowed; }
@@ -1041,10 +1049,10 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   .lwr-modal h3 { font-size: 19px; }
   .lwr-modal-plan { margin-bottom: 10px; }
   .lwr-field { margin-bottom: 8px; }
-  .lwr-platform-list { gap: 5px; }
-  .lwr-platform-group { padding: 7px 9px; }
-  .lwr-platform-name { width: auto; margin-right: 2px; }
-  .lwr-platform-group input.lwr-radio-link { padding: 6px 9px !important; font-size: 12px; }
+  .lwr-radio-row { gap: 6px; }
+  .lwr-radio-option { gap: 8px !important; padding: 9px 10px !important; flex-wrap: nowrap; }
+  .lwr-radio-option span { width: auto !important; font-size: 12.5px; }
+  .lwr-radio-option input.lwr-radio-link { padding: 7px 8px !important; font-size: 12.5px; }
 }
 
 /* Reduced motion */
@@ -1359,33 +1367,29 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 
       <div class="lwr-field">
         <label>I want to grow my:*</label>
-        <div class="lwr-platform-list">
-          <div class="lwr-platform-group">
-            <div class="lwr-platform-head">
-              <span class="lwr-platform-name">LinkedIn</span>
-              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="LinkedIn - Personal"><span>Personal</span></label>
-              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="LinkedIn - Brand"><span>Brand</span></label>
-            </div>
+        <div class="lwr-type-tabs" role="tablist">
+          <button type="button" class="lwr-type-tab active" data-type="Personal">Personal</button>
+          <button type="button" class="lwr-type-tab" data-type="Brand">Brand</button>
+        </div>
+        <div class="lwr-radio-row">
+          <label class="lwr-radio-option">
+            <input type="checkbox" name="platform" value="LinkedIn">
+            <span>LinkedIn</span>
             <input type="text" class="lwr-radio-link" name="linkedin_link" placeholder="Add link(s)" disabled>
-          </div>
-          <div class="lwr-platform-group">
-            <div class="lwr-platform-head">
-              <span class="lwr-platform-name">Instagram</span>
-              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="Instagram - Personal"><span>Personal</span></label>
-              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="Instagram - Brand"><span>Brand</span></label>
-            </div>
+          </label>
+          <label class="lwr-radio-option">
+            <input type="checkbox" name="platform" value="Instagram">
+            <span>Instagram</span>
             <input type="text" class="lwr-radio-link" name="instagram_link" placeholder="Add link(s)" disabled>
-          </div>
-          <div class="lwr-platform-group">
-            <div class="lwr-platform-head">
-              <span class="lwr-platform-name">Other</span>
-              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="Other - Personal"><span>Personal</span></label>
-              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="Other - Brand"><span>Brand</span></label>
-            </div>
+          </label>
+          <label class="lwr-radio-option">
+            <input type="checkbox" name="platform" value="Other">
+            <span>Other</span>
             <input type="text" class="lwr-radio-link" name="other_link" placeholder="Add link(s)" disabled>
-          </div>
+          </label>
         </div>
       </div>
+      <input type="hidden" id="lwrActiveType" value="Personal">
 
       <p class="lwr-modal-error" id="lwrModalError" hidden>Please fill in your name, email, and choose at least one option.</p>
 
@@ -1525,6 +1529,11 @@ document.addEventListener('DOMContentLoaded', function () {
     errorMsg.hidden = true;
     leadForm.reset();
     document.querySelectorAll('.lwr-radio-link').forEach(function (i) { i.disabled = true; i.value = ''; });
+    const activeTypeReset = document.getElementById('lwrActiveType');
+    if (activeTypeReset) activeTypeReset.value = 'Personal';
+    leadForm.querySelectorAll('.lwr-type-tab').forEach(function (t, i) {
+      t.classList.toggle('active', i === 0);
+    });
     overlay.hidden = false;
     document.body.style.overflow = 'hidden';
     document.getElementById('lwrName').focus();
@@ -1544,18 +1553,25 @@ document.addEventListener('DOMContentLoaded', function () {
   overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.hidden) closeModal(); });
 
-  // Each checkbox now sits inside a platform group (LinkedIn / Instagram /
-  // Other), each with two sub-options (Personal / Brand) sharing one link
-  // field. The link field enables as soon as either sub-option in that
-  // group is checked, and disables (clearing itself) only once both are
-  // unchecked.
-  leadForm.querySelectorAll('.lwr-platform-cb').forEach(function (cb) {
+  // Personal / Brand tab toggle - a single global switch, not per-platform.
+  // Whichever tab is active gets appended to every checked platform's value
+  // at submit time.
+  const activeTypeField = document.getElementById('lwrActiveType');
+  leadForm.querySelectorAll('.lwr-type-tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      leadForm.querySelectorAll('.lwr-type-tab').forEach(function (t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      activeTypeField.value = tab.getAttribute('data-type');
+    });
+  });
+
+  // Each checkbox independently enables/disables its own adjacent link box -
+  // multiple platforms can be selected at once, each with its own link.
+  leadForm.querySelectorAll('input[name="platform"]').forEach(function (cb) {
     cb.addEventListener('change', function () {
-      const group = cb.closest('.lwr-platform-group');
-      const linkInput = group.querySelector('.lwr-radio-link');
-      const anyChecked = group.querySelectorAll('.lwr-platform-cb:checked').length > 0;
-      linkInput.disabled = !anyChecked;
-      if (anyChecked) {
+      const linkInput = cb.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
+      linkInput.disabled = !cb.checked;
+      if (cb.checked) {
         linkInput.focus();
       } else {
         linkInput.value = '';
@@ -1576,16 +1592,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     errorMsg.hidden = true;
 
-    // Multiple platforms can now be selected - combine them into the two
-    // Sheet columns as "Platform: link" pairs, joined together, so nothing
-    // is lost even though the Sheet only has one Platform and one Link
-    // column each. Link is read from the shared field for that platform
-    // group, since Personal and Brand checkboxes now share one link box.
+    // Combine the active Personal/Brand tab with each checked platform, so
+    // "LinkedIn" + "Brand" tab becomes "LinkedIn (Brand)" in the Sheet.
+    const activeType = activeTypeField.value;
     const pairs = checkedPlatforms.map(function (cb) {
-      const group = cb.closest('.lwr-platform-group');
-      const linkField = group ? group.querySelector('.lwr-radio-link') : null;
+      const linkField = cb.closest('.lwr-radio-option').querySelector('.lwr-radio-link');
       const linkVal = linkField ? linkField.value.trim() : '';
-      return { platform: cb.value, link: linkVal };
+      return { platform: cb.value + ' (' + activeType + ')', link: linkVal };
     });
     const platform = pairs.map(function (p) { return p.platform; }).join(', ');
     const link = pairs.map(function (p) { return p.platform + ': ' + (p.link || '-'); }).join(' | ');

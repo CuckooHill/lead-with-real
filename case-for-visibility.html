@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Case For Authenticity, Visibility &amp; Clarity - Lead With Real</title>
 <meta name="description" content="Leaders are the bottleneck, not the tools. The research on AI adoption, visibility and authentic voice.">
-<link rel="stylesheet" href="styles.css?v=20">
+<link rel="stylesheet" href="styles.css?v=21">
 </head>
 <body class="page-visibility">
 
@@ -164,33 +164,29 @@
 
       <div class="lwr-field">
         <label>I want to grow my:*</label>
-        <div class="lwr-platform-list">
-          <div class="lwr-platform-group">
-            <div class="lwr-platform-head">
-              <span class="lwr-platform-name">LinkedIn</span>
-              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="LinkedIn - Personal"><span>Personal</span></label>
-              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="LinkedIn - Brand"><span>Brand</span></label>
-            </div>
+        <div class="lwr-type-tabs" role="tablist">
+          <button type="button" class="lwr-type-tab active" data-type="Personal">Personal</button>
+          <button type="button" class="lwr-type-tab" data-type="Brand">Brand</button>
+        </div>
+        <div class="lwr-radio-row">
+          <label class="lwr-radio-option">
+            <input type="checkbox" name="platform" value="LinkedIn">
+            <span>LinkedIn</span>
             <input type="text" class="lwr-radio-link" name="linkedin_link" placeholder="Add link(s)" disabled>
-          </div>
-          <div class="lwr-platform-group">
-            <div class="lwr-platform-head">
-              <span class="lwr-platform-name">Instagram</span>
-              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="Instagram - Personal"><span>Personal</span></label>
-              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="Instagram - Brand"><span>Brand</span></label>
-            </div>
+          </label>
+          <label class="lwr-radio-option">
+            <input type="checkbox" name="platform" value="Instagram">
+            <span>Instagram</span>
             <input type="text" class="lwr-radio-link" name="instagram_link" placeholder="Add link(s)" disabled>
-          </div>
-          <div class="lwr-platform-group">
-            <div class="lwr-platform-head">
-              <span class="lwr-platform-name">Other</span>
-              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="Other - Personal"><span>Personal</span></label>
-              <label class="lwr-pill"><input type="checkbox" class="lwr-platform-cb" name="platform" value="Other - Brand"><span>Brand</span></label>
-            </div>
+          </label>
+          <label class="lwr-radio-option">
+            <input type="checkbox" name="platform" value="Other">
+            <span>Other</span>
             <input type="text" class="lwr-radio-link" name="other_link" placeholder="Add link(s)" disabled>
-          </div>
+          </label>
         </div>
       </div>
+      <input type="hidden" id="lwrActiveType" value="Personal">
 
       <p class="lwr-modal-error" id="lwrModalError" hidden>Please fill in your name, email, and choose a platform.</p>
 
@@ -211,6 +207,6 @@
   <input type="text" name="entry.1503759306">
 </form>
 
-<script src="script.js?v=20"></script>
+<script src="script.js?v=21"></script>
 </body>
 </html>
