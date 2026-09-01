@@ -806,12 +806,12 @@ nav.mainnav .wrap {
 .lwr-pill {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 7px;
   font-size: 12px;
   font-weight: 600;
   color: var(--text-muted);
   cursor: pointer;
-  padding: 3px 9px;
+  padding: 7px 14px;
   border: 1px solid var(--card-border);
   border-radius: 999px;
 }
