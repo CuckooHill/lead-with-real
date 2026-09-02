@@ -365,6 +365,13 @@ nav.mainnav .wrap {
 }
 /* Only pull the carousel up to overlap the hero when it directly follows it */
 .hero + .stat-carousel { margin-top: -40px; }
+@media (max-width: 760px) {
+  .stat-carousel {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .hero + .stat-carousel { margin-top: 24px; }
+}
 .stat-eyebrow {
   color: var(--accent);
   font-size: 17px;
