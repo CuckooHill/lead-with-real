@@ -5,7 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Case For Authenticity, Visibility &amp; Clarity - Lead With Real</title>
 <meta name="description" content="Leaders are the bottleneck, not the tools. The research on AI adoption, visibility and authentic voice.">
-<link rel="stylesheet" href="styles.css?v=39">
+<!-- Critical inline fallback so the very first paint already matches the
+     dark theme (the default for new visitors - see script.js), instead of
+     a flash of default black-on-white while styles.css is still loading.
+     Real styles.css overrides all of this the instant it's parsed. -->
+<style>
+  html, body {
+    background: #1B1A18;
+    color: #F0ECE1;
+    margin: 0;
+  }
+  body {
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+</style>
+<link rel="stylesheet" href="styles.css?v=40">
 </head>
 <body class="page-visibility">
 
@@ -252,6 +266,6 @@
   <input type="text" name="entry.1503759306">
 </form>
 
-<script src="script.js?v=39"></script>
+<script src="script.js?v=40"></script>
 </body>
 </html>
