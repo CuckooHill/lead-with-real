@@ -268,3 +268,40 @@ document.addEventListener('DOMContentLoaded', function () {
 // get stuck, nothing to close twice. Every [data-cal-link] button already
 // has a real href, so this requires no JS at all: they just work as normal
 // links.
+
+// ---------- Collapsible research cards + pillar copy ----------
+// Shared expand/collapse: measures the real content height with scrollHeight
+// so the CSS max-height transition animates smoothly regardless of how long
+// the copy is, then clears the inline max-height once open so the box can
+// still grow/shrink naturally (e.g. window resize, font loading).
+function setupCollapsible(toggleSelector, bodySelector, parentSelector) {
+  document.querySelectorAll(toggleSelector).forEach(function (btn) {
+    const parent = btn.closest(parentSelector);
+    const body = parent.querySelector(bodySelector);
+    if (!body) return;
+    btn.addEventListener('click', function () {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      if (isOpen) {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        requestAnimationFrame(function () { body.style.maxHeight = '0px'; });
+        btn.setAttribute('aria-expanded', 'false');
+        parent.classList.remove('expanded');
+      } else {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+        parent.classList.add('expanded');
+        body.addEventListener('transitionend', function onEnd() {
+          body.removeEventListener('transitionend', onEnd);
+          if (btn.getAttribute('aria-expanded') === 'true') {
+            body.style.maxHeight = 'none';
+          }
+        });
+      }
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', function () {
+  setupCollapsible('.card-toggle', '.card-body', '.card');
+  setupCollapsible('.pillar-toggle', '.pillar-body', '.pillar');
+});
+
