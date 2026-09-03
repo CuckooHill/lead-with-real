@@ -2,389 +2,491 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- Set theme before first paint so dark mode (the default) applies
+     immediately, with no flash of the light-mode fallback while
+     script.js is still loading further down the page. Kept in sync with
+     the same logic in script.js. -->
+<script>
+(function () {
+  var stored = localStorage.getItem('lwr-theme');
+  document.documentElement.setAttribute('data-theme', stored || 'dark');
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RealVoice - Find Your Authentic Voice | Lead With Real</title>
 <meta name="description" content="Clear the blocks and develop your unique, authentic voice - for founders and leaders who want their content to actually sound like them.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-<link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0;
-    padding: 0;
-    background: #1B1A18;
-    color: #F0ECE1;
-    font-family: 'Lato', -apple-system, sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  .wrap {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700;900&display=swap');
 
-  /* ---------- Fixed full-page video backdrop ---------- */
-  .page-bg-video {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    z-index: -2;
-    pointer-events: none;
-  }
-  .page-bg-scrim {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background: rgba(10,9,8,0.5);
-    pointer-events: none;
-  }
+@font-face {
+  font-family: 'Cooper';
+  src: url('/fonts/Cooper-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cooper';
+  src: url('/fonts/Cooper-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cooper';
+  src: url('/fonts/Cooper-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cooper';
+  src: url('/fonts/Cooper-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cooper';
+  src: url('/fonts/Cooper-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 
-  /* ---------- Top brand mark ---------- */
-  .topbar {
-    padding: 24px 24px 0;
-  }
-  .brand-stack {
-    display: inline-block;
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
-    font-size: 15px;
-    line-height: 1.08;
-    text-align: left;
-  }
-  .brand-stack .brand-accent { color: #E0A8E6; }
+:root {
+  --bg: #F6F1E4;
+  --bg-alt: #FFFFFF;
+  --text: #262521;
+  --text-muted: #6B675E;
+  --accent: #9E32A5;
+  --cta-bg: #D897E0;
+  --cta-text: #262521;
+  --cta-bg-hover: #C87ED4;
+  --card-border: #E4DDCB;
+  --card-bg: #FFFFFF;
+  --card-bg-translucent: rgba(255, 255, 255, 0.78);
+  --divider: #E4DDCB;
+  --font-display: 'Cooper', Georgia, serif;
+  --font-body: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+  color-scheme: light;
+}
+[data-theme="dark"] {
+  --bg: #1B1A18;
+  --bg-alt: #232220;
+  --text: #F0ECE1;
+  --text-muted: #A8A399;
+  --accent: #E0A8E6;
+  --cta-bg: #D897E0;
+  --cta-text: #262521;
+  --cta-bg-hover: #E0A8E6;
+  --card-border: #35332F;
+  --card-bg: #232220;
+  --card-bg-translucent: rgba(35, 34, 32, 0.78);
+  --divider: #35332F;
+  color-scheme: dark;
+}
 
-  /* ---------- Content card ---------- */
-  main {
-    display: flex;
-    justify-content: center;
-    padding: 40px 24px 56px;
-  }
-  .content-card {
-    width: 100%;
-    max-width: 620px;
-    background: rgba(35, 34, 32, 0.78);
-    border: 1px solid #35332F;
-    border-radius: 16px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.45);
-    backdrop-filter: blur(3px);
-    padding: 40px 36px;
-    text-align: left;
-  }
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
 
-  .eyebrow {
-    font-size: 12.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #E0A8E6;
-    font-weight: 700;
-    margin-bottom: 14px;
-  }
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: clamp(28px, 4.2vw, 38px);
-    line-height: 1.14;
-    margin: 0 0 18px;
-  }
-  .realvoice-points {
-    list-style: none;
-    margin: 0 0 26px;
-    padding: 0;
-  }
-  .realvoice-points li {
-    font-size: 15px;
-    line-height: 1.55;
-    color: #A8A399;
-    padding-left: 20px;
-    position: relative;
-    margin-bottom: 9px;
-  }
-  .realvoice-points li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: #7A766C;
-  }
+/* ---------- Nav (identical to main site) ---------- */
+nav.mainnav {
+  position: relative;
+  z-index: 3;
+  border-bottom: 1px solid var(--divider);
+  background: var(--bg);
+}
+nav.mainnav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  gap: 16px;
+}
+.brand-stack {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 1.06;
+  text-align: left;
+  border-right: 2px solid currentColor;
+  padding-right: 12px;
+  display: inline-block;
+}
+.brand-stack .brand-accent { color: var(--accent); }
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.theme-toggle svg { width: 18px; height: 18px; stroke: var(--text); }
+.theme-toggle:hover { border-color: var(--accent); }
 
-  .submit-btn {
-    width: 100%;
-    padding: 16px 20px;
-    font-size: 16px;
-    font-weight: 700;
-    font-family: inherit;
-    background: #E0A8E6;
-    color: #262521;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.1s ease, background 0.15s ease;
-    margin-top: 6px;
-  }
-  .submit-btn:hover { background: #EABBEF; }
-  .submit-btn:active { transform: scale(0.98); }
+/* ---------- Fixed full-page video backdrop ---------- */
+.page-bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  pointer-events: none;
+}
+.page-bg-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: rgba(10,9,8,0.5);
+  pointer-events: none;
+}
 
-  /* ---------- Testimonial (compact) ---------- */
-  .mini-testimonial-wrap {
-    padding: 44px 24px;
-  }
-  .mini-testimonial {
-    max-width: 560px;
-    margin: 0 auto;
-    text-align: center;
-    background: rgba(35, 34, 32, 0.78);
-    border: 1px solid #35332F;
-    border-radius: 14px;
-    padding: 28px 26px;
-    backdrop-filter: blur(3px);
-  }
-  .mini-testimonial .stat-quote {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.55;
-    color: #F0ECE1;
-    margin: 0 0 18px;
-  }
-  .mini-testimonial .stat-avatar {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto 12px;
-    display: block;
-  }
-  .mini-testimonial .stat-attr {
-    font-size: 12.5px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: #E0A8E6;
-    font-weight: 700;
-    margin: 0;
-  }
+/* ---------- Content card ---------- */
+main {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 40px 24px 56px;
+}
+.content-card {
+  width: 100%;
+  max-width: 620px;
+  background: var(--card-bg-translucent);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+  backdrop-filter: blur(3px);
+  padding: 40px 36px;
+  text-align: left;
+  color: var(--text);
+}
+.eyebrow {
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 4.2vw, 38px);
+  line-height: 1.14;
+  margin: 0 0 18px;
+}
+.realvoice-points {
+  list-style: none;
+  margin: 0 0 26px;
+  padding: 0;
+}
+.realvoice-points li {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 9px;
+}
+.realvoice-points li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
 
-  /* ---------- Logos (compact strip) ---------- */
-  .mini-logos-wrap {
-    padding: 0 24px 48px;
-    text-align: center;
-  }
-  .logos-eyebrow-lg {
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #E0A8E6;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-  .logos-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 21px;
-    line-height: 1.3;
-    margin: 0 0 26px;
-    color: #F0ECE1;
-  }
-  .logos-title em {
-    font-style: italic;
-    color: #C9C4B8;
-    font-weight: 400;
-  }
-  .mini-logos {
-    max-width: 720px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 1px;
-    background: #35332F;
-    border: 1px solid #35332F;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .mini-logos .logo-cell {
-    background: rgba(35, 34, 32, 0.85);
-    aspect-ratio: 1.5 / 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-  }
-  .mini-logos .logo-cell img {
-    max-width: 70%;
-    max-height: 55%;
-    object-fit: contain;
-    filter: grayscale(1) brightness(1.6);
-    opacity: 0.75;
-  }
+.submit-btn {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  background: var(--cta-bg);
+  color: var(--cta-text);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.15s ease;
+  margin-top: 6px;
+}
+.submit-btn:hover { background: var(--cta-bg-hover); }
+.submit-btn:active { transform: scale(0.98); }
 
-  /* ---------- Bottom opt-in (checklist) ---------- */
-  .optin-wrap {
-    padding: 8px 24px 64px;
-  }
-  .optin-card {
-    max-width: 560px;
-    margin: 0 auto;
-    background: rgba(35, 34, 32, 0.78);
-    border: 1px solid #35332F;
-    border-radius: 16px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.45);
-    backdrop-filter: blur(3px);
-    padding: 36px 32px;
-    text-align: left;
-  }
-  .optin-divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 0 0 20px;
-  }
-  .optin-divider::before,
-  .optin-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: #443F37;
-  }
-  .optin-divider span {
-    font-size: 11.5px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #E0A8E6;
-    font-weight: 700;
-    white-space: nowrap;
-  }
-  .optin-card h2 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 1.2;
-    margin: 0 0 12px;
-  }
-  .optin-value-lines {
-    list-style: none;
-    margin: 0 0 24px;
-    padding: 0;
-  }
-  .optin-value-lines li {
-    font-size: 15px;
-    line-height: 1.5;
-    color: #C9C4B8;
-    padding-left: 22px;
-    position: relative;
-    margin-bottom: 8px;
-  }
-  .optin-value-lines li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 7px;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #E0A8E6;
-  }
-  .optin-field { margin-bottom: 12px; }
-  .optin-field input {
-    width: 100%;
-    padding: 15px 16px;
-    font-size: 15px;
-    font-family: inherit;
-    border: 1.5px solid #443F37;
-    border-radius: 10px;
-    background: #232220;
-    color: #F0ECE1;
-    outline: none;
-    transition: border-color 0.15s ease;
-  }
-  .optin-field input:focus { border-color: #E0A8E6; }
-  .optin-field input::placeholder { color: #7A766C; }
-  .optin-submit-btn {
-    width: 100%;
-    padding: 16px 20px;
-    font-size: 16px;
-    font-weight: 700;
-    font-family: inherit;
-    background: #E0A8E6;
-    color: #262521;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.1s ease, background 0.15s ease;
-  }
-  .optin-submit-btn:hover { background: #EABBEF; }
-  .optin-submit-btn:active { transform: scale(0.98); }
-  .optin-form-note {
-    font-size: 12px;
-    color: #7A766C;
-    margin-top: 10px;
-  }
-  .optin-form-error {
-    font-size: 13px;
-    color: #E8837A;
-    margin: 0 0 10px;
-  }
-  .optin-success { display: none; }
-  .optin-success.show { display: block; }
-  #optinForm.hide { display: none; }
-  .optin-success h2 { margin-bottom: 10px; }
-  .optin-success p {
-    font-size: 15px;
-    color: #C9C4B8;
-    line-height: 1.5;
-    margin: 0 0 20px;
-  }
-  .optin-download-btn {
-    display: inline-block;
-    padding: 15px 28px;
-    background: #E0A8E6;
-    color: #262521;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 15px;
-  }
+/* ---------- Testimonial (compact) ---------- */
+.mini-testimonial-wrap {
+  position: relative;
+  padding: 44px 24px;
+}
+.mini-testimonial {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--card-bg-translucent);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 28px 26px;
+  backdrop-filter: blur(3px);
+}
+.mini-testimonial .stat-quote {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text);
+  margin: 0 0 18px;
+}
+.mini-testimonial .stat-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 12px;
+  display: block;
+}
+.mini-testimonial .stat-attr {
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin: 0;
+}
 
-  /* ---------- Mobile ---------- */
-  @media (max-width: 640px) {
-    .content-card { padding: 30px 22px; }
-    h1 { font-size: clamp(26px, 7.5vw, 32px); }
-    .mini-logos { grid-template-columns: repeat(3, 1fr); }
-    .mini-testimonial { padding: 24px 20px; }
-    .optin-card { padding: 28px 22px; }
-  }
+/* ---------- Logos (compact strip) ---------- */
+.mini-logos-wrap {
+  position: relative;
+  padding: 0 24px 48px;
+  text-align: center;
+}
+.logos-eyebrow-lg {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.logos-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.3;
+  margin: 0 0 26px;
+  color: var(--text);
+}
+.logos-title em {
+  font-style: italic;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.mini-logos {
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--card-border);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.mini-logos .logo-cell {
+  background: #8C8C86;
+  aspect-ratio: 1.5 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  transition: background 0.2s ease;
+}
+.mini-logos .logo-cell:hover { background: #A8A8A2; }
+.mini-logos .logo-cell img {
+  max-width: 70%;
+  max-height: 55%;
+  object-fit: contain;
+}
+
+/* ---------- Bottom opt-in (checklist) ---------- */
+.optin-wrap {
+  position: relative;
+  padding: 8px 24px 64px;
+}
+.optin-card {
+  max-width: 560px;
+  margin: 0 auto;
+  background: var(--card-bg-translucent);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+  backdrop-filter: blur(3px);
+  padding: 36px 32px;
+  text-align: left;
+  color: var(--text);
+}
+.optin-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px;
+}
+.optin-divider::before,
+.optin-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--card-border);
+}
+.optin-divider span {
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.optin-card h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+.optin-value-lines {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+}
+.optin-value-lines li {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  padding-left: 22px;
+  position: relative;
+  margin-bottom: 8px;
+}
+.optin-value-lines li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.optin-field { margin-bottom: 12px; }
+.optin-field input {
+  width: 100%;
+  padding: 15px 16px;
+  font-size: 15px;
+  font-family: inherit;
+  border: 1.5px solid var(--card-border);
+  border-radius: 10px;
+  background: var(--bg-alt);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.optin-field input:focus { border-color: var(--accent); }
+.optin-field input::placeholder { color: var(--text-muted); }
+.optin-submit-btn {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  background: var(--cta-bg);
+  color: var(--cta-text);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+.optin-submit-btn:hover { background: var(--cta-bg-hover); }
+.optin-submit-btn:active { transform: scale(0.98); }
+.optin-form-error {
+  font-size: 13px;
+  color: #E8837A;
+  margin: 0 0 10px;
+}
+.optin-success { display: none; }
+.optin-success.show { display: block; }
+#optinForm.hide { display: none; }
+.optin-success h2 { margin-bottom: 10px; }
+.optin-success p {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+.optin-download-btn {
+  display: inline-block;
+  padding: 15px 28px;
+  background: var(--cta-bg);
+  color: var(--cta-text);
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  .content-card { padding: 30px 22px; }
+  h1 { font-size: clamp(26px, 7.5vw, 32px); }
+  .mini-logos { grid-template-columns: repeat(3, 1fr); }
+  .mini-testimonial { padding: 24px 20px; }
+  .optin-card { padding: 28px 22px; }
+}
 </style>
 </head>
 <body>
 
 <video class="page-bg-video" autoplay muted loop playsinline preload="auto">
-  <source src="videos/hero-bg.mp4?v=28" type="video/mp4">
+  <source src="/videos/hero-bg.mp4?v=28" type="video/mp4">
 </video>
 <div class="page-bg-scrim"></div>
 
-<div class="topbar">
-  <div class="brand-stack">Lead<br>with<br><span class="brand-accent">Real</span></div>
-</div>
+<nav class="mainnav">
+  <div class="wrap">
+    <div class="brand-stack">Lead<br>with<br><span class="brand-accent">Real</span></div>
+    <button class="theme-toggle" aria-label="Toggle light and dark theme"></button>
+  </div>
+</nav>
 
-  <main>
-    <div class="content-card">
-      <div class="eyebrow">RealVoice</div>
-      <h1>Does Your Content Actually Sound Like You?</h1>
+<main>
+  <div class="content-card">
+    <div class="eyebrow">RealVoice</div>
+    <h1>Does Your Content Actually Sound Like You?</h1>
 
-      <ul class="realvoice-points">
-        <li>We help founders and brands find a voice that's actually theirs - not a generic AI tone</li>
-        <li>Real values and point of view, built into every post</li>
-        <li>Consistent across platforms, without losing what makes you you</li>
-      </ul>
+    <ul class="realvoice-points">
+      <li>We help founders and brands find a voice that's actually theirs - not a generic AI tone</li>
+      <li>Real values and point of view, built into every post</li>
+      <li>Consistent across platforms, without losing what makes you you</li>
+    </ul>
 
-      <button type="button" class="submit-btn" data-plan-trigger="intro" data-plan-name="RealVoice - Intro Call">Let's Begin →</button>
-    </div>
-  </main>
+    <button type="button" class="submit-btn" data-plan-trigger="intro" data-plan-name="RealVoice - Intro Call">Let's Begin →</button>
+  </div>
+</main>
 
 <!-- TESTIMONIAL (compact) -->
 <section class="mini-testimonial-wrap">
@@ -403,18 +505,18 @@
   <div class="logos-eyebrow-lg">Built on 20+ years of experience</div>
   <h2 class="logos-title">Brands &amp; organisations <em>Founder Jon has worked with</em></h2>
   <div class="mini-logos">
-    <div class="logo-cell"><img src="logos/bbc.png" alt="BBC"></div>
-    <div class="logo-cell"><img src="logos/va.png" alt="V&amp;A"></div>
-    <div class="logo-cell"><img src="logos/redbull.png" alt="Red Bull"></div>
-    <div class="logo-cell"><img src="logos/f1.png" alt="F1"></div>
-    <div class="logo-cell"><img src="logos/sky.png" alt="Sky"></div>
-    <div class="logo-cell"><img src="logos/channel4.png" alt="Channel 4"></div>
-    <div class="logo-cell"><img src="logos/britishlibrary.png" alt="British Library"></div>
-    <div class="logo-cell"><img src="logos/nintendo.png" alt="Nintendo"></div>
-    <div class="logo-cell"><img src="logos/rubinmuseum.png" alt="The Rubin Museum of Art"></div>
-    <div class="logo-cell"><img src="logos/nationaltheatre.png" alt="National Theatre"></div>
-    <div class="logo-cell"><img src="logos/justfix.png" alt="JustFix"></div>
-    <div class="logo-cell"><img src="logos/harpercollins.png" alt="HarperCollins"></div>
+<div class="logo-cell"><img src="/logos/bbc.png" alt="BBC"></div>
+    <div class="logo-cell"><img src="/logos/va.png" alt="V&amp;A"></div>
+    <div class="logo-cell"><img src="/logos/redbull.png" alt="Red Bull"></div>
+    <div class="logo-cell"><img src="/logos/f1.png" alt="F1"></div>
+    <div class="logo-cell"><img src="/logos/sky.png" alt="Sky"></div>
+    <div class="logo-cell"><img src="/logos/channel4.png" alt="Channel 4"></div>
+    <div class="logo-cell"><img src="/logos/britishlibrary.png" alt="British Library"></div>
+    <div class="logo-cell"><img src="/logos/nintendo.png" alt="Nintendo"></div>
+    <div class="logo-cell"><img src="/logos/rubinmuseum.png" alt="The Rubin Museum of Art"></div>
+    <div class="logo-cell"><img src="/logos/nationaltheatre.png" alt="National Theatre"></div>
+    <div class="logo-cell"><img src="/logos/justfix.png" alt="JustFix"></div>
+    <div class="logo-cell"><img src="/logos/harpercollins.png" alt="HarperCollins"></div>
   </div>
 </section>
 
@@ -441,7 +543,6 @@
         <input type="tel" id="optinPhone" name="phone" placeholder="Phone (optional)">
       </div>
       <button type="submit" class="optin-submit-btn">Send Me The Checklist →</button>
-      <p class="optin-form-note">No spam. Unsubscribe any time.</p>
     </form>
 
     <div class="optin-success" id="optinSuccess">
@@ -520,6 +621,8 @@
   <input type="text" name="entry.1503759306">
 </form>
 
+
+
 <!-- Hidden bridges for the bottom checklist opt-in (separate from the call
      booking form above). Kit submission enters the same list/funnel as the
      rest of the site; the Google Sheet log also captures phone, which Kit's
@@ -539,7 +642,7 @@
   <input type="email" name="email_address">
 </form>
 
-<script src="script.js?v=41"></script>
+<script src="/script.js?v=41"></script>
 <script>
 document.getElementById('optinForm').addEventListener('submit', function (e) {
   e.preventDefault();
