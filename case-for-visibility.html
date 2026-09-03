@@ -1005,6 +1005,21 @@ nav.mainnav .wrap {
 .lwr-go-btn { width: 100%; justify-content: center; padding: 13px 24px !important; }
 .lwr-go-btn:hover { background: var(--brand-yellow); color: #262521; }
 .lwr-required-note { text-align: left; font-size: 11px; margin-top: 8px; padding-left: 2px; }
+.lwr-newsletter-opt {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin: 4px 0 14px;
+  cursor: pointer;
+}
+.lwr-newsletter-opt input[type="checkbox"] {
+  flex-shrink: 0;
+  accent-color: var(--accent);
+  width: 17px;
+  height: 17px;
+  margin: 0;
+}
+.lwr-newsletter-opt span { font-size: 13.5px; color: var(--text-muted); }
 
 /* ---------- Newsletter ---------- */
 .newsletter-box {
@@ -1428,6 +1443,11 @@ a:focus-visible, button:focus-visible, input:focus-visible {
         <input type="tel" id="lwrPhone" name="phone">
       </div>
 
+      <label class="lwr-newsletter-opt">
+        <input type="checkbox" id="lwrNewsletter" name="newsletter">
+        <span>Sign up for our newsletter</span>
+      </label>
+
       <div class="lwr-field">
         <label>I want to grow my:</label>
         <div class="lwr-type-tabs" role="tablist">
@@ -1471,6 +1491,14 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   <input type="text" name="entry.823242838">
   <input type="text" name="entry.1128064454">
   <input type="text" name="entry.1503759306">
+</form>
+
+<!-- Hidden Kit (ConvertKit) form bridge - only submitted when the person
+     ticks "Sign up for our newsletter" in the modal. Uses the same Kit
+     form/list as the rest of the site (form 9763577). -->
+<iframe name="lwr_kit_iframe" id="lwr_kit_iframe" style="display:none;" title="kit submission target"></iframe>
+<form id="lwrKitForm" action="https://app.kit.com/forms/9763577/subscriptions" method="POST" target="lwr_kit_iframe" style="display:none;">
+  <input type="email" name="email_address">
 </form>
 
 <script src="script.js?v=41"></script>

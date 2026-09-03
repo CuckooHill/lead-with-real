@@ -461,6 +461,146 @@ h1 {
   .mini-testimonial { padding: 24px 20px; }
   .optin-card { padding: 28px 22px; }
 }
+/* ---------- Lead capture modal ---------- */
+.lwr-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 19, 18, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+.lwr-modal-overlay[hidden] { display: none; }
+.lwr-modal {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 26px 28px;
+  max-width: 440px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+}
+.lwr-modal h3 { font-size: 21px; margin-bottom: 8px; }
+.lwr-modal-plan { color: var(--accent); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+.lwr-modal-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  background: transparent;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+.lwr-modal-close:hover { border-color: var(--accent); }
+
+.lwr-field-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+@media (min-width: 420px) {
+  .lwr-field-row { flex-direction: row; gap: 10px; }
+  .lwr-field-row .lwr-field { flex: 1 1 0; min-width: 0; }
+}
+
+.lwr-field { margin-bottom: 10px; }
+.lwr-field label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.lwr-field input[type="text"],
+.lwr-field input[type="email"],
+.lwr-field input[type="tel"] {
+  width: 100%;
+  padding: 7px 12px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+.lwr-field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.lwr-type-tabs { display: flex; border: 1px solid var(--card-border); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 8px; }
+.lwr-type-tab {
+  flex: 1 1 50%;
+  border: none;
+  background: var(--bg);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.lwr-type-tab.active { background: var(--accent); color: #fff; }
+.lwr-type-tab:not(:last-child) { border-right: 1px solid var(--card-border); }
+
+.lwr-radio-row { display: flex; flex-direction: column; gap: 8px; }
+.lwr-radio-option {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 9px 15px !important;
+  cursor: pointer;
+}
+.lwr-radio-option:has(input[type="checkbox"]:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.lwr-radio-option input[type="checkbox"] { flex-shrink: 0 !important; accent-color: var(--accent); margin: 0 !important; order: 1; width: 18px; height: 18px; }
+.lwr-radio-option span { font-size: 14px; font-weight: 600; flex-shrink: 0 !important; width: 68px !important; order: 2; }
+.lwr-radio-option input.lwr-radio-link {
+  order: 3;
+  width: auto !important;
+  min-width: 0;
+  flex: 1 1 auto;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 7px 12px !important;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+}
+.lwr-radio-link::placeholder { color: var(--text-muted); opacity: 0.55; }
+.lwr-radio-link:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.lwr-modal-error { color: #C0392B; font-size: 12.5px; margin: 2px 0 10px; }
+.lwr-go-btn { width: 100%; justify-content: center; padding: 13px 24px !important; }
+.lwr-go-btn:hover { background: var(--brand-yellow); color: #262521; }
+.lwr-required-note { text-align: left; font-size: 11px; margin-top: 8px; padding-left: 2px; }
+.lwr-newsletter-opt {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin: 4px 0 14px;
+  cursor: pointer;
+}
+.lwr-newsletter-opt input[type="checkbox"] {
+  flex-shrink: 0;
+  accent-color: var(--accent);
+  width: 17px;
+  height: 17px;
+  margin: 0;
+}
+.lwr-newsletter-opt span { font-size: 13.5px; color: var(--text-muted); }
+@media (max-width: 480px) {
+  .lwr-modal-overlay { padding: 10px; }
+  .lwr-radio-row { gap: 6px; }
+}
+
 </style>
 </head>
 <body>
@@ -580,6 +720,11 @@ h1 {
         <input type="tel" id="lwrPhone" name="phone">
       </div>
 
+      <label class="lwr-newsletter-opt">
+        <input type="checkbox" id="lwrNewsletter" name="newsletter">
+        <span>Sign up for our newsletter</span>
+      </label>
+
       <div class="lwr-field">
         <label>I want to grow my:</label>
         <div class="lwr-type-tabs" role="tablist">
@@ -623,6 +768,14 @@ h1 {
   <input type="text" name="entry.823242838">
   <input type="text" name="entry.1128064454">
   <input type="text" name="entry.1503759306">
+</form>
+
+<!-- Hidden Kit (ConvertKit) form bridge - only submitted when the person
+     ticks "Sign up for our newsletter" in the modal. Uses the same Kit
+     form/list as the rest of the site (form 9763577). -->
+<iframe name="lwr_kit_iframe" id="lwr_kit_iframe" style="display:none;" title="kit submission target"></iframe>
+<form id="lwrKitForm" action="https://app.kit.com/forms/9763577/subscriptions" method="POST" target="lwr_kit_iframe" style="display:none;">
+  <input type="email" name="email_address">
 </form>
 
 

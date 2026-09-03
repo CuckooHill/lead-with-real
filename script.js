@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const errorMsg = document.getElementById('lwrModalError');
   const googleForm = document.getElementById('lwrGoogleForm');
   const hiddenIframe = document.getElementById('lwr_hidden_iframe');
+  const kitForm = document.getElementById('lwrKitForm');
   const triggers = document.querySelectorAll('[data-plan-trigger]');
 
   if (!overlay || !triggers.length) return;
@@ -226,15 +227,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const platform = allPairs.map(function (p) { return p.platform; }).join(', ');
     const link = allPairs.map(function (p) { return p.platform + ': ' + (p.link || '-'); }).join(' | ');
+    const newsletterOptIn = document.getElementById('lwrNewsletter').checked;
 
-    // Fill the hidden Google Form (field order matches the SETUP note above)
+    // Fill the hidden Google Form (field order matches the SETUP note above).
+    // The newsletter opt-in isn't its own column in the Sheet (that would
+    // need a real new question added to the Google Form first) - for now
+    // it's folded into the Plan field as a readable tag.
     const gInputs = googleForm.querySelectorAll('input');
     gInputs[0].value = name;
     gInputs[1].value = email;
     gInputs[2].value = phone;
     gInputs[3].value = platform;
     gInputs[4].value = link;
-    gInputs[5].value = activePlanName;
+    gInputs[5].value = activePlanName + (newsletterOptIn ? ' | Newsletter: Yes' : '');
+
+    // Only actually subscribe them in Kit if they ticked the box.
+    if (newsletterOptIn && kitForm) {
+      kitForm.querySelector('input[name="email_address"]').value = email;
+      kitForm.submit();
+    }
 
     // Once the hidden iframe finishes loading the response, the Google
     // submission has gone through - only then send the user on to Cal.com.
