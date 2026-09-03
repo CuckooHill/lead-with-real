@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RealVoice - Find Your Authentic Voice | Lead With Real</title>
+<meta name="description" content="Clear the blocks and develop your unique, authentic voice - for founders and leaders who want their content to actually sound like them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #1B1A18;
+    color: #F0ECE1;
+    font-family: 'Lato', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Fixed full-page video backdrop ---------- */
+  .page-bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -2;
+    pointer-events: none;
+  }
+  .page-bg-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: rgba(10,9,8,0.5);
+    pointer-events: none;
+  }
+
+  /* ---------- Top brand mark ---------- */
+  .topbar {
+    padding: 24px 24px 0;
+  }
+  .brand-stack {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 15px;
+    line-height: 1.08;
+    text-align: left;
+  }
+  .brand-stack .brand-accent { color: #E0A8E6; }
+
+  /* ---------- Content card ---------- */
+  main {
+    display: flex;
+    justify-content: center;
+    padding: 40px 24px 56px;
+  }
+  .content-card {
+    width: 100%;
+    max-width: 620px;
+    background: rgba(35, 34, 32, 0.78);
+    border: 1px solid #35332F;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+    backdrop-filter: blur(3px);
+    padding: 40px 36px;
+    text-align: left;
+  }
+
+  .eyebrow {
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #E0A8E6;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(28px, 4.2vw, 38px);
+    line-height: 1.14;
+    margin: 0 0 18px;
+  }
+  .realvoice-points {
+    list-style: none;
+    margin: 0 0 26px;
+    padding: 0;
+  }
+  .realvoice-points li {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #A8A399;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 9px;
+  }
+  .realvoice-points li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #7A766C;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    background: #E0A8E6;
+    color: #262521;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.1s ease, background 0.15s ease;
+    margin-top: 6px;
+  }
+  .submit-btn:hover { background: #EABBEF; }
+  .submit-btn:active { transform: scale(0.98); }
+
+  /* ---------- Testimonial (compact) ---------- */
+  .mini-testimonial-wrap {
+    padding: 44px 24px;
+  }
+  .mini-testimonial {
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: center;
+    background: rgba(35, 34, 32, 0.78);
+    border: 1px solid #35332F;
+    border-radius: 14px;
+    padding: 28px 26px;
+    backdrop-filter: blur(3px);
+  }
+  .mini-testimonial .stat-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.55;
+    color: #F0ECE1;
+    margin: 0 0 18px;
+  }
+  .mini-testimonial .stat-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 12px;
+    display: block;
+  }
+  .mini-testimonial .stat-attr {
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #E0A8E6;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  /* ---------- Logos (compact strip) ---------- */
+  .mini-logos-wrap {
+    padding: 0 24px 48px;
+    text-align: center;
+  }
+  .logos-eyebrow-lg {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #E0A8E6;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .logos-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 1.3;
+    margin: 0 0 26px;
+    color: #F0ECE1;
+  }
+  .logos-title em {
+    font-style: italic;
+    color: #C9C4B8;
+    font-weight: 400;
+  }
+  .mini-logos {
+    max-width: 720px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: #35332F;
+    border: 1px solid #35332F;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .mini-logos .logo-cell {
+    background: rgba(35, 34, 32, 0.85);
+    aspect-ratio: 1.5 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+  .mini-logos .logo-cell img {
+    max-width: 70%;
+    max-height: 55%;
+    object-fit: contain;
+    filter: grayscale(1) brightness(1.6);
+    opacity: 0.75;
+  }
+
+  /* ---------- Bottom opt-in (checklist) ---------- */
+  .optin-wrap {
+    padding: 8px 24px 64px;
+  }
+  .optin-card {
+    max-width: 560px;
+    margin: 0 auto;
+    background: rgba(35, 34, 32, 0.78);
+    border: 1px solid #35332F;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+    backdrop-filter: blur(3px);
+    padding: 36px 32px;
+    text-align: left;
+  }
+  .optin-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 20px;
+  }
+  .optin-divider::before,
+  .optin-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #443F37;
+  }
+  .optin-divider span {
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #E0A8E6;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .optin-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.2;
+    margin: 0 0 12px;
+  }
+  .optin-value-lines {
+    list-style: none;
+    margin: 0 0 24px;
+    padding: 0;
+  }
+  .optin-value-lines li {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #C9C4B8;
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .optin-value-lines li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #E0A8E6;
+  }
+  .optin-field { margin-bottom: 12px; }
+  .optin-field input {
+    width: 100%;
+    padding: 15px 16px;
+    font-size: 15px;
+    font-family: inherit;
+    border: 1.5px solid #443F37;
+    border-radius: 10px;
+    background: #232220;
+    color: #F0ECE1;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+  .optin-field input:focus { border-color: #E0A8E6; }
+  .optin-field input::placeholder { color: #7A766C; }
+  .optin-submit-btn {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    background: #E0A8E6;
+    color: #262521;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.1s ease, background 0.15s ease;
+  }
+  .optin-submit-btn:hover { background: #EABBEF; }
+  .optin-submit-btn:active { transform: scale(0.98); }
+  .optin-form-note {
+    font-size: 12px;
+    color: #7A766C;
+    margin-top: 10px;
+  }
+  .optin-form-error {
+    font-size: 13px;
+    color: #E8837A;
+    margin: 0 0 10px;
+  }
+  .optin-success { display: none; }
+  .optin-success.show { display: block; }
+  #optinForm.hide { display: none; }
+  .optin-success h2 { margin-bottom: 10px; }
+  .optin-success p {
+    font-size: 15px;
+    color: #C9C4B8;
+    line-height: 1.5;
+    margin: 0 0 20px;
+  }
+  .optin-download-btn {
+    display: inline-block;
+    padding: 15px 28px;
+    background: #E0A8E6;
+    color: #262521;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 640px) {
+    .content-card { padding: 30px 22px; }
+    h1 { font-size: clamp(26px, 7.5vw, 32px); }
+    .mini-logos { grid-template-columns: repeat(3, 1fr); }
+    .mini-testimonial { padding: 24px 20px; }
+    .optin-card { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<video class="page-bg-video" autoplay muted loop playsinline preload="auto">
+  <source src="videos/hero-bg.mp4?v=28" type="video/mp4">
+</video>
+<div class="page-bg-scrim"></div>
+
+<div class="topbar">
+  <div class="brand-stack">Lead<br>with<br><span class="brand-accent">Real</span></div>
+</div>
+
+  <main>
+    <div class="content-card">
+      <div class="eyebrow">RealVoice</div>
+      <h1>Does Your Content Actually Sound Like You?</h1>
+
+      <ul class="realvoice-points">
+        <li>We help founders and brands find a voice that's actually theirs - not a generic AI tone</li>
+        <li>Real values and point of view, built into every post</li>
+        <li>Consistent across platforms, without losing what makes you you</li>
+      </ul>
+
+      <button type="button" class="submit-btn" data-plan-trigger="intro" data-plan-name="RealVoice - Intro Call">Let's Begin →</button>
+    </div>
+  </main>
+
+<!-- TESTIMONIAL (compact) -->
+<section class="mini-testimonial-wrap">
+  <div class="mini-testimonial">
+<p class="stat-quote">&ldquo;Lead with Real have been a game-changer. Founder Jon and his team perfectly refined our tone of voice and fully aligned with our vision and commercial goals from day one. I have complete trust in them to take care of content planning, strategy and production each month for both my personal and brand socials.&rdquo;</p>
+  <!-- Embedded directly as a data URI (not a separate images/adam-graham.jpg
+       file) so the photo can never 404 due to a path or filename-case
+       mismatch on upload - it's just part of this HTML file. -->
+  <img class="stat-avatar" src="data:image/jpeg;base64,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" alt="Adam J. Graham">
+  <p class="stat-attr">- Adam J. Graham, CEO JustFix, Growth Mindset</p>
+  </div>
+</section>
+
+<!-- LOGOS (compact strip) -->
+<section class="mini-logos-wrap">
+  <div class="logos-eyebrow-lg">Built on 20+ years of experience</div>
+  <h2 class="logos-title">Brands &amp; organisations <em>Founder Jon has worked with</em></h2>
+  <div class="mini-logos">
+    <div class="logo-cell"><img src="logos/bbc.png" alt="BBC"></div>
+    <div class="logo-cell"><img src="logos/va.png" alt="V&amp;A"></div>
+    <div class="logo-cell"><img src="logos/redbull.png" alt="Red Bull"></div>
+    <div class="logo-cell"><img src="logos/f1.png" alt="F1"></div>
+    <div class="logo-cell"><img src="logos/sky.png" alt="Sky"></div>
+    <div class="logo-cell"><img src="logos/channel4.png" alt="Channel 4"></div>
+    <div class="logo-cell"><img src="logos/britishlibrary.png" alt="British Library"></div>
+    <div class="logo-cell"><img src="logos/nintendo.png" alt="Nintendo"></div>
+    <div class="logo-cell"><img src="logos/rubinmuseum.png" alt="The Rubin Museum of Art"></div>
+    <div class="logo-cell"><img src="logos/nationaltheatre.png" alt="National Theatre"></div>
+    <div class="logo-cell"><img src="logos/justfix.png" alt="JustFix"></div>
+    <div class="logo-cell"><img src="logos/harpercollins.png" alt="HarperCollins"></div>
+  </div>
+</section>
+
+<!-- BOTTOM OPT-IN (free checklist - lower-commitment fallback to the call) -->
+<section class="optin-wrap">
+  <div class="optin-card">
+    <div class="optin-divider">
+      <span>Not ready to book a call?</span>
+    </div>
+    <h2>Get the Free RealVoice Checklist</h2>
+    <ul class="optin-value-lines">
+      <li>A 7-point check for you <em>and</em> your brand</li>
+      <li>Built from real client work, not theory</li>
+      <li>Find out in 2 minutes flat</li>
+    </ul>
+
+    <p class="optin-form-error" id="optinFormError" style="display:none;">Please fill in your email.</p>
+
+    <form id="optinForm" novalidate>
+      <div class="optin-field">
+        <input type="email" id="optinEmail" name="email" placeholder="Email address" required>
+      </div>
+      <div class="optin-field">
+        <input type="tel" id="optinPhone" name="phone" placeholder="Phone (optional)">
+      </div>
+      <button type="submit" class="optin-submit-btn">Send Me The Checklist →</button>
+      <p class="optin-form-note">No spam. Unsubscribe any time.</p>
+    </form>
+
+    <div class="optin-success" id="optinSuccess">
+      <h2>Check your inbox.</h2>
+      <p>Your checklist is ready below - and we've sent a copy to your email too.</p>
+      <a class="optin-download-btn" href="realvoice-checklist.pdf" download>Download the Checklist →</a>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD CAPTURE MODAL -->
+<div class="lwr-modal-overlay" id="lwrModalOverlay" hidden>
+  <div class="lwr-modal" role="dialog" aria-modal="true" aria-labelledby="lwrModalTitle">
+    <button type="button" class="lwr-modal-close" id="lwrModalClose" aria-label="Close">&times;</button>
+    <h3 id="lwrModalTitle">Let's Begin</h3>
+    <p class="lwr-modal-plan" id="lwrModalPlan"></p>
+
+    <form id="lwrLeadForm" novalidate>
+      <div class="lwr-field-row">
+        <div class="lwr-field">
+          <label for="lwrName">Name*</label>
+          <input type="text" id="lwrName" name="name" required>
+        </div>
+        <div class="lwr-field">
+          <label for="lwrEmail">Email*</label>
+          <input type="email" id="lwrEmail" name="email" required>
+        </div>
+      </div>
+      <div class="lwr-field">
+        <label for="lwrPhone">Phone</label>
+        <input type="tel" id="lwrPhone" name="phone">
+      </div>
+
+      <div class="lwr-field">
+        <label>I want to grow my:</label>
+        <div class="lwr-type-tabs" role="tablist">
+          <button type="button" class="lwr-type-tab active" data-type="Personal">Personal</button>
+          <button type="button" class="lwr-type-tab" data-type="Brand">Brand</button>
+        </div>
+        <div class="lwr-radio-row">
+          <label class="lwr-radio-option">
+            <input type="checkbox" name="platform" value="LinkedIn">
+            <span>LinkedIn</span>
+            <input type="text" class="lwr-radio-link" name="linkedin_link" placeholder="Add link(s)" disabled>
+          </label>
+          <label class="lwr-radio-option">
+            <input type="checkbox" name="platform" value="Instagram">
+            <span>Instagram</span>
+            <input type="text" class="lwr-radio-link" name="instagram_link" placeholder="Add link(s)" disabled>
+          </label>
+          <label class="lwr-radio-option">
+            <input type="checkbox" name="platform" value="Other">
+            <span>Other</span>
+            <input type="text" class="lwr-radio-link" name="other_link" placeholder="Add link(s)" disabled>
+          </label>
+        </div>
+      </div>
+      <input type="hidden" id="lwrActiveType" value="Personal">
+
+      <p class="lwr-modal-error" id="lwrModalError" hidden>Please fill in your name and email.</p>
+
+      <button type="submit" class="btn btn-primary lwr-go-btn">Go</button>
+      <p class="lwr-required-note">*required</p>
+    </form>
+  </div>
+</div>
+
+<!-- Hidden Google Form bridge - see script.js for setup notes -->
+<iframe name="lwr_hidden_iframe" id="lwr_hidden_iframe" style="display:none;" title="form submission target"></iframe>
+<form id="lwrGoogleForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeu4znjTRGtuUac1oNJh2-JN4PrV7n94owLKgUsIrJiX36e6g/formResponse" method="POST" target="lwr_hidden_iframe" style="display:none;">
+  <input type="text" name="entry.1914654913">
+  <input type="text" name="entry.1707516373">
+  <input type="text" name="entry.1268065614">
+  <input type="text" name="entry.823242838">
+  <input type="text" name="entry.1128064454">
+  <input type="text" name="entry.1503759306">
+</form>
+
+<!-- Hidden bridges for the bottom checklist opt-in (separate from the call
+     booking form above). Kit submission enters the same list/funnel as the
+     rest of the site; the Google Sheet log also captures phone, which Kit's
+     form doesn't collect. -->
+<iframe name="optin_hidden_iframe" id="optin_hidden_iframe" style="display:none;" title="form submission target"></iframe>
+<form id="optinGoogleForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeu4znjTRGtuUac1oNJh2-JN4PrV7n94owLKgUsIrJiX36e6g/formResponse" method="POST" target="optin_hidden_iframe" style="display:none;">
+  <input type="text" name="entry.1914654913">
+  <input type="text" name="entry.1707516373">
+  <input type="text" name="entry.1268065614">
+  <input type="text" name="entry.823242838">
+  <input type="text" name="entry.1128064454">
+  <input type="text" name="entry.1503759306">
+</form>
+
+<iframe name="optin_kit_iframe" id="optin_kit_iframe" style="display:none;" title="kit submission target"></iframe>
+<form id="optinKitForm" action="https://app.kit.com/forms/9763577/subscriptions" method="POST" target="optin_kit_iframe" style="display:none;">
+  <input type="email" name="email_address">
+</form>
+
+<script src="script.js?v=41"></script>
+<script>
+document.getElementById('optinForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const email = document.getElementById('optinEmail').value.trim();
+  const phone = document.getElementById('optinPhone').value.trim();
+  const errorEl = document.getElementById('optinFormError');
+
+  if (!email) {
+    errorEl.style.display = 'block';
+    return;
+  }
+  errorEl.style.display = 'none';
+
+  const gForm = document.getElementById('optinGoogleForm');
+  const gInputs = gForm.querySelectorAll('input');
+  gInputs[0].value = '';
+  gInputs[1].value = email;
+  gInputs[2].value = phone;
+  gInputs[3].value = '';
+  gInputs[4].value = '';
+  gInputs[5].value = 'Lead Magnet - RealVoice Checklist (realvoice.html)';
+  gForm.submit();
+
+  const kitForm = document.getElementById('optinKitForm');
+  kitForm.querySelector('input[name="email_address"]').value = email;
+  kitForm.submit();
+
+  document.getElementById('optinForm').classList.add('hide');
+  document.getElementById('optinSuccess').classList.add('show');
+});
+</script>
+</body>
+</html>
