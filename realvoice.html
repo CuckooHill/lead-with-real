@@ -164,7 +164,7 @@ main {
   position: relative;
   display: flex;
   justify-content: center;
-  padding: 40px 24px 56px;
+  padding: 40px 24px 20px;
 }
 .content-card {
   width: 100%;
@@ -199,18 +199,22 @@ h1 {
   padding: 0;
 }
 .realvoice-points li {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.55;
-  color: var(--text-muted);
-  padding-left: 20px;
+  color: #FFFFFF;
+  padding-left: 22px;
   position: relative;
-  margin-bottom: 9px;
+  margin-bottom: 11px;
 }
 .realvoice-points li::before {
-  content: '—';
+  content: '';
   position: absolute;
   left: 0;
-  color: var(--text-muted);
+  top: 9px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #FFFFFF;
 }
 
 .submit-btn {
@@ -233,7 +237,7 @@ h1 {
 /* ---------- Testimonial (compact) ---------- */
 .mini-testimonial-wrap {
   position: relative;
-  padding: 44px 24px;
+  padding: 16px 24px 44px;
 }
 .mini-testimonial {
   max-width: 560px;
@@ -479,9 +483,9 @@ h1 {
     <h1>Does Your Content Actually Sound Like You?</h1>
 
     <ul class="realvoice-points">
-      <li>We help founders and brands find a voice that's actually theirs - not a generic AI tone</li>
-      <li>Real values and point of view, built into every post</li>
-      <li>Consistent across platforms, without losing what makes you you</li>
+      <li>We help founders and brands find a voice that's actually theirs</li>
+      <li>Real values and points of view, woven in to every post</li>
+      <li>Consistent across platforms, without losing clarity.</li>
     </ul>
 
     <button type="button" class="submit-btn" data-plan-trigger="intro" data-plan-name="RealVoice - Intro Call">Let's Begin →</button>
@@ -524,7 +528,7 @@ h1 {
 <section class="optin-wrap">
   <div class="optin-card">
     <div class="optin-divider">
-      <span>Not ready to book a call?</span>
+      <span>Check where your voice is - find out in 2 minutes</span>
     </div>
     <h2>Get the Free RealVoice Checklist</h2>
     <ul class="optin-value-lines">
