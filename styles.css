@@ -274,38 +274,14 @@ nav.mainnav .wrap {
   object-position: center;
   z-index: 0;
   pointer-events: none;
-  /* Slight dim so the video never fights with the copy sitting on top of it */
-  filter: brightness(0.82);
-}
-/* Smooth (not hard-edged) scrim over the video - darkest right under the nav
-   and again toward the bottom, easing off in the middle, so the hero copy
-   and the testimonial card both keep comfortable contrast at any scroll
-   position. Sits above the video, below the actual content. */
-.hero-video-wrap::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(10, 9, 8, 0.6) 0%,
-    rgba(10, 9, 8, 0.32) 20%,
-    rgba(10, 9, 8, 0.18) 42%,
-    rgba(10, 9, 8, 0.3) 68%,
-    rgba(10, 9, 8, 0.55) 100%
-  );
 }
 .hero-video-wrap > .hero,
 .hero-video-wrap > .stat-carousel {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
-/* Inside the video wrap the hero's own gradient is replaced by the video -
-   only used as a fallback background before the video has painted. */
-.hero-video-wrap > .hero {
-  background: transparent !important;
-}
+/* The hero's own gradient becomes a fallback shown only before the video
+   loads/starts playing - the video itself sits on top of it. */
 .hero-eyebrow {
   font-family: var(--font-body);
   font-size: 13px;
@@ -327,33 +303,18 @@ nav.mainnav .wrap {
   font-size: 18px;
   color: var(--text-muted);
 }
-/* Both lines sit on the video, so they stay bright white in both day and
-   night mode rather than following the theme's normal text colour - with a
-   soft, diffuse shadow (not a hard drop-shadow) so they stay readable
-   against the moving footage regardless of theme. */
-.hero-video-wrap .hero h1,
-.hero-video-wrap .hero p.lede {
-  color: #FFFFFF !important;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55), 0 1px 4px rgba(0, 0, 0, 0.4);
-}
-.hero-video-wrap .hero p.lede {
-  font-size: 20px;
-}
-.hero-video-wrap .hero .btn-primary {
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
-}
 
 /* ---------- Stat carousel ---------- */
 :root {
-  --card-bg-translucent: rgba(255, 255, 255, 0.75);
+  --card-bg-translucent: rgba(255, 255, 255, 0.85);
 }
 [data-theme="dark"] {
-  --card-bg-translucent: rgba(35, 34, 32, 0.75);
+  --card-bg-translucent: rgba(35, 34, 32, 0.85);
 }
 .stat-carousel {
   max-width: 720px;
   margin: 56px auto 48px;
-  padding: 22px 18px;
+  padding: 48px 40px;
   text-align: center;
   background: var(--card-bg-translucent);
   border: 1px solid var(--card-border);
@@ -365,16 +326,9 @@ nav.mainnav .wrap {
 }
 /* Only pull the carousel up to overlap the hero when it directly follows it */
 .hero + .stat-carousel { margin-top: -40px; }
-@media (max-width: 760px) {
-  .stat-carousel {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-  .hero + .stat-carousel { margin-top: 24px; }
-}
 .stat-eyebrow {
   color: var(--accent);
-  font-size: 17px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -527,14 +481,8 @@ nav.mainnav .wrap {
 .ticker {
   background: var(--panel-bg);
   border-top: 1px solid var(--divider);
-  border-bottom: 1px solid var(--divider);
   overflow: hidden;
   padding: 14px 0;
-}
-/* The feint bottom rule is a day-mode-only touch - the dark theme keeps its
-   original single top border. */
-[data-theme="dark"] .ticker {
-  border-bottom: none;
 }
 .ticker-track {
   display: inline-flex;
@@ -563,46 +511,14 @@ nav.mainnav .wrap {
 }
 .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .card {
-  position: relative;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-md);
   padding: 22px 20px;
 }
-/* Lighten just these 3 research cards in dark mode - roughly midway between
-   the page's near-black background (#1B1A18) and the logo-tile grey
-   (#8C8C86), so they read as a card again instead of near-invisible. */
-[data-theme="dark"] .cards-3 .card {
-  background: #54534F;
-}
 .card-tag { font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
-.card h3 { font-size: 23px; margin-bottom: 0; line-height: 1.25; }
-.card-toggle {
-  all: unset;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding-top: 10px;
-  color: var(--text-muted);
-}
-.card-chevron {
-  width: 20px;
-  height: 20px;
-  transition: transform 220ms ease;
-}
-.card-chevron svg { width: 100%; height: 100%; }
-.card-toggle[aria-expanded="true"] .card-chevron { transform: rotate(180deg); }
-.card-body {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 260ms ease, opacity 200ms ease;
-}
-.card-body p { font-size: 18px; padding-top: 12px; }
-.card.expanded .card-body { opacity: 1; }
+.card h3 { font-size: 21px; margin-bottom: 8px; }
+.card p { font-size: 18px; }
 .card .read-link { display: inline-block; margin-top: 16px; font-size: 13.5px; color: var(--accent); font-weight: 600; }
 .card .link-row { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 16px; }
 .card .link-row .read-link { margin-top: 0; }
@@ -696,7 +612,6 @@ nav.mainnav .wrap {
 .price-card h3 { font-size: 20px; margin-bottom: 14px; }
 .price-old { text-decoration: line-through; color: var(--text-muted); font-size: 15px; margin-right: 8px; }
 .price-new { font-family: var(--font-display); font-size: 26px; color: var(--accent); font-weight: 700; }
-.price-note { font-size: 12.5px; color: var(--text-muted); margin-left: 8px; }
 .price-card p.desc { font-size: 18px; margin: 16px 0 24px; flex-grow: 1; }
 .price-card .btn { align-self: flex-start; margin-top: auto; }
 
@@ -798,7 +713,7 @@ nav.mainnav .wrap {
   overflow: hidden;
   display: flex;
   align-items: flex-end;
-  margin-bottom: 8px;
+  margin-bottom: 18px;
   background: var(--card-bg);
 }
 .pillar-tile-img {
@@ -821,7 +736,7 @@ nav.mainnav .wrap {
 .pillar-tile-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(20,19,18,0) 0%, rgba(20,19,18,0.32) 50%, rgba(20,19,18,0.9) 100%);
+  background: linear-gradient(to bottom, rgba(20,19,18,0) 0%, rgba(20,19,18,0.7) 100%);
   z-index: 2;
 }
 .pillar-tile-content {
@@ -831,40 +746,7 @@ nav.mainnav .wrap {
   width: 100%;
 }
 .pillar-tile-content h3 { color: var(--brand-cream); font-size: 24px; margin-bottom: 0; }
-.pillar-tile-content .pillar-sub {
-  font-family: var(--font-body);
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1.4;
-  min-height: 0;
-  margin-bottom: 0;
-}
-.pillar-toggle {
-  all: unset;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 2px 0;
-  color: var(--text-muted);
-}
-.pillar-toggle .pillar-chevron {
-  width: 20px;
-  height: 20px;
-  transition: transform 220ms ease;
-}
-.pillar-toggle .pillar-chevron svg { width: 100%; height: 100%; }
-.pillar-toggle[aria-expanded="true"] .pillar-chevron { transform: rotate(180deg); }
-.pillar-body {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 260ms ease, opacity 200ms ease;
-}
-.pillar.expanded .pillar-body { opacity: 1; }
+.pillar-tile-content .pillar-sub { min-height: 0; margin-bottom: 0; }
 
 /* ---------- Scroll reveal ---------- */
 .reveal {
