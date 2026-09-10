@@ -2,6 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- Set theme before first paint so dark mode (the default) applies
+     immediately, with no flash of the light-mode fallback while
+     script.js is still loading further down the page. Kept in sync with
+     the same logic in script.js. -->
+<script>
+(function () {
+  var stored = localStorage.getItem('lwr-theme');
+  document.documentElement.setAttribute('data-theme', stored || 'dark');
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Case For Authenticity, Visibility &amp; Clarity - Lead With Real</title>
 <meta name="description" content="Leaders are the bottleneck, not the tools. The research on AI adoption, visibility and authentic voice.">
