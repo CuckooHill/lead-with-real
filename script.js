@@ -4,11 +4,11 @@
 // ---------- Theme toggle ----------
 (function () {
   const root = document.documentElement;
-  // The initial theme is now set synchronously in an inline <script> at the
-  // very top of <head>, before first paint - this avoids a flash of the
-  // wrong theme, which happened when that logic only ran here (script.js
-  // loads at the very bottom of the page, after the browser has already
-  // painted once). This block now only handles the toggle button itself.
+  const stored = localStorage.getItem('lwr-theme');
+  // Default to dark on first visit, regardless of system preference.
+  // A saved manual choice (from the toggle) always wins after that.
+  const initial = stored || 'dark';
+  root.setAttribute('data-theme', initial);
   document.addEventListener('DOMContentLoaded', function () {
     const toggles = document.querySelectorAll('.theme-toggle');
     function updateIcon() {
@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const errorMsg = document.getElementById('lwrModalError');
   const googleForm = document.getElementById('lwrGoogleForm');
   const hiddenIframe = document.getElementById('lwr_hidden_iframe');
+  const kitForm = document.getElementById('lwrKitForm');
   const triggers = document.querySelectorAll('[data-plan-trigger]');
 
   if (!overlay || !triggers.length) return;
@@ -217,7 +218,8 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    if (!name || !email || allPairs.length === 0) {
+    // Only name and email are required - platform selection is optional.
+    if (!name || !email) {
       errorMsg.hidden = false;
       return;
     }
@@ -225,15 +227,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const platform = allPairs.map(function (p) { return p.platform; }).join(', ');
     const link = allPairs.map(function (p) { return p.platform + ': ' + (p.link || '-'); }).join(' | ');
+    const newsletterOptIn = document.getElementById('lwrNewsletter').checked;
 
-    // Fill the hidden Google Form (field order matches the SETUP note above)
+    // Fill the hidden Google Form (field order matches the SETUP note above).
+    // The newsletter opt-in isn't its own column in the Sheet (that would
+    // need a real new question added to the Google Form first) - for now
+    // it's folded into the Plan field as a readable tag.
     const gInputs = googleForm.querySelectorAll('input');
     gInputs[0].value = name;
     gInputs[1].value = email;
     gInputs[2].value = phone;
     gInputs[3].value = platform;
     gInputs[4].value = link;
-    gInputs[5].value = activePlanName;
+    gInputs[5].value = activePlanName + (newsletterOptIn ? ' | Newsletter: Yes' : '');
+
+    // Only actually subscribe them in Kit if they ticked the box.
+    if (newsletterOptIn && kitForm) {
+      kitForm.querySelector('input[name="email_address"]').value = email;
+      kitForm.submit();
+    }
 
     // Once the hidden iframe finishes loading the response, the Google
     // submission has gone through - only then send the user on to Cal.com.
@@ -267,3 +279,40 @@ document.addEventListener('DOMContentLoaded', function () {
 // get stuck, nothing to close twice. Every [data-cal-link] button already
 // has a real href, so this requires no JS at all: they just work as normal
 // links.
+
+// ---------- Collapsible research cards + pillar copy ----------
+// Shared expand/collapse: measures the real content height with scrollHeight
+// so the CSS max-height transition animates smoothly regardless of how long
+// the copy is, then clears the inline max-height once open so the box can
+// still grow/shrink naturally (e.g. window resize, font loading).
+function setupCollapsible(toggleSelector, bodySelector, parentSelector) {
+  document.querySelectorAll(toggleSelector).forEach(function (btn) {
+    const parent = btn.closest(parentSelector);
+    const body = parent.querySelector(bodySelector);
+    if (!body) return;
+    btn.addEventListener('click', function () {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      if (isOpen) {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        requestAnimationFrame(function () { body.style.maxHeight = '0px'; });
+        btn.setAttribute('aria-expanded', 'false');
+        parent.classList.remove('expanded');
+      } else {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+        parent.classList.add('expanded');
+        body.addEventListener('transitionend', function onEnd() {
+          body.removeEventListener('transitionend', onEnd);
+          if (btn.getAttribute('aria-expanded') === 'true') {
+            body.style.maxHeight = 'none';
+          }
+        });
+      }
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', function () {
+  setupCollapsible('.card-toggle', '.card-body', '.card');
+  setupCollapsible('.pillar-toggle', '.pillar-body', '.pillar');
+});
+
