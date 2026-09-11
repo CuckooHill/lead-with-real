@@ -1093,6 +1093,12 @@ footer {
 }
 footer a { text-decoration: underline; }
 footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.footer-highlight-link {
+  color: #000000;
+  text-decoration: underline;
+  font-size: 16px;
+}
+[data-theme="dark"] .footer-highlight-link { color: #FFFFFF; }
 
 /* ---------- Case for Visibility hero ---------- */
 .cfv-hero {
@@ -1428,7 +1434,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 <footer>
   <div class="wrap">
     <span>© 2026 Lead With Real &nbsp;·&nbsp; <a href="mailto:jon@leadwithreal.com">jon@leadwithreal.com</a></span>
-    <span><a href="index.html">← Back to Lead With Real</a></span>
+    <span><a href="index.html" class="footer-highlight-link">← Back to Lead With Real</a></span>
   </div>
 </footer>
 
