@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RealGround - Sound Healing, Meditation &amp; Grounded Leadership | Lead With Real</title>
+<meta name="description" content="Bespoke sound healing, meditation and coaching for leaders, teams, private members clubs, retreats and yoga studios. Led by King Yin, 20 years in the making.">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<!-- Set theme before first paint so dark mode (the default) applies
+     immediately, with no flash of the light-mode fallback while
+     script.js is still loading further down the page. Kept in sync with
+     the same logic in script.js. -->
+<script>
+(function () {
+  var stored = localStorage.getItem('lwr-theme');
+  document.documentElement.setAttribute('data-theme', stored || 'dark');
+})();
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700;900&display=swap');
+
+@font-face {
+  font-family: 'Cooper';
+  src: url('/fonts/Cooper-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cooper';
+  src: url('/fonts/Cooper-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cooper';
+  src: url('/fonts/Cooper-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cooper';
+  src: url('/fonts/Cooper-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cooper';
+  src: url('/fonts/Cooper-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #F6F1E4;
+  --bg-alt: #FFFFFF;
+  --text: #262521;
+  --text-muted: #6B675E;
+  --accent: #5E9E6E;
+  --cta-bg: #97D0A3;
+  --cta-text: #16281B;
+  --cta-bg-hover: #7FC090;
+  --card-border: #E4DDCB;
+  --card-bg: #FFFFFF;
+  --card-bg-translucent: rgba(255, 255, 255, 0.82);
+  --divider: #E4DDCB;
+  --font-display: 'Cooper', Georgia, serif;
+  --font-body: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+  color-scheme: light;
+}
+[data-theme="dark"] {
+  --bg: #14180F;
+  --bg-alt: #1C2118;
+  --text: #EDEDE4;
+  --text-muted: #9BA396;
+  --accent: #97D0A3;
+  --cta-bg: #97D0A3;
+  --cta-text: #16281B;
+  --cta-bg-hover: #ABDBB5;
+  --card-border: #2B3325;
+  --card-bg: #1C2118;
+  --card-bg-translucent: rgba(28, 33, 24, 0.82);
+  --divider: #2B3325;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+/* ---------- Nav ---------- */
+nav.mainnav {
+  border-bottom: 1px solid var(--divider);
+  background: var(--bg);
+}
+nav.mainnav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  gap: 16px;
+}
+.brand-stack {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 1.06;
+  text-align: left;
+  border-right: 2px solid currentColor;
+  padding-right: 12px;
+  display: inline-block;
+}
+.brand-stack .brand-accent { color: var(--accent); }
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.theme-toggle svg { width: 18px; height: 18px; stroke: var(--text); }
+.theme-toggle:hover { border-color: var(--accent); }
+
+/* ---------- Image placeholder ---------- */
+.img-placeholder {
+  background:
+    radial-gradient(circle at 25% 20%, rgba(151,208,163,0.35) 0%, transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(94,158,110,0.25) 0%, transparent 50%),
+    radial-gradient(circle at 60% 85%, rgba(20,24,15,0.5) 0%, transparent 55%),
+    var(--card-bg);
+  border: 1px dashed var(--card-border);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 16px;
+}
+
+/* ---------- Hero ---------- */
+.hero-section { padding: 56px 24px 40px; text-align: center; }
+.hero-eyebrow {
+  font-size: 12.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.hero-section h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(32px, 5.5vw, 52px);
+  line-height: 1.12;
+  margin: 0 0 18px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-section .hero-sub {
+  font-size: 17px;
+  color: var(--text-muted);
+  max-width: 560px;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+.hero-img-placeholder { aspect-ratio: 16/8; max-width: 900px; margin: 0 auto 32px; }
+.hero-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 14.5px;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+.btn-primary { background: var(--cta-bg); color: var(--cta-text); }
+.btn-primary:hover { background: var(--cta-bg-hover); }
+.btn-outline { background: transparent; border: 1.5px solid var(--card-border); color: var(--text); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---------- Section shells ---------- */
+.section { padding: 48px 24px; }
+.section-alt { background: var(--bg-alt); }
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(24px, 3.5vw, 32px);
+  text-align: center;
+  margin: 0 0 12px;
+}
+.section-sub {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 15px;
+  max-width: 560px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+}
+
+/* ---------- Audience split ---------- */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.audience-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 26px 22px;
+}
+.audience-card .aud-icon-placeholder {
+  width: 44px; height: 44px; border-radius: 50%;
+  margin-bottom: 14px;
+}
+.audience-card h3 { font-family: var(--font-display); font-size: 18px; margin: 0 0 8px; }
+.audience-card p { font-size: 14px; color: var(--text-muted); line-height: 1.55; margin: 0; }
+
+/* ---------- Intro / bio ---------- */
+.bio-block { max-width: 760px; margin: 0 auto; }
+.bio-flex { display: flex; gap: 32px; align-items: center; }
+.bio-img-placeholder { flex: 0 0 260px; aspect-ratio: 3/4; }
+.bio-text { flex: 1; font-size: 15.5px; line-height: 1.65; color: var(--text-muted); }
+.bio-text strong { color: var(--text); }
+
+/* ---------- Card / accordion (reuses .card-toggle mechanics from script.js) ---------- */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 22px 20px;
+  position: relative;
+  margin-bottom: 14px;
+}
+.card-tag { font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
+.card h3 { font-family: var(--font-display); font-size: 19px; margin-bottom: 0; line-height: 1.3; }
+.card-toggle { all: unset; box-sizing: border-box; cursor: pointer; display: block; width: 100%; padding-right: 30px; }
+.card-chevron {
+  position: absolute;
+  top: 22px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  transition: transform 220ms ease;
+}
+.card-chevron svg { width: 100%; height: 100%; }
+.card-toggle[aria-expanded="true"] .card-chevron { transform: rotate(180deg); }
+.card-body {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 260ms ease, opacity 200ms ease;
+}
+.card.expanded .card-body { opacity: 1; }
+.card-body p { font-size: 14.5px; line-height: 1.6; color: var(--text-muted); padding-top: 12px; margin: 0; }
+.card-body p + p { margin-top: 10px; }
+
+/* ---------- Benefits grid ---------- */
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.benefit-pill {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 16px 14px;
+  text-align: center;
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+/* ---------- Testimonials ---------- */
+.testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 900px; margin: 0 auto; }
+.testi-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 24px 22px;
+}
+.testi-card p.quote {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text);
+  margin: 0 0 14px;
+}
+.testi-card .attr { font-size: 12.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+
+/* ---------- Premium logo scroll ---------- */
+.logo-scroll-wrap {
+  overflow: hidden;
+  position: relative;
+  padding: 32px 0;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+.logo-scroll-track {
+  display: flex;
+  gap: 56px;
+  width: max-content;
+  animation: logoScroll 32s linear infinite;
+}
+.logo-scroll-wrap:hover .logo-scroll-track { animation-play-state: paused; }
+@keyframes logoScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.logo-scroll-item {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+  opacity: 0.7;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Closing CTA ---------- */
+.close-cta { text-align: center; padding: 56px 24px; }
+.close-cta h2 { font-family: var(--font-display); font-size: clamp(26px,4vw,36px); margin: 0 0 14px; }
+.close-cta p { color: var(--text-muted); max-width: 520px; margin: 0 auto 26px; font-size: 15px; line-height: 1.6; }
+.dm-note {
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.dm-note strong { color: var(--accent); }
+
+footer {
+  border-top: 1px solid var(--divider);
+  padding: 40px 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.footer-highlight-link { color: #000000; text-decoration: underline; font-size: 16px; }
+[data-theme="dark"] .footer-highlight-link { color: #FFFFFF; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 760px) {
+  .audience-grid, .benefit-grid, .testi-grid { grid-template-columns: 1fr; }
+  .bio-flex { flex-direction: column; }
+  .bio-img-placeholder { flex: none; width: 100%; max-width: 260px; }
+}
+/* ---------- Lead capture modal ---------- */
+.lwr-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 19, 18, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+.lwr-modal-overlay[hidden] { display: none; }
+.lwr-modal {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 26px 28px;
+  max-width: 440px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+}
+.lwr-modal h3 { font-size: 21px; margin-bottom: 8px; }
+.lwr-modal-plan { color: var(--accent); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+.lwr-modal-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  background: transparent;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+.lwr-modal-close:hover { border-color: var(--accent); }
+
+.lwr-field-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+@media (min-width: 420px) {
+  .lwr-field-row { flex-direction: row; gap: 10px; }
+  .lwr-field-row .lwr-field { flex: 1 1 0; min-width: 0; }
+}
+
+.lwr-field { margin-bottom: 10px; }
+.lwr-field label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.lwr-field input[type="text"],
+.lwr-field input[type="email"],
+.lwr-field input[type="tel"] {
+  width: 100%;
+  padding: 7px 12px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+.lwr-field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.lwr-type-tabs { display: flex; border: 1px solid var(--card-border); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 8px; }
+.lwr-type-tab {
+  flex: 1 1 50%;
+  border: none;
+  background: var(--bg);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.lwr-type-tab.active { background: var(--accent); color: #fff; }
+.lwr-type-tab:not(:last-child) { border-right: 1px solid var(--card-border); }
+
+.lwr-radio-row { display: flex; flex-direction: column; gap: 8px; }
+.lwr-radio-option {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 9px 15px !important;
+  cursor: pointer;
+}
+.lwr-radio-option:has(input[type="checkbox"]:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.lwr-radio-option input[type="checkbox"] { flex-shrink: 0 !important; accent-color: var(--accent); margin: 0 !important; order: 1; width: 18px; height: 18px; }
+.lwr-radio-option span { font-size: 14px; font-weight: 600; flex-shrink: 0 !important; width: 68px !important; order: 2; }
+.lwr-radio-option input.lwr-radio-link {
+  order: 3;
+  width: auto !important;
+  min-width: 0;
+  flex: 1 1 auto;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 7px 12px !important;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+}
+.lwr-radio-link::placeholder { color: var(--text-muted); opacity: 0.55; }
+.lwr-radio-link:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.lwr-modal-error { color: #C0392B; font-size: 12.5px; margin: 2px 0 10px; }
+.lwr-go-btn { width: 100%; justify-content: center; padding: 13px 24px !important; }
+.lwr-go-btn:hover { background: var(--brand-yellow); color: #262521; }
+.lwr-required-note { text-align: left; font-size: 11px; margin-top: 8px; padding-left: 2px; }
+.lwr-newsletter-opt {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin: 4px 0 14px;
+  cursor: pointer;
+}
+.lwr-newsletter-opt input[type="checkbox"] {
+  flex-shrink: 0;
+  accent-color: var(--accent);
+  width: 17px;
+  height: 17px;
+  margin: 0;
+}
+.lwr-newsletter-opt span { font-size: 13.5px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<nav class="mainnav">
+  <div class="wrap">
+    <div class="brand-stack">Lead<br>with<br><span class="brand-accent">Real</span></div>
+    <button class="theme-toggle" aria-label="Toggle light and dark theme"></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="wrap">
+    <div class="hero-eyebrow">RealGround</div>
+    <h1>Grounded Leadership Starts With Presence</h1>
+    <p class="hero-sub">Bespoke sound healing, meditation and coaching for leaders, teams, and the spaces that hold them - built from 20 years studying with the world's foremost teachers.</p>
+    <div class="img-placeholder hero-img-placeholder">
+      IMAGE: wide hero shot - sound bowls / ceremony space / King Yin in session
+    </div>
+    <div class="hero-btn-row">
+      <button type="button" class="btn btn-primary" data-plan-trigger="intro" data-plan-name="RealGround - Enquiry">Book an Intro Call →</button>
+      <a class="btn btn-outline" href="https://instagram.com" target="_blank" rel="noopener">DM to Enquire</a>
+    </div>
+    <!-- MESSAGING NOTE: this is the primary conversion point on the page.
+         Consider adding a one-line urgency/scarcity cue here once you know
+         real availability, e.g. "Currently taking 3 new 1:1 clients a month"
+         - specific capacity constraints convert far better on premium
+         wellness offers than generic CTAs. -->
+  </div>
+</section>
+
+<!-- WHO THIS IS FOR -->
+<section class="section section-alt">
+  <div class="wrap">
+    <h2 class="section-title">Built For Three Kinds of Spaces</h2>
+    <p class="section-sub">One practice, three ways to bring it in.</p>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="img-placeholder aud-icon-placeholder">IMG</div>
+        <h3>Leaders &amp; Founders</h3>
+        <p>1:1 sessions to shift energy, release tension and regulate emotion - so you lead from a grounded place, not a depleted one.</p>
+      </div>
+      <div class="audience-card">
+        <div class="img-placeholder aud-icon-placeholder">IMG</div>
+        <h3>Private Members Clubs &amp; Retreats</h3>
+        <p>Bespoke sound journeys and wellbeing programming for your members and guests - discreet, professional, unforgettable.</p>
+      </div>
+      <div class="audience-card">
+        <div class="img-placeholder aud-icon-placeholder">IMG</div>
+        <h3>Yoga Studios &amp; Wellness Spaces</h3>
+        <p>Guest-led sound healing and meditation events that bring something genuinely rare to your community calendar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEET KING YIN -->
+<section class="section">
+  <div class="wrap bio-block">
+    <h2 class="section-title">Meet King Yin</h2>
+    <div class="bio-flex">
+      <div class="img-placeholder bio-img-placeholder">IMAGE: portrait of King Yin</div>
+      <div class="bio-text">
+        <p><strong>Jon - known as King Yin in his wellness work</strong> - works intuitively, tailoring every session to what a client actually needs in the room, not a fixed script. For 20 years he has travelled to study with the foremost masters in meditation, breathwork, sound healing, yoga, tai chi, reiki, Tibetan Buddhism and Dzogchen.</p>
+        <p>Discrete and professional, he has trusted experience working with entertainment clients, entrepreneurs, leaders, VIPs and their teams.</p>
+      </div>
+    </div>
+
+    <div class="card reveal" style="margin-top:28px;">
+      <button class="card-toggle" aria-expanded="false">
+        <div class="card-tag">Full Background</div>
+        <h3>Read the full story behind King Yin</h3>
+        <span class="card-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="card-body">
+        <p>King Yin is the Chinese part of Jon's name, which he was guided to use more when doing wellness work. He naturally creates and holds a container for clients to experience what they need, with immediate results and long-lasting effects.</p>
+        <p>From his broad experience in both the corporate and spiritual worlds, he has created a system and series of programmes that distill the essence of his training into a powerful, effective method - tackling universal and highly personal issues and states.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="section section-alt">
+  <div class="wrap">
+    <h2 class="section-title">What Sessions Create</h2>
+    <div class="benefit-grid">
+      <div class="benefit-pill">Shift Your Energy</div>
+      <div class="benefit-pill">Release Old Patterns</div>
+      <div class="benefit-pill">Change Your Mindset</div>
+      <div class="benefit-pill">Regulate Emotions</div>
+      <div class="benefit-pill">Release Tensions &amp; Blocks</div>
+      <div class="benefit-pill">Create More Space</div>
+    </div>
+  </div>
+</section>
+
+<!-- 1:1 SESSIONS -->
+<section class="section">
+  <div class="wrap" style="max-width:760px;">
+    <h2 class="section-title">1:1 Sessions</h2>
+    <p class="section-sub">Sound healing, shamanic clearing techniques and intuitive bodywork - bringing clarity, releasing tension, and helping clients feel grounded, centred and present.</p>
+    <div class="img-placeholder" style="aspect-ratio:16/7; margin-bottom:24px;">IMAGE: 1:1 session in progress - instruments, hara massage space, or client setting</div>
+
+    <div class="card reveal">
+      <button class="card-toggle" aria-expanded="false">
+        <div class="card-tag">Session Format</div>
+        <h3>Sound &amp; Hara Release</h3>
+        <span class="card-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="card-body">
+        <p>We start by creating a safe container and opening a dialogue to clarify intentions for the session. Guided meditation, sound and breath help with grounding, centring and energetically clearing blocks.</p>
+        <p>Optional abdominal massage, in the area known as the hara, works on releasing emotional blocks and tensions. There may be some emotional release - the space is held clearly, gently and safely to ensure this happens smoothly.</p>
+        <p>We close with sound healing and sacred music.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE (accordion) -->
+<section class="section section-alt">
+  <div class="wrap" style="max-width:760px;">
+    <h2 class="section-title">Experience</h2>
+    <p class="section-sub">Twenty years across corporate wellbeing, ceremony, festivals and institutions.</p>
+
+    <div class="card reveal">
+      <button class="card-toggle" aria-expanded="false">
+        <div class="card-tag">Corporate</div>
+        <h3>SOMO Global - Senior Leadership Wellbeing</h3>
+        <span class="card-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="card-body">
+        <p>Wellbeing consultancy and project delivery to the senior management team. "King Yin was a calm, professional presence, sensitive to the pressures of modern working life, and trusted completely. The sessions were expertly run and hugely effective." - James Turner, Chief Business Officer, SOMO Global</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <button class="card-toggle" aria-expanded="false">
+        <div class="card-tag">Institutions</div>
+        <h3>Rubin Museum &amp; TATE Modern</h3>
+        <span class="card-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="card-body">
+        <p>London Mandala Lab Manager and Project Lead in Canary Wharf - curator and host of 10 events, facilitator of Gongs for Peace and Sound Journey workshops. At TATE Modern, led a music and sound ceremony with artist Cecilia Vicuña to honour the opening of her Turbine Hall exhibition.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <button class="card-toggle" aria-expanded="false">
+        <div class="card-tag">Festivals &amp; Ceremony</div>
+        <h3>Conscious Festivals &amp; Sound Temples</h3>
+        <span class="card-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="card-body">
+        <p>Medicine Festival x5, including Sound Temple and closing ceremony on the main stage. Bingham Riverhouse - led the Summer Solstice ritual and workshops: music, water ceremony and sound healing in the woods. Also: Wider Horizons, Wonderment, Into the Wild, Glastonbury, and the International Dzogchen Community.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <button class="card-toggle" aria-expanded="false">
+        <div class="card-tag">Buddhist Study</div>
+        <h3>Bönpo Dzogchen Teachings &amp; Retreats</h3>
+        <span class="card-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="card-body">
+        <p>Studies with Drubdra Khenpo, Meditation Abbot of Triten Norbutse Monastery, Nepal. Organiser of a residential retreat at Spirit Horse, Wales, and of the London Dzogchen retreat. Also studied at Mahamudra, an FPMT Buddhist centre in New Zealand, leading a meditation and sound weekend retreat.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <button class="card-toggle" aria-expanded="false">
+        <div class="card-tag">Retreat</div>
+        <h3>Open Heart, Open Voice - Day Retreat</h3>
+        <span class="card-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="card-body">
+        <p>A day of movement, meditation, breath, release, sound and mantra singing to open the heart and open the voice. Connect. Sing together. Express yourself. Experience true freedom.</p>
+        <p>"I've had the most beautiful empowering day. So many interesting things came up that I now want to go home and delve into even more... It was such a kind, gentle environment and so much fun." - Geri</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="section-title">In Their Words</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="quote">"The sound and energy healing session I had with King Yin was one of the most important experiences of healing I've had in my life so far. King Yin created the most open and held space for me to release a heavy burden I'd been carrying around for a long time."</p>
+        <div class="attr">Anna</div>
+      </div>
+      <div class="testi-card">
+        <p class="quote">"I sang every song without doubt or nervousness and enjoyed it! It just felt miraculous. I feel so powerful and in my body, in myself. I know I am stepping more fully into my heart and my power."</p>
+        <div class="attr">Olive</div>
+      </div>
+      <div class="testi-card">
+        <p class="quote">"His sound language is vast, which creates fresh emotional universes for his clients, simply by listening and being impacted by the vibration. He is the King (Yin) of sound transformation."</p>
+        <div class="attr">Andrea Anstiss, Transpersonal Psychotherapist</div>
+      </div>
+      <div class="testi-card">
+        <p class="quote">"This journey has developed into a really nurturing relationship with myself. I've really discovered who I am, my purpose, that it's okay to be me. I'm pretty amazing - and that's a great space to be in."</p>
+        <div class="attr">Tara</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIUM LOGO SCROLL -->
+<section class="section section-alt" style="padding-top:32px; padding-bottom:32px;">
+  <div class="wrap">
+    <p class="section-sub" style="margin-bottom:8px;">Trusted in the following spaces</p>
+  </div>
+  <div class="logo-scroll-wrap">
+    <div class="logo-scroll-track">
+      <span class="logo-scroll-item">SOMO Global</span>
+      <span class="logo-scroll-item">Rubin Museum</span>
+      <span class="logo-scroll-item">TATE Modern</span>
+      <span class="logo-scroll-item">Glastonbury</span>
+      <span class="logo-scroll-item">Medicine Festival</span>
+      <span class="logo-scroll-item">Bingham Riverhouse</span>
+      <span class="logo-scroll-item">Mahamudra FPMT</span>
+      <span class="logo-scroll-item">International Dzogchen Community</span>
+      <!-- duplicated once for seamless scroll loop -->
+      <span class="logo-scroll-item">SOMO Global</span>
+      <span class="logo-scroll-item">Rubin Museum</span>
+      <span class="logo-scroll-item">TATE Modern</span>
+      <span class="logo-scroll-item">Glastonbury</span>
+      <span class="logo-scroll-item">Medicine Festival</span>
+      <span class="logo-scroll-item">Bingham Riverhouse</span>
+      <span class="logo-scroll-item">Mahamudra FPMT</span>
+      <span class="logo-scroll-item">International Dzogchen Community</span>
+    </div>
+  </div>
+  <!-- LOGO NOTE: these are text placeholders. Send over the actual logo
+       files (transparent PNG/SVG, roughly matching height) for SOMO
+       Global, Rubin Museum, TATE Modern, Glastonbury, Medicine Festival,
+       Bingham Riverhouse, Mahamudra FPMT and International Dzogchen
+       Community, and I'll swap them in as real images in this same
+       scrolling strip. -->
+</section>
+
+<!-- CLOSING CTA -->
+<section class="close-cta">
+  <div class="wrap">
+    <h2>Bring RealGround Into Your Space</h2>
+    <p>Whether it's a single session, an ongoing 1:1 programme, or a bespoke event for your members, guests or team - every session is built around what's actually needed in the room.</p>
+    <div class="hero-btn-row">
+      <button type="button" class="btn btn-primary" data-plan-trigger="intro" data-plan-name="RealGround - Enquiry">Book an Intro Call →</button>
+      <a class="btn btn-outline" href="https://instagram.com" target="_blank" rel="noopener">DM to Enquire</a>
+    </div>
+    <p class="dm-note">Private members clubs, retreats and studios: DM <strong>RETREAT</strong> to discuss bespoke programming.</p>
+    <!-- MESSAGING NOTE: "DM RETREAT" mirrors the "Comment REAL" mechanic
+         used on your LinkedIn content elsewhere - gives venues/partners a
+         clear, low-friction first step distinct from the individual-leader
+         CTA above it, so the two audiences don't get routed identically. -->
+  </div>
+</section>
+
+<!-- LEAD CAPTURE MODAL (shared site-wide component) -->
+<div class="lwr-modal-overlay" id="lwrModalOverlay" hidden>
+  <div class="lwr-modal">
+    <button class="lwr-modal-close" id="lwrModalClose" aria-label="Close">&times;</button>
+    <h3 id="lwrModalTitle">Let's Begin</h3>
+    <p class="lwr-modal-plan" id="lwrModalPlan"></p>
+
+    <form id="lwrLeadForm" novalidate>
+      <div class="lwr-field-row">
+        <div class="lwr-field">
+          <label for="lwrName">Name*</label>
+          <input type="text" id="lwrName" name="name" required>
+        </div>
+        <div class="lwr-field">
+          <label for="lwrPhone">Phone</label>
+          <input type="tel" id="lwrPhone" name="phone">
+        </div>
+      </div>
+      <div class="lwr-field">
+        <label for="lwrEmail">Email*</label>
+        <input type="email" id="lwrEmail" name="email" required>
+      </div>
+
+      <label class="lwr-newsletter-opt">
+        <input type="checkbox" id="lwrNewsletter" name="newsletter">
+        <span>Sign up for our newsletter</span>
+      </label>
+
+      <p class="lwr-modal-error" id="lwrModalError" hidden>Please fill in your name and email.</p>
+      <button type="submit" class="btn btn-primary lwr-go-btn">Go</button>
+      <p class="lwr-required-note">*required</p>
+    </form>
+  </div>
+</div>
+
+<!-- Hidden Google Form bridge - see script.js for setup notes -->
+<iframe name="lwr_hidden_iframe" id="lwr_hidden_iframe" style="display:none;" title="form submission target"></iframe>
+<form id="lwrGoogleForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeu4znjTRGtuUac1oNJh2-JN4PrV7n94owLKgUsIrJiX36e6g/formResponse" method="POST" target="lwr_hidden_iframe" style="display:none;">
+  <input type="text" name="entry.1914654913">
+  <input type="text" name="entry.1707516373">
+  <input type="text" name="entry.1268065614">
+  <input type="text" name="entry.823242838">
+  <input type="text" name="entry.1128064454">
+  <input type="text" name="entry.1503759306">
+</form>
+
+<iframe name="lwr_kit_iframe" id="lwr_kit_iframe" style="display:none;" title="kit submission target"></iframe>
+<form id="lwrKitForm" action="https://app.kit.com/forms/9763577/subscriptions" method="POST" target="lwr_kit_iframe" style="display:none;">
+  <input type="email" name="email_address">
+</form>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 Lead With Real &nbsp;&middot;&nbsp; <a href="mailto:jon@leadwithreal.com">jon@leadwithreal.com</a></span>
+  </div>
+</footer>
+
+<script src="/script.js?v=41"></script>
+</body>
+</html>
