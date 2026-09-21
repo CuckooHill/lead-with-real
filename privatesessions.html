@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>King Yin | Sound, voice and meditation in Northwood</title>
+<meta name="description" content="Live shruti box and voice sound journeys, private and group, in a Northwood home studio or in your home. 90 minutes. Message to book.">
+<meta name="theme-color" content="#e8ece8">
+<meta property="og:title" content="King Yin | Live shruti box and voice sound journeys">
+<meta property="og:description" content="Private and group 90-minute sound journeys in Northwood or in your home. Message to book.">
+<meta property="og:url" content="https://leadwithreal.com/privatesessions.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://leadwithreal.com/poster.jpg">
+<link rel="canonical" href="https://leadwithreal.com/privatesessions.html">
+
+<!--
+  SETUP (3 things, all in this file or next to it)
+  1. In the script at the bottom, replace YOUR_PIXEL_ID with your Meta Pixel ID
+     and 447XXXXXXXXX with your WhatsApp number (UK format, no + and no spaces, e.g. 447700900123).
+  2. Put your compressed video in the same folder as this file and name it video.mp4.
+     Optional: add poster.jpg (a still from the video). If you don't have one, delete the poster="poster.jpg" attribute.
+  3. Upload the whole folder to your host (for example Netlify Drop) and point your domain at it.
+
+  CHECK BEFORE GOING LIVE
+  - Get written permission for each testimonial and for every named credential.
+  - Confirm the FAQ answers, the home-visit area and the credentials line match reality.
+  - Keep wording to relaxation and rest. No health or healing claims (Meta reviews landing pages too).
+  - Have the privacy note at the bottom reviewed, and check whether you need to pay the ICO data protection fee.
+-->
+
+<style>
+:root{
+  --fog:#e8ece8;
+  --mist:#f3f6f3;
+  --pine:#142622;
+  --pine-soft:#3d524c;
+  --bronze:#8c6326;
+  --bronze-dark:#734f1d;
+  --brass:#c79a4b;
+  --line:#c3cfc7;
+  --display:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --text:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--fog);color:var(--pine);font:17px/1.6 var(--text);-webkit-font-smoothing:antialiased;padding-bottom:88px}
+h1,h2,h3,p,figure,blockquote,dl,dd{margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+:focus-visible{outline:3px solid var(--bronze);outline-offset:3px}
+.dark{background:var(--pine);color:var(--fog)}
+.dark :focus-visible{outline-color:var(--brass)}
+.small{font-size:14px;color:var(--pine-soft)}
+
+/* header */
+.top{padding-top:20px;padding-bottom:4px}
+.brand{display:flex;flex-direction:column;line-height:1.25}
+.brand .name{font:400 22px/1.2 var(--display);letter-spacing:.01em}
+.brand .desc{font-size:14px;color:var(--pine-soft)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 22px;border-radius:4px;border:1.5px solid var(--bronze);background:var(--bronze);color:#fff;font:600 16px/1.2 var(--text);text-decoration:none;cursor:pointer;text-align:center}
+.btn:hover{background:var(--bronze-dark);border-color:var(--bronze-dark)}
+.btn.ghost{background:transparent;color:var(--bronze)}
+.btn.ghost:hover{background:var(--bronze);color:#fff}
+.btn.light{background:var(--fog);border-color:var(--fog);color:var(--pine)}
+.btn.light:hover{background:#fff;border-color:#fff}
+.btn.outline{background:transparent;border-color:var(--fog);color:var(--fog)}
+.btn.outline:hover{background:rgba(232,236,232,.14)}
+
+/* hero */
+.hero{overflow:hidden;padding:20px 0 56px}
+.hero-grid{display:grid;gap:36px}
+.hero-copy{position:relative;z-index:1;display:grid;gap:20px;align-content:center;justify-items:start}
+.hero-copy h1{font:400 clamp(36px,9vw,64px)/1.04 var(--display);letter-spacing:-.02em}
+.lede{font-size:19px;max-width:32em;color:var(--pine-soft)}
+.stage{position:relative;display:grid;place-items:center;width:100%;max-width:380px;margin:0 auto;padding:20px 0}
+.rings{position:absolute;inset:0;pointer-events:none}
+.rings span{position:absolute;left:50%;top:50%;aspect-ratio:1;border:1px solid var(--brass);border-radius:50%;transform:translate(-50%,-50%);opacity:.5;animation:ripple 1.8s ease-out both}
+.rings span:nth-child(1){width:115%}
+.rings span:nth-child(2){width:150%;animation-delay:.3s}
+.rings span:nth-child(3){width:190%;animation-delay:.6s}
+@keyframes ripple{from{opacity:0;transform:translate(-50%,-50%) scale(.55)}to{opacity:.5;transform:translate(-50%,-50%) scale(1)}}
+.arch{position:relative;width:100%;border-radius:190px 190px 22px 22px;overflow:hidden;background:var(--pine);box-shadow:0 24px 60px rgba(20,38,34,.28)}
+.arch video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--pine)}
+@media(min-width:860px){
+  .hero{padding:40px 0 80px}
+  .hero-grid{grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+  .stage{margin:0 0 0 auto}
+}
+
+/* credentials band */
+.band{padding:44px 0}
+.band p{font:400 clamp(21px,3.6vw,30px)/1.35 var(--display);max-width:26em}
+.photostrip{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px}
+.photostrip img{width:100%;height:130px;object-fit:cover;border-radius:6px;display:block}
+@media(min-width:640px){.photostrip img{height:180px}}
+
+/* sections */
+.block{padding:56px 0 8px}
+.block h2{font:400 clamp(28px,5vw,40px)/1.12 var(--display);letter-spacing:-.01em;margin-bottom:20px}
+.block h3{font:400 24px/1.2 var(--display)}
+
+.facts>div{display:grid;gap:6px;padding:20px 0;border-top:1px solid var(--line)}
+.facts dt{font:400 22px/1.2 var(--display)}
+.facts dd{color:var(--pine-soft);max-width:36em}
+@media(min-width:720px){.facts>div{grid-template-columns:220px 1fr;gap:32px}}
+
+.option{display:grid;gap:16px;padding:26px 0;border-top:1px solid var(--line)}
+.option p{color:var(--pine-soft);max-width:34em;margin-top:6px}
+.side{display:grid;gap:12px;justify-items:start}
+.side .price{font:400 26px/1.1 var(--display);color:var(--pine);margin:0}
+@media(min-width:720px){.option{grid-template-columns:1fr 300px;gap:40px;align-items:center}}
+
+.prices{margin-top:8px}
+.pricedrop{border-top:1px solid var(--line);padding:16px 0}
+.pricedrop summary{cursor:pointer;font-weight:600}
+.pricedrop[open] summary{margin-bottom:16px}
+.tablewrap{overflow-x:auto;border-top:1px solid var(--pine);border-bottom:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:12px 8px;text-align:center;border-bottom:1px solid var(--line)}
+th{font-weight:600;font-size:14px;color:var(--pine-soft);vertical-align:bottom}
+tbody tr:last-child td{border-bottom:0}
+th:first-child,td:first-child{text-align:left;padding-left:2px}
+.prices .small{margin-top:12px;max-width:38em}
+
+.quote{padding:22px 0 22px 20px;border-left:3px solid var(--brass);margin-bottom:22px}
+.quote blockquote p{font:400 19px/1.5 var(--display)}
+.quote.lead blockquote p{font-size:clamp(22px,3.6vw,30px);line-height:1.35}
+.quote figcaption{margin-top:10px;font-size:14px;color:var(--pine-soft)}
+
+.about p{max-width:36em}
+.about p+p{margin-top:14px}
+.about-grid{display:grid;gap:20px}
+.about-grid img{width:140px;border-radius:8px;display:block}
+@media(min-width:640px){
+  .about-grid{grid-template-columns:140px 1fr;align-items:start}
+}
+
+details{border-top:1px solid var(--line);padding:16px 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600}
+details p{margin-top:10px;color:var(--pine-soft);max-width:38em}
+
+.closing{margin-top:56px;padding:56px 0}
+.closing .wrap{display:grid;gap:18px;justify-items:start}
+.closing h2{font:400 clamp(28px,5vw,42px)/1.1 var(--display)}
+.closing p{max-width:30em}
+
+footer{padding:32px 0 40px}
+footer p{max-width:44em}
+footer p+p{margin-top:10px}
+footer a{color:var(--pine)}
+
+/* sticky booking bar (phones) and cookie choice */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(232,236,232,.95);border-top:1px solid var(--line)}
+.sticky .btn{width:100%}
+.consent{position:fixed;left:12px;right:12px;bottom:12px;z-index:30;padding:16px;border-radius:4px;display:none;box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.consent.show{display:block}
+.consent p{font-size:14px;line-height:1.5;margin-bottom:12px}
+.consent .row{display:flex;gap:10px}
+.consent .btn{flex:1;min-height:44px}
+@media(min-width:860px){
+  body{padding-bottom:0}
+  .sticky{display:none}
+  .consent{left:auto;max-width:440px}
+}
+@media(prefers-reduced-motion:reduce){
+  .rings span{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap top">
+  <div class="brand">
+    <span class="name">King Yin</span>
+    <span class="desc">Sound, voice and meditation</span>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>Live shruti box and voice, shaped around you.</h1>
+        <p class="lede">A 90-minute private or group sound journey to help you slow down, breathe out and feel properly rested. In my Northwood home studio or in your home.</p>
+        <a class="btn" data-wa="general" href="#book">Message me on WhatsApp</a>
+        <p class="small">A free 15-minute chat comes first. Private sessions from £150, groups from £50 per person.</p>
+      </div>
+      <div class="stage">
+        <div class="rings" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="arch">
+          <video id="intro-video" controls playsinline preload="metadata" poster="poster.jpg" aria-label="King Yin playing shruti box and singing">
+            <source src="video.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark">
+    <div class="wrap">
+      <p>Twenty years of practice in sound, voice and meditation. A music and sound ceremony at Tate Modern. Sound temples at conscious festivals, including Glastonbury.</p>
+      <div class="photostrip">
+        <img src="img/festival.jpg" alt="A sound circle among trees at a festival, and a ceremony with drums and singing bowls" loading="lazy">
+        <img src="img/retreat.jpg" alt="A retreat hall with a group seated on mats for a guided sound session" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <h2>What a session is like</h2>
+    <dl class="facts">
+      <div><dt>Unhurried</dt><dd>Ninety minutes with no agenda except rest. You lie down, get comfortable and let the sound do the work.</dd></div>
+      <div><dt>Live</dt><dd>Shruti box, gong and voice played in the room, so you feel the sound as much as hear it.</dd></div>
+      <div><dt>Shaped around you</dt><dd>There's no fixed script. I listen to the room and follow what's needed, so no two sessions are the same.</dd></div>
+    </dl>
+  </section>
+
+  <section class="wrap block" id="book">
+    <h2>Ways to book</h2>
+    <div class="options">
+      <div class="option">
+        <div>
+          <h3>Private, one to one</h3>
+          <p>Your own 90 minutes, in the studio or at home. The best place to start if you'd like something just for you.</p>
+        </div>
+        <div class="side">
+          <p class="price">from £150</p>
+          <a class="btn ghost" data-wa="private" href="#book">Ask about a private session</a>
+        </div>
+      </div>
+      <div class="option">
+        <div>
+          <h3>Friends and family</h3>
+          <p>Bring up to five others. The price per person comes down as the group grows, so the more, the merrier.</p>
+        </div>
+        <div class="side">
+          <p class="price">from £50 per person</p>
+          <a class="btn ghost" data-wa="group" href="#book">Ask about a group session</a>
+        </div>
+      </div>
+      <div class="option">
+        <div>
+          <h3>Ongoing journeys</h3>
+          <p>Programmes over several weeks or months, once you've felt what this is like. Tell me what you're looking for and I'll suggest what would suit.</p>
+        </div>
+        <div class="side">
+          <p class="price">on request</p>
+          <a class="btn ghost" data-wa="programme" href="#book">Ask about programmes</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="prices">
+      <details class="pricedrop">
+        <summary>See full pricing by group size</summary>
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr><th>People</th><th>Studio</th><th>At your home</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>£150</td><td>£210</td></tr>
+              <tr><td>2</td><td>£240</td><td>£310</td></tr>
+              <tr><td>3</td><td>£270</td><td>£350</td></tr>
+              <tr><td>4</td><td>£300</td><td>£390</td></tr>
+              <tr><td>5</td><td>£300</td><td>£400</td></tr>
+              <tr><td>6</td><td>£300</td><td>£400</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small">Studio sessions are in Northwood. Home visits cover Northwood, Moor Park, Pinner, Rickmansworth, Stanmore and Bushey. Further away? Ask me.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <h2>What people say</h2>
+    <figure class="quote lead">
+      <blockquote><p>King Yin's work is a gift to us, to nurture the tired parts of ourselves, the stressed parts of ourselves, the vulnerable parts of ourselves. Like soaking in a hot fragrant bath.</p></blockquote>
+      <figcaption>Naomi, weekend retreat</figcaption>
+    </figure>
+    <figure class="quote">
+      <blockquote><p>Really loved the vibe you created and everyone's presence. Gently uplifting as if spending a day on fluffy clouds and I found inspiration from every single person too.</p></blockquote>
+      <figcaption>Daisuke, Open Heart Open Voice day retreat</figcaption>
+    </figure>
+    <figure class="quote">
+      <blockquote><p>A calm, professional presence, sensitive to the pressures of modern working life, and trusted completely.</p></blockquote>
+      <figcaption>James Turner, Chief Business Officer, SOMO Global</figcaption>
+    </figure>
+    <figure class="quote">
+      <blockquote><p>I've had the most beautiful, empowering day. So many interesting things came up that I now want to go home and delve into even more. It was such a kind, gentle environment and so much fun.</p></blockquote>
+      <figcaption>Geri, Open Heart Open Voice day retreat</figcaption>
+    </figure>
+    <figure class="quote">
+      <blockquote><p>At the singing circle, I sang every song without doubt or nervousness, and enjoyed it. I feel so much more myself, powerful and in my body.</p></blockquote>
+      <figcaption>Olive, voice coaching programme</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap block about">
+    <h2>About King Yin</h2>
+    <div class="about-grid">
+      <img src="img/headshot.jpg" alt="King Yin playing guitar by the coast" loading="lazy">
+      <div>
+        <p>For twenty years I've studied and practised meditation, sound and voice with teachers around the world, including in the Tibetan Buddhist and Dzogchen traditions. I've worked one to one with private clients and with teams, and shared sound at museums and festivals.</p>
+        <p>My sessions are led by intuition, not a script. The aim is always the same: a quiet, held space where you can rest, and leave feeling more like yourself.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <h2>Questions</h2>
+    <details>
+      <summary>What happens in a session?</summary>
+      <p>We start with a short chat about how you're feeling. Then you lie down comfortably while I play shruti box, gong and voice for most of the 90 minutes, and we finish with time to rest and reflect.</p>
+    </details>
+    <details>
+      <summary>Do I need any experience?</summary>
+      <p>No. There's nothing to prepare or get right. Wear something comfortable and come as you are.</p>
+    </details>
+    <details>
+      <summary>Where do sessions take place?</summary>
+      <p>In my home studio in Northwood, or in your own home if you're local.</p>
+    </details>
+    <details>
+      <summary>How many people can join a group?</summary>
+      <p>Up to six in total, including whoever is organising.</p>
+    </details>
+    <details>
+      <summary>Is this a medical treatment?</summary>
+      <p>No. It's a relaxation and wellbeing experience and doesn't replace medical care. If you're pregnant, have a health condition or aren't sure, mention it when you message me.</p>
+    </details>
+  </section>
+
+  <section class="closing dark">
+    <div class="wrap">
+      <h2>Ready to slow down?</h2>
+      <p>Message me and we'll find the right session. A free 15-minute chat comes first.</p>
+      <a class="btn light" data-wa="chat" href="#book">Message me on WhatsApp</a>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p class="small">© 2026 King Yin, Northwood, London. <a href="#" id="cookie-settings">Cookie settings</a></p>
+  <p class="small">Privacy: I use your WhatsApp details only to reply to you and arrange sessions. If you accept cookies, this page uses the Meta Pixel to measure how my ads perform and to show them to people who may be interested. Messages sent through WhatsApp are handled by WhatsApp under its own terms. To have your details deleted, message me.</p>
+</footer>
+
+<div class="sticky"><a class="btn" data-wa="general" href="#book">Message me on WhatsApp</a></div>
+
+<div class="consent dark" id="consent" role="dialog" aria-label="Cookie choice">
+  <p>With your OK, this page uses the Meta Pixel (cookies) to measure how my ads perform. Nothing loads until you choose.</p>
+  <div class="row">
+    <button type="button" class="btn light" id="accept">Accept</button>
+    <button type="button" class="btn outline" id="decline">Decline</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var CONFIG = {
+    pixelId: 'YOUR_PIXEL_ID',      // replace with your Meta Pixel ID
+    whatsapp: '447XXXXXXXXX'       // replace with your number, UK format, no + or spaces
+  };
+
+  var MSG = {
+    general: "Hi King Yin, I'd like to find out more about a sound journey.",
+    chat: "Hi King Yin, I'd like to book a free 15-minute chat.",
+    private: "Hi King Yin, I'm interested in a private 90-minute sound journey.",
+    group: "GROUP - Hi King Yin, I'd like to know more about a group sound journey for friends or family.",
+    programme: "Hi King Yin, I'd like to hear about your ongoing programmes."
+  };
+
+  var KEY = 'ky_cookie_choice';
+  var pixelLoaded = false;
+  var banner = document.getElementById('consent');
+
+  function getChoice() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function setChoice(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function showBanner() { banner.classList.add('show'); }
+  function hideBanner() { banner.classList.remove('show'); }
+
+  function loadPixel() {
+    if (pixelLoaded || !CONFIG.pixelId || CONFIG.pixelId.indexOf('YOUR_') === 0) return;
+    pixelLoaded = true;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', CONFIG.pixelId);
+    fbq('track', 'PageView');
+  }
+
+  function track(name, data) {
+    if (pixelLoaded && window.fbq) { fbq('track', name, data || {}); }
+  }
+
+  // WhatsApp buttons: build the link and record a Lead when clicked
+  var buttons = document.querySelectorAll('[data-wa]');
+  for (var i = 0; i < buttons.length; i++) {
+    (function (a) {
+      var kind = a.getAttribute('data-wa');
+      a.href = 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(MSG[kind] || MSG.general);
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.addEventListener('click', function () { track('Lead', { content_name: kind }); });
+    })(buttons[i]);
+  }
+
+  // Count the first play of the video
+  var video = document.getElementById('intro-video');
+  if (video) {
+    video.addEventListener('play', function once() {
+      if (pixelLoaded && window.fbq) { fbq('trackCustom', 'VideoPlay'); }
+      video.removeEventListener('play', once);
+    });
+  }
+
+  // Cookie choice: the pixel only loads after Accept
+  var choice = getChoice();
+  if (choice === 'yes') { loadPixel(); } else if (choice !== 'no') { showBanner(); }
+
+  document.getElementById('accept').addEventListener('click', function () { setChoice('yes'); hideBanner(); loadPixel(); });
+  document.getElementById('decline').addEventListener('click', function () { setChoice('no'); hideBanner(); });
+  document.getElementById('cookie-settings').addEventListener('click', function (e) { e.preventDefault(); showBanner(); });
+})();
+</script>
+</body>
+</html>
