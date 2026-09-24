@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Private Sound & Voice Sessions | Your Name, [Town]</title>
+<meta name="description" content="Bespoke sound meditation and voice sessions in [Town]. 1-2-1 and group. Book on WhatsApp.">
+<meta name="theme-color" content="#1f1a17">
+<!--
+  BEFORE PUBLISHING
+  1. Find & replace 447466756208 with your WhatsApp number (international format, no + or spaces).
+  2. Replace "Your Name", "[Town]", prices, dates and placeholder copy.
+  3. Swap each .ph photo block for <img src="..." alt="..." loading="lazy" width="..." height="...">.
+  4. Put your 30-60 sec audio next to this file as sample.mp3 (or change the src below).
+-->
+<style>
+:root{
+  --ink:#1f1a17; --ink-2:#3a322c; --cream:#f6f0e6; --sand:#e9dfcf; --clay:#b5794a; --clay-dark:#8f5b33;
+  --sage:#6f7d68; --wa:#25d366; --wa-dark:#128c4a; --white:#fffdf9;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --r:18px; --gut:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.55;font-size:16px;padding-bottom:88px}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,9vw,3.2rem)}
+h2{font-size:clamp(1.55rem,6.5vw,2.1rem);margin-bottom:.6rem}
+h3{font-size:1.3rem}
+p{max-width:60ch}
+section{padding:44px var(--gut)}
+.wrap{max-width:720px;margin:0 auto}
+.eyebrow{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--clay-dark);font-weight:600;margin-bottom:.6rem}
+.lead{color:var(--ink-2);font-size:1.05rem}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:52px;padding:0 26px;border-radius:999px;background:var(--wa);color:#08321b;font-weight:700;font-size:1rem;text-decoration:none;border:0;cursor:pointer;box-shadow:0 6px 18px rgba(18,140,74,.28);transition:transform .15s,background .15s}
+.btn:hover{background:#3ee07f}
+.btn:active{transform:scale(.98)}
+.btn svg{width:22px;height:22px;flex:none}
+.btn.block{width:100%}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:none;border:1.5px solid var(--ink)}
+.cta-row{margin-top:22px}
+
+/* Photo placeholders */
+.ph{position:relative;background:linear-gradient(145deg,#c9a27a,#8f5b33 60%,#4a3325);border-radius:var(--r);overflow:hidden;display:flex;align-items:flex-end;color:rgba(255,255,255,.85);font-size:.75rem;padding:12px}
+.ph::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 25%,rgba(255,255,255,.22),transparent 55%)}
+.ph span{position:relative}
+.ph.sage{background:linear-gradient(145deg,#a3b09b,#6f7d68 60%,#3a4436)}
+.ph.dusk{background:linear-gradient(145deg,#8c7a92,#54465c 60%,#261f2b)}
+.ph.gold{background:linear-gradient(145deg,#e0c48a,#b5894a 60%,#5d4322)}
+
+/* 1 Hero */
+.hero{background:var(--ink);color:var(--cream);padding:0 0 40px}
+.hero .ph{border-radius:0;height:52vh;min-height:280px;max-height:460px}
+.hero .txt{padding:26px var(--gut) 0;max-width:720px;margin:0 auto}
+.hero .eyebrow{color:#e0b48a}
+.hero p{color:#dcd2c3;margin-top:14px;font-size:1.05rem}
+.hero .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{font-size:.82rem;padding:6px 13px;border-radius:999px;border:1px solid rgba(246,240,230,.35)}
+.chip.hot{background:rgba(37,211,102,.14);border-color:rgba(37,211,102,.5);color:#b8f3cf}
+
+/* 2 Authority */
+.auth{background:var(--sand);padding:22px 0}
+.auth ul{list-style:none;display:flex;gap:12px;overflow-x:auto;padding:0 var(--gut);scroll-snap-type:x proximity;scrollbar-width:none}
+.auth ul::-webkit-scrollbar{display:none}
+.auth li{flex:none;scroll-snap-align:start;background:var(--white);border-radius:14px;padding:14px 18px;min-width:150px}
+.auth b{display:block;font-family:var(--serif);font-size:1.5rem;font-weight:500}
+.auth small{color:var(--ink-2);font-size:.8rem}
+
+/* 3 Audio */
+.audio{background:var(--ink);color:var(--cream)}
+.audio .eyebrow{color:#e0b48a}
+.player{margin-top:18px;display:flex;align-items:center;gap:16px;background:rgba(246,240,230,.08);border:1px solid rgba(246,240,230,.18);border-radius:var(--r);padding:16px}
+.play{flex:none;width:64px;height:64px;border-radius:50%;border:0;background:var(--clay);color:#fff;display:grid;place-items:center;cursor:pointer}
+.play svg{width:26px;height:26px}
+.play .pause{display:none}
+.player.on .play .pause{display:block}
+.player.on .play .tri{display:none}
+.track{flex:1;min-width:0}
+.track strong{display:block;font-size:.95rem}
+.bar{height:6px;background:rgba(246,240,230,.2);border-radius:99px;margin:10px 0 6px;overflow:hidden;cursor:pointer}
+.bar i{display:block;height:100%;width:0;background:var(--clay)}
+.time{font-size:.75rem;color:#bfb4a4}
+.audio .note{font-size:.85rem;color:#bfb4a4;margin-top:12px}
+
+/* 4 Expect */
+.steps{list-style:none;margin-top:20px;display:grid;gap:12px;counter-reset:s}
+.steps li{display:flex;gap:16px;align-items:flex-start;background:var(--white);border-radius:var(--r);padding:16px}
+.steps li::before{counter-increment:s;content:counter(s);flex:none;width:38px;height:38px;border-radius:50%;background:var(--sand);color:var(--clay-dark);display:grid;place-items:center;font-family:var(--serif);font-size:1.15rem}
+.steps b{display:block}
+.steps span{color:var(--ink-2);font-size:.95rem}
+
+/* 5 Sessions */
+.sessions{background:var(--sand)}
+.cards{display:grid;gap:16px;margin-top:20px}
+.card{background:var(--white);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:12px}
+.card.feature{outline:2px solid var(--clay)}
+.tag{align-self:flex-start;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;background:var(--clay);color:#fff;padding:4px 10px;border-radius:99px;font-weight:600}
+.price{font-family:var(--serif);font-size:1.9rem}
+.price small{font-family:var(--sans);font-size:.85rem;color:var(--ink-2)}
+.card ul{list-style:none;color:var(--ink-2);font-size:.95rem;display:grid;gap:6px}
+.card li::before{content:"✓";color:var(--sage);font-weight:700;margin-right:8px}
+.next{font-size:.9rem;color:var(--wa-dark);font-weight:600}
+
+/* 6 Testimonials */
+.quotes{display:grid;gap:14px;margin-top:20px}
+blockquote{background:var(--white);border-radius:var(--r);padding:20px;display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start}
+blockquote .av{width:52px;height:52px;border-radius:50%;background:linear-gradient(145deg,#c9a27a,#8f5b33);padding:0}
+blockquote .av.b{background:linear-gradient(145deg,#a3b09b,#6f7d68)}
+blockquote .av.c{background:linear-gradient(145deg,#8c7a92,#54465c)}
+blockquote p{font-family:var(--serif);font-size:1.08rem;line-height:1.45}
+blockquote cite{display:block;margin-top:8px;font-style:normal;font-size:.85rem;color:var(--ink-2)}
+.stars{color:var(--clay);letter-spacing:2px;font-size:.85rem;margin-bottom:4px}
+
+/* 7 About + gallery */
+.about{background:var(--white)}
+.about .row{display:grid;gap:20px}
+.about .ph{aspect-ratio:4/5;max-width:360px}
+.gallery{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:26px calc(var(--gut)*-1) 0;padding:0 var(--gut);scrollbar-width:none}
+.gallery::-webkit-scrollbar{display:none}
+.gallery .ph{flex:none;width:72%;max-width:300px;aspect-ratio:4/5;scroll-snap-align:center}
+.hint{font-size:.8rem;color:var(--ink-2);margin-top:8px}
+
+/* 8 Practical + FAQ */
+.facts{display:grid;gap:10px;margin:18px 0 26px}
+.fact{display:flex;gap:14px;background:var(--white);border-radius:14px;padding:14px 16px;font-size:.95rem}
+.fact b{min-width:96px;color:var(--clay-dark)}
+details{background:var(--white);border-radius:14px;margin-bottom:10px;overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:16px 18px;font-weight:600;display:flex;justify-content:space-between;gap:12px;min-height:56px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.4rem;color:var(--clay);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 18px 18px;color:var(--ink-2);font-size:.95rem}
+.map{display:block;margin-top:6px}
+
+/* 9 Final CTA */
+.final{background:var(--ink);color:var(--cream);text-align:center;padding:56px var(--gut) 64px}
+.final p{margin:12px auto 24px;color:#dcd2c3}
+.final .btn{max-width:360px}
+.small{font-size:.8rem;color:#a89d8d;margin-top:22px}
+
+/* Sticky WhatsApp */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(31,26,23,.92),rgba(31,26,23,0));display:flex;justify-content:center;transition:transform .3s,opacity .3s}
+.sticky .btn{width:100%;max-width:420px}
+.sticky.hide{transform:translateY(120%);opacity:0;pointer-events:none}
+
+@media(min-width:760px){
+  section{padding:72px var(--gut)}
+  .cards{grid-template-columns:1fr 1fr}
+  .about .row{grid-template-columns:320px 1fr;align-items:center;gap:36px}
+  .gallery .ph{width:260px}
+  .hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0;min-height:560px}
+  .hero .ph{height:100%;max-height:none;order:2}
+  .hero .txt{padding:40px}
+  .sticky{display:none}
+  body{padding-bottom:0}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- WhatsApp icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.5A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 1 1-4.3 15l-.3-.2-3 .85.9-2.9-.2-.3A8.1 8.1 0 0 1 12.04 3.8Zm-3 3.9c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4l-1.9-.9c-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.300-1.400-.9-.8-1.400-1.700-1.600-2-.2-.3 0-.4.1-.6l.4-.5c.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.100c-.2-.5-.4-.5-.6-.5Z"/></symbol>
+</svg>
+
+<!-- 1. HERO -->
+<header class="hero">
+  <div class="ph" role="img" aria-label="Sound bowls in a softly lit room"><span>PHOTO: your strongest image (space + instruments, warm light)</span></div>
+  <div class="txt">
+    <p class="eyebrow">Bespoke sound &amp; voice sessions · [Town]</p>
+    <h1>Come home to stillness through sound and voice.</h1>
+    <p>Deeply restful, personally tailored sessions in [Town]. Just you, or a small group.</p>
+    <div class="meta">
+      <span class="chip">1-2-1</span>
+      <span class="chip">Small groups</span>
+      <span class="chip hot">Next group: Sat 3 Oct</span>
+    </div>
+  </div>
+</header>
+
+<!-- 2. AUTHORITY -->
+<div class="auth" aria-label="Credentials">
+  <ul>
+    <li><b>12 yrs</b><small>practising</small></li>
+    <li><b>2,000+</b><small>sessions held</small></li>
+    <li><b>[Training]</b><small>certified practitioner</small></li>
+    <li><b>[Venue]</b><small>resident practitioner</small></li>
+    <li><b>[Press]</b><small>as featured in</small></li>
+  </ul>
+</div>
+
+<main>
+
+<!-- 3. AUDIO -->
+<section class="audio" id="listen">
+  <div class="wrap">
+    <p class="eyebrow">Listen first</p>
+    <h2>This is what it sounds like.</h2>
+    <p class="lead" style="color:#dcd2c3">A short excerpt. Headphones recommended.</p>
+    <div class="player" id="player">
+      <button class="play" id="playBtn" aria-label="Play audio sample">
+        <svg class="tri" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      </button>
+      <div class="track">
+        <strong>Sound &amp; voice sample</strong>
+        <div class="bar" id="bar"><i id="fill"></i></div>
+        <span class="time"><span id="cur">0:00</span> / <span id="dur">0:45</span></span>
+      </div>
+      <audio id="audio" preload="none" src="sample.mp3"></audio>
+    </div>
+  </div>
+</section>
+
+<!-- 4. WHAT TO EXPECT -->
+<section id="expect">
+  <div class="wrap">
+    <p class="eyebrow">Your first time</p>
+    <h2>What to expect</h2>
+    <p class="lead">No experience needed. Nothing to prepare. Just turn up.</p>
+    <ol class="steps">
+      <li><div><b>Arrive</b><span>A warm welcome, a quiet space and a short chat about how you're feeling.</span></div></li>
+      <li><div><b>Settle</b><span>Get comfortable lying down or seated, with blankets and support.</span></div></li>
+      <li><div><b>Sound &amp; voice</b><span>Bowls, gongs and voice wash over you. You simply receive.</span></div></li>
+      <li><div><b>Integrate</b><span>Slow return, a hot drink and time to feel the shift.</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 5. SESSIONS -->
+<section class="sessions" id="sessions">
+  <div class="wrap">
+    <p class="eyebrow">Choose your session</p>
+    <h2>1-2-1 or group</h2>
+    <div class="cards">
+      <article class="card feature">
+        <span class="tag">Most personal</span>
+        <h3>1-2-1 Private Session</h3>
+        <p class="price">from £[00] <small>/ 60-75 min</small></p>
+        <ul>
+          <li>Fully tailored to you</li>
+          <li>Sound, voice and guided breath</li>
+          <li>At [Venue] or your home</li>
+        </ul>
+        <p class="next">Next availability: this week</p>
+        <a class="btn block" href="https://wa.me/447466756208?text=Hi%2C%20I'd%20like%20to%20book%20a%201-2-1%20session" data-wa>
+          <svg><use href="#wa"/></svg> Book 1-2-1
+        </a>
+      </article>
+      <article class="card">
+        <h3>Group Sound Journey</h3>
+        <p class="price">from £[00] <small>/ 90 min · max [12]</small></p>
+        <ul>
+          <li>Small, intimate circle</li>
+          <li>Immersive bowls, gong and voice</li>
+          <li>Mats and blankets provided</li>
+        </ul>
+        <p class="next">Next group: Sat 3 Oct · [x] places left</p>
+        <a class="btn block" href="https://wa.me/447466756208?text=Hi%2C%20I'd%20like%20to%20book%20a%20place%20on%20the%20next%20group%20session" data-wa>
+          <svg><use href="#wa"/></svg> Reserve a place
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 6. TESTIMONIALS -->
+<section id="reviews">
+  <div class="wrap">
+    <p class="eyebrow">Kind words</p>
+    <h2>What people say</h2>
+    <div class="quotes">
+      <blockquote>
+        <div class="av"></div>
+        <div>
+          <div class="stars">★★★★★</div>
+          <p>"I slept better that night than I had in months. It felt like being held by the sound."</p>
+          <cite>Name S. · 1-2-1</cite>
+        </div>
+      </blockquote>
+      <blockquote>
+        <div class="av b"></div>
+        <div>
+          <div class="stars">★★★★★</div>
+          <p>"I came as a total sceptic, dragged along by a friend. I left calm and quietly converted."</p>
+          <cite>Name M. · Group</cite>
+        </div>
+      </blockquote>
+      <blockquote>
+        <div class="av c"></div>
+        <div>
+          <div class="stars">★★★★★</div>
+          <p>"Professional, warm and beautifully done. The voice work was unlike anything I've experienced."</p>
+          <cite>Name J. · 1-2-1</cite>
+        </div>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- 7. ABOUT + GALLERY -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="row">
+      <div class="ph sage" role="img" aria-label="Portrait of your name"><span>PHOTO: portrait, natural light</span></div>
+      <div>
+        <p class="eyebrow">Your practitioner</p>
+        <h2>Hi, I'm [Your Name].</h2>
+        <p class="lead">[Two or three lines: how you found sound, why you do this, and how you work. Unhurried, grounded and tailored to the person in front of you.]</p>
+      </div>
+    </div>
+    <div class="gallery" aria-label="Photo gallery">
+      <div class="ph"><span>PHOTO: the space</span></div>
+      <div class="ph gold"><span>PHOTO: instruments</span></div>
+      <div class="ph dusk"><span>PHOTO: a real session</span></div>
+      <div class="ph sage"><span>PHOTO: group setup</span></div>
+      <div class="ph gold"><span>PHOTO: detail shot</span></div>
+    </div>
+    <p class="hint">Swipe →</p>
+  </div>
+</section>
+
+<!-- 8. PRACTICAL + FAQ -->
+<section id="info">
+  <div class="wrap">
+    <p class="eyebrow">Good to know</p>
+    <h2>Practical details</h2>
+    <div class="facts">
+      <div class="fact"><b>Where</b><span>[Venue / area], [Town] · <a class="map" href="https://maps.google.com/?q=[Your+address]" target="_blank" rel="noopener">Open map</a></span></div>
+      <div class="fact"><b>Bring</b><span>Comfortable clothes, a water bottle. Everything else is provided.</span></div>
+      <div class="fact"><b>Access</b><span>[Step-free access, parking, seated option available.]</span></div>
+      <div class="fact"><b>For</b><span>Stress, sleep, burnout, or simply curious. All welcome.</span></div>
+    </div>
+
+    <h2>Questions</h2>
+    <details>
+      <summary>Is it okay if I've never done this before?</summary>
+      <p>Absolutely. Most people are first-timers. You don't need to do anything but relax.</p>
+    </details>
+    <details>
+      <summary>Do I have to lie down?</summary>
+      <p>No. Lying down is most popular, but you're welcome to sit in a chair or cushion.</p>
+    </details>
+    <details>
+      <summary>Is it safe with health conditions or pregnancy?</summary>
+      <p>Sessions are gentle, but please tell me about any medical conditions, pregnancy, epilepsy or implants before booking so I can adapt.</p>
+    </details>
+    <details>
+      <summary>How big are the groups?</summary>
+      <p>Small by design, up to [12] people, so it stays personal.</p>
+    </details>
+    <details>
+      <summary>What's your cancellation policy?</summary>
+      <p>[Free rescheduling up to 24 hours before. Late cancellations may be charged.]</p>
+    </details>
+  </div>
+</section>
+
+<!-- 9. FINAL CTA -->
+<section class="final" id="book">
+  <div class="wrap">
+    <h2>Ready when you are.</h2>
+    <p>Message me on WhatsApp to book, or just to ask a question. I reply personally.</p>
+    <a class="btn block" style="margin:0 auto" href="https://wa.me/447466756208?text=Hi%2C%20I'd%20like%20to%20book%20a%201-2-1%20session" data-wa>
+      <svg><use href="#wa"/></svg> Message me on WhatsApp
+    </a>
+    <p class="small">© <span id="yr">2026</span> Your Name · [Town]</p>
+  </div>
+</section>
+
+</main>
+
+<!-- Sticky WhatsApp (mobile) -->
+<div class="sticky" id="sticky">
+  <a class="btn" href="https://wa.me/447466756208?text=Hi%2C%20I'd%20like%20to%20book%20a%201-2-1%20session" data-wa>
+    <svg><use href="#wa"/></svg> Book on WhatsApp
+  </a>
+</div>
+
+<script>
+// Audio player
+(function(){
+  var a=document.getElementById('audio'),p=document.getElementById('player'),
+      b=document.getElementById('playBtn'),f=document.getElementById('fill'),
+      c=document.getElementById('cur'),d=document.getElementById('dur'),bar=document.getElementById('bar');
+  function t(s){s=Math.floor(s||0);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+  b.addEventListener('click',function(){a.paused?a.play():a.pause()});
+  a.addEventListener('play',function(){p.classList.add('on');b.setAttribute('aria-label','Pause audio sample')});
+  a.addEventListener('pause',function(){p.classList.remove('on');b.setAttribute('aria-label','Play audio sample')});
+  a.addEventListener('ended',function(){p.classList.remove('on');f.style.width='0'});
+  a.addEventListener('loadedmetadata',function(){d.textContent=t(a.duration)});
+  a.addEventListener('timeupdate',function(){
+    if(a.duration){f.style.width=(a.currentTime/a.duration*100)+'%'}
+    c.textContent=t(a.currentTime);
+  });
+  bar.addEventListener('click',function(e){
+    if(!a.duration)return;
+    var r=bar.getBoundingClientRect();a.currentTime=((e.clientX-r.left)/r.width)*a.duration;
+  });
+})();
+
+// Hide sticky button when the final CTA is on screen
+(function(){
+  var s=document.getElementById('sticky'),f=document.getElementById('book');
+  if(!('IntersectionObserver' in window))return;
+  new IntersectionObserver(function(e){s.classList.toggle('hide',e[0].isIntersecting)},{threshold:.25}).observe(f);
+})();
+
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
