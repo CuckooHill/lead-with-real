@@ -718,6 +718,39 @@ nav.mainnav .wrap {
 .price-card p.desc { font-size: 18px; margin: 16px 0 24px; flex-grow: 1; }
 .price-card .btn { align-self: flex-start; margin-top: auto; }
 
+/* ---------- Services Offered ---------- */
+.services-details { border: none; padding: 28px 0; text-align: center; }
+.services-details summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+  cursor: pointer;
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  padding: 13px 28px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.services-details summary::-webkit-details-marker { display: none; }
+.services-details summary::after { content: none; }
+.services-details summary:hover { border-color: var(--accent); color: var(--accent); }
+.services-details[open] summary { border-color: var(--accent); color: var(--accent); }
+.services-plus { font-family: var(--font-display); font-size: 17px; line-height: 1; transition: transform 0.25s ease; }
+.services-details[open] .services-plus { transform: rotate(45deg); }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 28px; margin-top: 22px; text-align: left; }
+.services-col h4 { font-family: var(--font-display); font-size: 16px; color: var(--accent); margin-bottom: 6px; letter-spacing: 0.01em; }
+.services-col ul { list-style: none; padding: 0; margin: 0; }
+.services-col li { font-size: 15.5px; color: var(--text-muted); padding: 2px 0 2px 14px; position: relative; line-height: 1.5; }
+.services-col li::before { content: "\2022"; position: absolute; left: 0; color: var(--accent); }
+@media (max-width: 860px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .services-grid { grid-template-columns: 1fr; gap: 18px 0; } }
+
 /* ---------- FAQ ---------- */
 .faq-item {
   border-bottom: 1px solid var(--divider);
@@ -1278,7 +1311,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 
 <nav class="mainnav">
   <div class="wrap">
-    <a href="index.html" class="brand-stack">Lead<br>with<br><span class="brand-accent">Real</span></a>
+    <a href="contentsystems.html" class="brand-stack">Lead<br>with<br><span class="brand-accent">Real</span></a>
     <button class="theme-toggle" aria-label="Toggle light and dark theme"></button>
   </div>
 </nav>
@@ -1435,6 +1468,70 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   </div>
 </section>
 
+<!-- SERVICES OFFERED -->
+<section class="section" style="padding-top:0; padding-bottom:0;">
+  <div class="wrap" style="max-width:820px;">
+    <details class="services-details">
+      <summary>Services Offered - full breakdown<span class="services-plus">+</span></summary>
+      <div class="services-grid">
+        <div class="services-col">
+          <h4>Content Strategy</h4>
+          <ul>
+            <li>Content Strategy &amp; Planning</li>
+            <li>Editorial Calendars</li>
+            <li>Brand Voice &amp; Tone of Voice</li>
+            <li>Content Audits</li>
+          </ul>
+        </div>
+        <div class="services-col">
+          <h4>Personal Brand &amp; Thought Leadership</h4>
+          <ul>
+            <li>Personal Brand Strategy</li>
+            <li>Executive Thought Leadership</li>
+            <li>LinkedIn Strategy &amp; Growth</li>
+            <li>Founder &amp; Leadership Comms</li>
+          </ul>
+        </div>
+        <div class="services-col">
+          <h4>Copywriting &amp; Content Production</h4>
+          <ul>
+            <li>Copywriting &amp; Editing</li>
+            <li>Website Copy</li>
+            <li>Newsletters</li>
+            <li>Articles &amp; Long-Form Content</li>
+            <li>Scriptwriting</li>
+          </ul>
+        </div>
+        <div class="services-col">
+          <h4>Video, Audio &amp; Visual</h4>
+          <ul>
+            <li>Video Production</li>
+            <li>Audio Production</li>
+            <li>Photography</li>
+            <li>Immersive / VR Content</li>
+          </ul>
+        </div>
+        <div class="services-col">
+          <h4>Social &amp; Digital</h4>
+          <ul>
+            <li>Social Media Content</li>
+            <li>Social Media Strategy</li>
+            <li>Community &amp; Campaign Content</li>
+          </ul>
+        </div>
+        <div class="services-col">
+          <h4>AI-Powered Content Systems</h4>
+          <ul>
+            <li>AI Content Strategy</li>
+            <li>AI Workflow Design &amp; Training</li>
+            <li>AI-Assisted Production Systems</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
 <!-- CLOSING CTA -->
 <section class="cfv-closing">
   <div class="wrap">
@@ -1443,7 +1540,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     <div class="btn-row">
       <button type="button" class="btn btn-primary" data-plan-trigger="intro" data-plan-name="Lead With Real - Intro Call">Let's Begin →</button>
     </div>
-    <p style="text-align:center; margin-top:18px;"><a href="index.html" class="footer-highlight-link">← Back to Lead With Real</a></p>
+    <p style="text-align:center; margin-top:18px;"><a href="contentsystems.html" class="footer-highlight-link">← Back to Lead With Real</a></p>
   </div>
 </section>
 
