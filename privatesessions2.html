@@ -39,12 +39,14 @@ section{padding:52px var(--gut)}
 .lead{color:var(--ink-2);font-size:1.05rem}
 
 /* Buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.65rem;min-height:54px;padding:0 28px;border-radius:999px;background:var(--charcoal);color:var(--paper);font-weight:600;font-size:.98rem;letter-spacing:.01em;text-decoration:none;border:0;cursor:pointer;box-shadow:0 10px 24px rgba(33,29,26,.16);transition:transform .15s,box-shadow .2s,background .2s}
-.btn:hover{background:#332c26;box-shadow:0 12px 28px rgba(33,29,26,.22)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.7rem;min-height:54px;padding:0 26px 0 6px;border-radius:999px;background:linear-gradient(135deg,var(--wa-deep),var(--wa-deeper));color:#fdfbf7;font-weight:600;font-size:.98rem;letter-spacing:.01em;text-decoration:none;border:0;cursor:pointer;box-shadow:0 12px 26px rgba(14,74,48,.32);transition:transform .15s,box-shadow .2s,background .3s}
+.btn:hover{background:linear-gradient(135deg,#187f51,#125a3a);box-shadow:0 14px 30px rgba(14,74,48,.4)}
 .btn:active{transform:scale(.98)}
-.btn svg{width:22px;height:22px;flex:none;color:var(--wa)}
+.btn .wa-badge{flex:none;width:36px;height:36px;border-radius:50%;background:var(--white);display:inline-flex;align-items:center;justify-content:center}
+.btn svg{width:20px;height:20px;flex:none;color:var(--wa-deep)}
 .btn.block{width:100%}
 .btn.ghost{background:transparent;color:var(--ink);box-shadow:none;border:1.5px solid var(--line)}
+.btn.ghost .wa-badge{background:var(--paper-2)}
 .cta-row{margin-top:24px}
 
 /* Photo placeholders */
@@ -110,8 +112,9 @@ section{padding:52px var(--gut)}
 .card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 20px rgba(36,32,25,.04)}
 .card.feature{border-color:#ddcda8;box-shadow:0 10px 28px rgba(169,130,74,.12)}
 .tag{align-self:flex-start;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--paper-2);color:var(--gold-deep);padding:5px 12px;border-radius:99px;font-weight:600;border:1px solid #ddcda8}
-.card ul{list-style:none;color:var(--ink-2);font-size:.95rem;display:grid;gap:8px}
-.card li::before{content:"—";color:var(--gold);font-weight:700;margin-right:10px}
+.card ul{list-style:none;color:var(--ink-2);font-size:.95rem;display:grid;gap:12px}
+.card li{display:flex;align-items:flex-start;gap:11px;line-height:1.5}
+.card li::before{content:"";flex:none;width:7px;height:7px;margin-top:.5em;border-radius:50%;background:var(--sage)}
 .next{font-size:.88rem;color:var(--gold-deep);font-weight:600}
 
 /* 6 Testimonials */
@@ -170,12 +173,12 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
     display:flex;align-items:center;justify-content:center;
     position:fixed;right:24px;top:50%;transform:translateY(-50%);
     width:54px;height:54px;border-radius:50%;
-    background:var(--charcoal);color:var(--wa);
-    box-shadow:0 10px 26px rgba(33,29,26,.28);
-    z-index:50;text-decoration:none;transition:transform .2s,box-shadow .2s;
+    background:linear-gradient(135deg,var(--wa-deep),var(--wa-deeper));color:#fdfbf7;
+    box-shadow:0 10px 26px rgba(14,74,48,.34);
+    z-index:50;text-decoration:none;transition:transform .2s,box-shadow .2s,background .3s;
   }
-  .fab:hover{transform:translateY(-50%) scale(1.07);box-shadow:0 12px 30px rgba(33,29,26,.34)}
-  .fab svg{width:30px;height:30px}
+  .fab:hover{transform:translateY(-50%) scale(1.07);background:linear-gradient(135deg,#187f51,#125a3a);box-shadow:0 12px 30px rgba(14,74,48,.42)}
+  .fab svg{width:28px;height:28px}
   .fab .tip{
     position:absolute;right:70px;white-space:nowrap;background:var(--charcoal);color:var(--paper);
     font-size:.8rem;font-weight:600;padding:8px 14px;border-radius:999px;
@@ -226,7 +229,31 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
 
 <main>
 
-<!-- 3. AUDIO -->
+<!-- 3. ABOUT + GALLERY -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="row">
+      <div class="ph sage" role="img" aria-label="King Yin by the coast">
+        <img src="images/King%20Yin%20by%20coast.PNG" alt="King Yin by the coast" loading="lazy">
+      </div>
+      <div>
+        <p class="eyebrow">Your practitioner</p>
+        <h2>Hi, I'm King Yin.</h2>
+        <p class="lead">I draw on decades of practice in yoga, tai chi, reiki, sound &amp; energy healing, Tibetan Buddhism and Dzogchen, and have led sound journeys everywhere from Tate Modern and the Rubin Museum's Mandala Lab to Glastonbury and corporate wellbeing programmes. My work is also recognised by several senior Buddhist teachers. Every session is intuition-led — I meet you where you are, and let the sound do the rest.</p>
+      </div>
+    </div>
+    <div class="gallery" aria-label="Photo gallery">
+      <div class="ph"><span>PHOTO: the space</span></div>
+      <div class="ph gold"><span>PHOTO: instruments</span></div>
+      <div class="ph dusk"><span>PHOTO: a real session</span></div>
+      <div class="ph sage"><span>PHOTO: group workshop</span></div>
+      <div class="ph gold"><span>PHOTO: Tate Modern / Rubin Museum</span></div>
+    </div>
+    <p class="hint">Swipe →</p>
+  </div>
+</section>
+
+<!-- 4. AUDIO -->
 <section class="audio" id="listen">
   <div class="wrap">
     <p class="eyebrow">Listen first</p>
@@ -247,7 +274,7 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
   </div>
 </section>
 
-<!-- 4. WHAT TO EXPECT -->
+<!-- 5. WHAT TO EXPECT -->
 <section id="expect">
   <div class="wrap">
     <p class="eyebrow">Your first time</p>
@@ -262,14 +289,13 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
   </div>
 </section>
 
-<!-- 5. SESSIONS -->
+<!-- 6. SESSIONS -->
 <section class="sessions" id="sessions">
   <div class="wrap">
     <p class="eyebrow">Choose your session</p>
     <h2>1-2-1 or group</h2>
     <div class="cards">
       <article class="card feature">
-        <span class="tag">Most personal</span>
         <h3>1-2-1 Sound Journey &amp; Wellbeing Coaching</h3>
         <p class="lead" style="font-size:.95rem">A bespoke, intuition-led session built entirely around what you need right now — to release what's weighing on you, find clarity, and feel grounded again.</p>
         <ul>
@@ -298,7 +324,7 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
   </div>
 </section>
 
-<!-- 6. TESTIMONIALS -->
+<!-- 7. TESTIMONIALS -->
 <section id="reviews">
   <div class="wrap">
     <p class="eyebrow">Kind words</p>
@@ -325,30 +351,6 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
         <cite>Olive · 1-2-1 Voice Programme</cite>
       </blockquote>
     </div>
-  </div>
-</section>
-
-<!-- 7. ABOUT + GALLERY -->
-<section class="about" id="about">
-  <div class="wrap">
-    <div class="row">
-      <div class="ph sage" role="img" aria-label="King Yin by the coast">
-        <img src="images/King%20Yin%20by%20coast.PNG" alt="King Yin by the coast" loading="lazy">
-      </div>
-      <div>
-        <p class="eyebrow">Your practitioner</p>
-        <h2>Hi, I'm King Yin.</h2>
-        <p class="lead">I draw on decades of practice in yoga, tai chi, reiki, sound &amp; energy healing, Tibetan Buddhism and Dzogchen, and have led sound journeys everywhere from Tate Modern and the Rubin Museum's Mandala Lab to Glastonbury and corporate wellbeing programmes. My work is also recognised by several senior Buddhist teachers. Every session is intuition-led — I meet you where you are, and let the sound do the rest.</p>
-      </div>
-    </div>
-    <div class="gallery" aria-label="Photo gallery">
-      <div class="ph"><span>PHOTO: the space</span></div>
-      <div class="ph gold"><span>PHOTO: instruments</span></div>
-      <div class="ph dusk"><span>PHOTO: a real session</span></div>
-      <div class="ph sage"><span>PHOTO: group workshop</span></div>
-      <div class="ph gold"><span>PHOTO: Tate Modern / Rubin Museum</span></div>
-    </div>
-    <p class="hint">Swipe →</p>
   </div>
 </section>
 
@@ -394,7 +396,7 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
     <h2>Ready when you are.</h2>
     <p>Message me on WhatsApp to book, or just to ask a question. I reply personally.</p>
     <a class="btn block" style="margin:0 auto" href="https://wa.me/447466756208?text=I%20want%20to%20book%20a%20private%20session" data-wa>
-      <svg><use href="#wa"/></svg> Message me on WhatsApp
+      <span class="wa-badge"><svg><use href="#wa"/></svg></span> Message me on WhatsApp
     </a>
     <p class="small">© <span id="yr">2026</span> King Yin · London</p>
   </div>
@@ -405,7 +407,7 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
 <!-- Sticky WhatsApp (mobile) -->
 <div class="sticky" id="sticky">
   <a class="btn" href="https://wa.me/447466756208?text=I%20want%20to%20book%20a%20private%20session" data-wa>
-    <svg><use href="#wa"/></svg> Book on WhatsApp
+    <span class="wa-badge"><svg><use href="#wa"/></svg></span> Book on WhatsApp
   </a>
 </div>
 
