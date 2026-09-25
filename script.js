@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!overlay || !triggers.length) return;
 
   const CAL_LINKS = {
+    'audit': 'https://cal.com/lead-with-real/ai-systems-audit',
     'power-hour': 'https://cal.com/lead-with-real/intro-call-power-hour',
     'masterclass': 'https://cal.com/lead-with-real/intro-call-masterclass',
     'retainer': 'https://cal.com/lead-with-real/intro-call-retainer',
@@ -142,6 +143,13 @@ document.addEventListener('DOMContentLoaded', function () {
   closeBtn.addEventListener('click', closeModal);
   overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.hidden) closeModal(); });
+
+  // Meta Pixel: track the direct-email icon inside the modal as a Contact event.
+  document.querySelectorAll('.lwr-modal-email').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof fbq === 'function') fbq('track', 'Contact');
+    });
+  });
 
   // Personal / Brand tab toggle. Each tab keeps its own independent set of
   // checked platforms + link values - switching tabs saves whatever's
@@ -257,6 +265,9 @@ document.addEventListener('DOMContentLoaded', function () {
       if (advanced) return;
       advanced = true;
       closeModal();
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', { content_name: activePlanName });
+      }
       const dest = CAL_LINKS[activePlan];
       if (dest) window.open(dest, '_blank', 'noopener');
     }
