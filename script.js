@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!overlay || !triggers.length) return;
 
   const CAL_LINKS = {
-    'audit': 'https://cal.com/lead-with-real/ai-systems-audit',
+    'audit': 'https://cal.com/lead-with-real/intro-call-masterclass',
     'power-hour': 'https://cal.com/lead-with-real/intro-call-power-hour',
     'masterclass': 'https://cal.com/lead-with-real/intro-call-masterclass',
     'retainer': 'https://cal.com/lead-with-real/intro-call-retainer',
