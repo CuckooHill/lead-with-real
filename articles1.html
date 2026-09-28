@@ -1295,6 +1295,8 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 @media (max-width: 620px) {
   .pillars, .cards-3, .cards-3.mixed { grid-template-columns: 1fr; }
 }
+.cards-latest { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 620px) { .cards-latest { grid-template-columns: 1fr; } }
 
 @media (max-width: 480px) {
   .hero h1 { font-size: 34px; }
@@ -1359,7 +1361,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   </div>
   <div class="wrap">
     <h2 class="big">Two things worth your attention this week.</h2>
-    <div class="cards-3" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="cards-3 cards-latest">
       <div class="card">
   <div class="card-tag">Harvard Business Review, 2026</div>
   <h3>AI can draft your words. It can't do your thinking for you.</h3>
