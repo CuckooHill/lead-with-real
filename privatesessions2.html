@@ -9,8 +9,8 @@
 <!--
   BEFORE PUBLISHING
   1. Prices, dates and a couple of practical details still need filling in — search for [ ] brackets.
-  2. Swap the gallery .ph blocks for real photos: <img src="..." alt="..." loading="lazy" width="..." height="...">.
-  3. Put a 30-60 sec audio sample next to this file as sample.mp3 (or change the src below).
+  2. Gallery uses images/gallery/gallery-01.jpg … gallery-22.jpg (real photos, upload as a batch).
+  3. Audio sample is sample.mp3, next to this file (full ~7:29 shruti + voice track, 128kbps).
   4. Hero photo is images/king-yin-drum.png. About-section photo is images/King Yin by coast.PNG.
 -->
 <style>
@@ -112,9 +112,11 @@ section{padding:52px var(--gut)}
 .card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 20px rgba(36,32,25,.04)}
 .card.feature{border-color:#ddcda8;box-shadow:0 10px 28px rgba(169,130,74,.12)}
 .tag{align-self:flex-start;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--paper-2);color:var(--gold-deep);padding:5px 12px;border-radius:99px;font-weight:600;border:1px solid #ddcda8}
-.card ul{list-style:none;color:var(--ink-2);font-size:.95rem;display:grid;gap:12px}
-.card li{display:flex;align-items:flex-start;gap:11px;line-height:1.5}
-.card li::before{content:"";flex:none;width:7px;height:7px;margin-top:.5em;border-radius:50%;background:var(--sage)}
+.card ul{list-style:none;color:var(--ink-2);font-size:.95rem;display:grid;gap:11px}
+.card li{display:flex;align-items:flex-start;gap:12px;line-height:1.45}
+.card li::before{content:"✓";flex:none;width:20px;height:20px;margin-top:.05em;border-radius:50%;background:var(--sage);color:#fff;font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.card.feature li::before{background:var(--gold)}
+.card .tagline{font-size:.82rem;color:var(--gold-deep);font-weight:600;letter-spacing:.01em;margin-top:-8px}
 .next{font-size:.88rem;color:var(--gold-deep);font-weight:600}
 
 /* 6 Testimonials */
@@ -206,7 +208,7 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
     <div class="txt">
       <p class="eyebrow">Sound Journeys · Meditation Training · Voice Opening</p>
       <h1>Come home to yourself through sound.</h1>
-      <p>Bespoke sound, meditation and voice sessions with King Yin — private and group, in person or online.</p>
+      <p>Bespoke sound, meditation and voice sessions with King Yin - private 1-2-1 and group sessions, in person or online.</p>
       <div class="meta">
         <span class="chip">1-2-1</span>
         <span class="chip">Bespoke Programmes &amp; Retreats</span>
@@ -215,17 +217,6 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
     </div>
   </div>
 </header>
-
-<!-- 2. AUTHORITY -->
-<div class="auth" aria-label="Credentials">
-  <ul>
-    <li><b>Decades</b><small>of practice in sound &amp; energy healing</small></li>
-    <li><b>TATE Modern</b><small>Turbine Hall opening ceremony</small></li>
-    <li><b>Rubin Museum</b><small>Mandala Lab, Canary Wharf</small></li>
-    <li><b>SOMO Global</b><small>corporate wellbeing programme</small></li>
-    <li><b>Glastonbury</b><small>&amp; Medicine Festival x5</small></li>
-  </ul>
-</div>
 
 <main>
 
@@ -239,15 +230,32 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
       <div>
         <p class="eyebrow">Your practitioner</p>
         <h2>Hi, I'm King Yin.</h2>
-        <p class="lead">I draw on decades of practice in yoga, tai chi, reiki, sound &amp; energy healing, Tibetan Buddhism and Dzogchen, and have led sound journeys everywhere from Tate Modern and the Rubin Museum's Mandala Lab to Glastonbury and corporate wellbeing programmes. My work is also recognised by several senior Buddhist teachers. Every session is intuition-led — I meet you where you are, and let the sound do the rest.</p>
+        <p class="lead">I draw on decades of practice in yoga, tai chi, reiki, sound &amp; energy healing, Tibetan Buddhism and Dzogchen, and have led sound journeys everywhere from Tate Modern and the Rubin Museum's Mandala Lab to Glastonbury Festival and corporate wellbeing programmes. My work is also authorised by several senior Buddhist teachers. Every session is intuition-led, with my core intentions to leave you feeling more grounded, centred and in touch with your true nature.</p>
       </div>
     </div>
     <div class="gallery" aria-label="Photo gallery">
-      <div class="ph"><span>PHOTO: the space</span></div>
-      <div class="ph gold"><span>PHOTO: instruments</span></div>
-      <div class="ph dusk"><span>PHOTO: a real session</span></div>
-      <div class="ph sage"><span>PHOTO: group workshop</span></div>
-      <div class="ph gold"><span>PHOTO: Tate Modern / Rubin Museum</span></div>
+      <div class="ph"><img src="images/gallery/gallery-01.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-02.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-03.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-04.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-05.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-06.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-07.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-08.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-09.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-10.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-11.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-12.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-13.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-14.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-15.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-16.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-17.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-18.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-19.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-20.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-21.jpg" alt="King Yin sound journey session" loading="lazy"></div>
+      <div class="ph"><img src="images/gallery/gallery-22.jpg" alt="King Yin sound journey session" loading="lazy"></div>
     </div>
     <p class="hint">Swipe →</p>
   </div>
@@ -267,7 +275,7 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
       <div class="track">
         <strong>Shruti + voice sample</strong>
         <div class="bar" id="bar"><i id="fill"></i></div>
-        <span class="time"><span id="cur">0:00</span> / <span id="dur">0:45</span></span>
+        <span class="time"><span id="cur">0:00</span> / <span id="dur">7:29</span></span>
       </div>
       <audio id="audio" preload="none" src="sample.mp3"></audio>
     </div>
@@ -281,10 +289,10 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
     <h2>What to expect</h2>
     <p class="lead">No experience needed. Nothing to prepare. Just turn up.</p>
     <ol class="steps">
-      <li><div><b>Arrive</b><span>A warm welcome, a quiet space and a short chat about how you're feeling.</span></div></li>
-      <li><div><b>Settle</b><span>Get comfortable lying down or seated, with blankets and support.</span></div></li>
-      <li><div><b>Sound, breath &amp; voice</b><span>Movement, guided meditation, sound healing and shamanic clearing meet you where you are.</span></div></li>
-      <li><div><b>Integrate</b><span>Slow return, space to reflect, and time to feel the shift.</span></div></li>
+      <li><div><b>Settle</b><span>Get comfortable and arrange your place with blankets, cushion and support.</span></div></li>
+      <li><div><b>Movement</b><span>We start with some movement to loosen the body, ground and centre ourselves.</span></div></li>
+      <li><div><b>Sound Journey</b><span>The intuitive sound journey includes intention setting, guided meditation, energetic clearing techniques and a range of instruments, all led by intuition.</span></div></li>
+      <li><div><b>Integration</b><span>A gentle landing, with space and time to reflect.</span></div></li>
     </ol>
   </div>
 </section>
@@ -297,25 +305,26 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
     <div class="cards">
       <article class="card feature">
         <h3>1-2-1 Sound Journey &amp; Wellbeing Coaching</h3>
-        <p class="lead" style="font-size:.95rem">A bespoke, intuition-led session built entirely around what you need right now — to release what's weighing on you, find clarity, and feel grounded again.</p>
+        <p class="lead" style="font-size:.95rem">Transformational sessions combining sound healing, shamanic clearing and sacred music to bring clarity, release tension and help you feel more grounded, centred and present — a bespoke, intuition-led container tuned to your own intentions, for strong, long-lasting results.</p>
         <ul>
           <li>Fully tailored to your intentions, not a fixed script</li>
-          <li>Sound healing, shamanic clearing &amp; voice work</li>
+          <li>Sound healing &amp; shamanic clearing</li>
           <li>Release tension, stress and emotional or creative blocks</li>
           <li>Deep relaxation with long-lasting, felt results</li>
-          <li>In person in London, or online for clients UK-wide and abroad</li>
+          <li>In person or online — London, UK-wide and abroad</li>
         </ul>
         <p class="next">Next availability: this week</p>
       </article>
       <article class="card">
-        <h3>Workshops</h3>
-        <p class="lead" style="font-size:.95rem">Group days and retreats using movement, breath, sound and voice to clear blocks and reconnect — held for corporate teams, festivals and private groups alike.</p>
+        <h3>Workshops &amp; Retreats</h3>
+        <p class="tagline">Open Heart, Open Voice — 1 Day · Meditation &amp; Sound Residential Retreats</p>
+        <p class="lead" style="font-size:.95rem">Group days and retreats using movement, breath, sound and voice to clear blocks and reconnect — held for corporate teams, festivals and private groups alike. We clear blocks on the physical and energetic level to connect more deeply to the heart and open the voice, our most authentic, free expression.</p>
         <ul>
           <li>Work through blocks and tension using movement, breath &amp; sound</li>
           <li>Open the heart and find your most free, authentic expression</li>
           <li>Unlock your voice and learn to sound freely</li>
           <li>A full transformational sound journey included</li>
-          <li>Sing and connect together as a group</li>
+          <li>Sing and connect together as a group — including the Green Tara mantra</li>
           <li>1-day workshops through to multi-day retreats</li>
         </ul>
         <p class="next">Next date: [add date] · [x] places left</p>
@@ -332,8 +341,8 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
     <div class="quotes">
       <blockquote>
         <div class="stars">★★★★★</div>
-        <p>"King Yin was a calm, professional presence, sensitive to the pressures of modern working life, and trusted completely. The sessions were expertly run and hugely effective."</p>
-        <cite>James Turner, Chief Business Officer · SOMO Global</cite>
+        <p>"King Yin is the King of Sound transformation. He is extraordinary."</p>
+        <cite>Andrea, Transpersonal Psychotherapist</cite>
       </blockquote>
       <blockquote>
         <div class="stars">★★★★★</div>
@@ -342,13 +351,28 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
       </blockquote>
       <blockquote>
         <div class="stars">★★★★★</div>
+        <p>"A psychedelic expedition into all that was desperate to be seen, felt and healed. A true master of his craft."</p>
+        <cite>Elona · 1-2-1 Session</cite>
+      </blockquote>
+      <blockquote>
+        <div class="stars">★★★★★</div>
         <p>"King Yin's work is a gift to us, to nurture the tired parts of ourselves, the stressed parts, the vulnerable parts. Like soaking in a hot fragrant bath."</p>
         <cite>Naomi · 3-Day Retreat</cite>
       </blockquote>
       <blockquote>
         <div class="stars">★★★★★</div>
+        <p>"I feel so much more centred and grounded. I was actually able to sleep — and eat. Thank you."</p>
+        <cite>Gina · Open Heart, Open Voice Retreat</cite>
+      </blockquote>
+      <blockquote>
+        <div class="stars">★★★★★</div>
         <p>"I feel so powerful and in my body, in myself. Deep gratitude for your wisdom, guidance and integrity."</p>
         <cite>Olive · 1-2-1 Voice Programme</cite>
+      </blockquote>
+      <blockquote>
+        <div class="stars">★★★★★</div>
+        <p>"King Yin was a calm, professional presence, sensitive to the pressures of modern working life, and trusted completely. The sessions were expertly run and hugely effective."</p>
+        <cite>James Turner, Chief Business Officer · SOMO Global</cite>
       </blockquote>
     </div>
   </div>
@@ -395,7 +419,7 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
   <div class="wrap">
     <h2>Ready when you are.</h2>
     <p>Message me on WhatsApp to book, or just to ask a question. I reply personally.</p>
-    <a class="btn block" style="margin:0 auto" href="https://wa.me/447466756208?text=I%20want%20to%20book%20a%20private%20session" data-wa>
+    <a class="btn block" style="margin:0 auto" href="https://wa.me/447466756208?text=I%20am%20interested%20to%20book%20a%20private%20session" data-wa>
       <span class="wa-badge"><svg><use href="#wa"/></svg></span> Message me on WhatsApp
     </a>
     <p class="small">© <span id="yr">2026</span> King Yin · London</p>
@@ -406,13 +430,13 @@ details p{padding:0 19px 19px;color:var(--ink-2);font-size:.95rem}
 
 <!-- Sticky WhatsApp (mobile) -->
 <div class="sticky" id="sticky">
-  <a class="btn" href="https://wa.me/447466756208?text=I%20want%20to%20book%20a%20private%20session" data-wa>
+  <a class="btn" href="https://wa.me/447466756208?text=I%20am%20interested%20to%20book%20a%20private%20session" data-wa>
     <span class="wa-badge"><svg><use href="#wa"/></svg></span> Book on WhatsApp
   </a>
 </div>
 
 <!-- Floating WhatsApp icon (desktop) -->
-<a class="fab" href="https://wa.me/447466756208?text=I%20want%20to%20book%20a%20private%20session" data-wa aria-label="Book on WhatsApp">
+<a class="fab" href="https://wa.me/447466756208?text=I%20am%20interested%20to%20book%20a%20private%20session" data-wa aria-label="Book on WhatsApp">
   <svg><use href="#wa"/></svg>
   <span class="tip">Book on WhatsApp</span>
 </a>
