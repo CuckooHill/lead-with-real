@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>King Yin | Sound Journeys, Meditation & Voice</title>
+<meta name="description" content="Bespoke sound healing, shamanic clearing and voice work with King Yin. Private and group sessions, London and online. Book on WhatsApp.">
+<meta name="theme-color" content="#faf7f2">
+<!--
+  BEFORE PUBLISHING
+  1. Prices, dates and a couple of practical details still need filling in - search for [ ] brackets.
+  2. Gallery uses images/gallery/gallery-01.jpg … gallery-22.jpg (real photos, upload as a batch).
+  3. Audio sample is sample.mp3, next to this file (full ~7:29 shruti + voice track, 128kbps).
+  4. Hero photo is images/king-yin-drum.png. About-section photo is images/King Yin by coast.PNG.
+-->
+<style>
+:root{
+  --ink:#242019; --ink-2:#6e6255; --paper:#faf8f4; --paper-2:#f1ebe0; --line:#e6ddce;
+  --gold:#a9824a; --gold-deep:#8a6a3a; --sage:#7c8a72;
+  --charcoal:#211d1a; --charcoal-2:#cfc6ba;
+  --wa:#25d366; --wa-deep:#146c43; --wa-deeper:#0e4a30; --white:#ffffff;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --r:20px; --gut:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px;padding-bottom:92px;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.14;letter-spacing:-.01em}
+h1{font-size:clamp(2.1rem,9vw,3.4rem)}
+h2{font-size:clamp(1.6rem,6.5vw,2.15rem);margin-bottom:.65rem}
+h3{font-size:1.3rem}
+p{max-width:60ch}
+section{padding:52px var(--gut)}
+.wrap{max-width:720px;margin:0 auto}
+.eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:.7rem}
+.lead{color:var(--ink-2);font-size:1.05rem}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.7rem;min-height:54px;padding:0 20px 0 6px;border-radius:999px;background:linear-gradient(135deg,var(--wa-deep),var(--wa-deeper));color:#fdfbf7;font-weight:600;font-size:.98rem;letter-spacing:.01em;text-decoration:none;border:0;cursor:pointer;box-shadow:0 12px 26px rgba(14,74,48,.32);transition:transform .15s,box-shadow .2s,background .3s}
+.btn:hover{background:linear-gradient(135deg,#187f51,#125a3a);box-shadow:0 14px 30px rgba(14,74,48,.4)}
+.btn:active{transform:scale(.98)}
+.btn .wa-badge{flex:none;width:36px;height:36px;border-radius:50%;background:var(--white);display:inline-flex;align-items:center;justify-content:center}
+.btn svg{width:20px;height:20px;flex:none;color:var(--wa-deep)}
+.btn.block{width:100%}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:none;border:1.5px solid var(--line)}
+.btn.ghost .wa-badge{background:var(--paper-2)}
+.cta-row{margin-top:24px}
+
+/* Photo placeholders */
+.ph{position:relative;background:linear-gradient(150deg,#e4dccd,#c9bda6 65%,#a89a80);border-radius:var(--r);overflow:hidden;display:flex;align-items:flex-end;color:rgba(255,255,255,.9);font-size:.72rem;padding:14px}
+.ph::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 72% 20%,rgba(255,255,255,.35),transparent 55%)}
+.ph span{position:relative;font-weight:500;letter-spacing:.02em}
+.ph.sage{background:linear-gradient(150deg,#dce0d5,#a9b39b 65%,#7c8a72)}
+.ph.dusk{background:linear-gradient(150deg,#ded6da,#b3a6ac 65%,#8c7a82)}
+.ph.gold{background:linear-gradient(150deg,#ecdcb8,#cdab6e 65%,#a9824a)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* 1 Hero - full-bleed photo, text overlaid, at every width */
+.hero{position:relative;min-height:100svh;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;color:var(--paper)}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-scrim{position:absolute;inset:0;background:
+    linear-gradient(to top, rgba(20,17,14,.86) 0%, rgba(20,17,14,.45) 42%, rgba(20,17,14,.08) 68%, rgba(20,17,14,0) 100%),
+    linear-gradient(to right, rgba(20,17,14,.28) 0%, rgba(20,17,14,0) 55%)}
+.hero-content{position:relative;z-index:1;width:100%;padding:40px var(--gut) 52px}
+.hero .txt{max-width:720px;margin:0 auto}
+.hero .eyebrow{color:#e6c98f}
+.hero p{color:rgba(250,248,244,.88);margin-top:16px;font-size:1.08rem}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.hero .chip{font-size:.8rem;padding:7px 15px;border-radius:999px;border:1px solid rgba(250,248,244,.38);background:rgba(250,248,244,.1);color:var(--paper);backdrop-filter:blur(3px)}
+.hero .chip.hot{background:rgba(230,201,143,.16);border-color:rgba(230,201,143,.55);color:#f0dfb8;font-weight:600}
+.chip{font-size:.8rem;padding:7px 15px;border-radius:999px;border:1px solid var(--line);background:var(--white);color:var(--ink-2)}
+.chip.hot{background:var(--paper-2);border-color:#ddcda8;color:var(--gold-deep);font-weight:600}
+
+/* 2 Authority */
+.auth{background:var(--paper-2);padding:26px 0;border-bottom:1px solid var(--line)}
+.auth ul{list-style:none;display:flex;gap:12px;overflow-x:auto;padding:0 var(--gut);scroll-snap-type:x proximity;scrollbar-width:none}
+.auth ul::-webkit-scrollbar{display:none}
+.auth li{flex:none;scroll-snap-align:start;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:15px 19px;min-width:158px}
+.auth b{display:block;font-family:var(--serif);font-size:1.4rem;font-weight:500;color:var(--ink)}
+.auth small{color:var(--ink-2);font-size:.8rem}
+
+/* 3 Audio */
+.audio{background:var(--charcoal);color:var(--charcoal-2)}
+.audio .eyebrow{color:var(--gold)}
+.audio h2{color:var(--paper)}
+.player{margin-top:20px;display:flex;align-items:center;gap:16px;background:rgba(250,248,244,.06);border:1px solid rgba(250,248,244,.14);border-radius:var(--r);padding:18px}
+.play{flex:none;width:60px;height:60px;border-radius:50%;border:0;background:var(--gold);color:var(--charcoal);display:grid;place-items:center;cursor:pointer}
+.play svg{width:24px;height:24px}
+.play .pause{display:none}
+.player.on .play .pause{display:block}
+.player.on .play .tri{display:none}
+.track{flex:1;min-width:0}
+.track strong{display:block;font-size:.95rem;color:var(--paper)}
+.bar{height:5px;background:rgba(250,248,244,.16);border-radius:99px;margin:11px 0 7px;overflow:hidden;cursor:pointer}
+.bar i{display:block;height:100%;width:0;background:var(--gold)}
+.time{font-size:.75rem;color:#a89e8f}
+
+/* 4 Expect */
+.steps{list-style:none;margin-top:20px;display:grid;gap:12px;counter-reset:s}
+.steps li{display:flex;gap:16px;align-items:flex-start;background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.steps li::before{counter-increment:s;content:counter(s);flex:none;width:38px;height:38px;border-radius:50%;background:var(--paper-2);color:var(--gold-deep);display:grid;place-items:center;font-family:var(--serif);font-size:1.1rem}
+.steps b{display:block}
+.steps span{color:var(--ink-2);font-size:.95rem}
+
+/* 5 Sessions */
+.sessions{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cards{display:grid;gap:18px;margin-top:20px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 20px rgba(36,32,25,.04)}
+.card.feature{border-color:#ddcda8;box-shadow:0 10px 28px rgba(169,130,74,.12)}
+.tag{align-self:flex-start;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--paper-2);color:var(--gold-deep);padding:5px 12px;border-radius:99px;font-weight:600;border:1px solid #ddcda8}
+.card ul{list-style:none;color:var(--ink-2);font-size:.95rem;display:grid;gap:11px}
+.card li{display:flex;align-items:flex-start;gap:12px;line-height:1.45}
+.card li::before{content:"✓";flex:none;width:20px;height:20px;margin-top:.05em;border-radius:50%;background:var(--sage);color:#fff;font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.card.feature li::before{background:var(--gold)}
+.card .tagline{font-size:.82rem;color:var(--gold-deep);font-weight:600;letter-spacing:.01em;margin-top:-8px}
+
+/* 6 Testimonials */
+.quotes{display:grid;gap:14px;margin-top:20px}
+blockquote{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+blockquote p{font-family:var(--serif);font-size:1.1rem;line-height:1.5;color:var(--ink)}
+blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem;color:var(--ink-2)}
+.stars{color:var(--gold);letter-spacing:2px;font-size:.85rem;margin-bottom:6px}
+
+/* 7 About + gallery */
+.about{background:var(--paper)}
+.about .row{display:grid;gap:22px}
+.about .ph{aspect-ratio:4/5;max-width:360px}
+.gallery{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:28px calc(var(--gut)*-1) 0;padding:0 var(--gut);scrollbar-width:none}
+.gallery::-webkit-scrollbar{display:none}
+.gallery .ph{flex:none;width:72%;max-width:300px;aspect-ratio:1/1;scroll-snap-align:center}
+.hint{font-size:.8rem;color:var(--ink-2);margin-top:10px}
+
+/* 9 Final CTA */
+.final{background:var(--paper-2);color:var(--ink);text-align:center;padding:60px var(--gut) 68px;border-top:1px solid var(--line)}
+.final h2{color:var(--ink)}
+.final p{margin:12px auto 26px;color:var(--ink-2)}
+.final .btn{max-width:360px}
+.small{font-size:.8rem;color:var(--ink-2);margin-top:24px}
+
+/* Sticky WhatsApp (mobile) */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:12px var(--gut) calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(250,248,244,.98) 60%,rgba(250,248,244,0));display:flex;justify-content:center;transition:transform .3s,opacity .3s}
+.sticky .btn{width:auto;max-width:420px}
+.sticky.hide{transform:translateY(120%);opacity:0;pointer-events:none}
+
+/* Floating WhatsApp icon (desktop) */
+.fab{display:none}
+
+@media(min-width:760px){
+  section{padding:80px var(--gut)}
+  .cards{grid-template-columns:1fr 1fr}
+  .about .row{grid-template-columns:320px 1fr;align-items:center;gap:40px}
+  .gallery .ph{width:240px}
+  .hero-content{padding:56px 48px 72px}
+  .sticky{display:none}
+  body{padding-bottom:0}
+
+  .fab{
+    display:flex;align-items:center;justify-content:center;
+    position:fixed;right:24px;top:50%;transform:translateY(-50%);
+    width:54px;height:54px;border-radius:50%;
+    background:linear-gradient(135deg,var(--wa-deep),var(--wa-deeper));color:#fdfbf7;
+    box-shadow:0 10px 26px rgba(14,74,48,.34);
+    z-index:50;text-decoration:none;transition:transform .2s,box-shadow .2s,background .3s;
+  }
+  .fab:hover{transform:translateY(-50%) scale(1.07);background:linear-gradient(135deg,#187f51,#125a3a);box-shadow:0 12px 30px rgba(14,74,48,.42)}
+  .fab svg{width:28px;height:28px}
+  .fab .tip{
+    position:absolute;right:70px;white-space:nowrap;background:var(--charcoal);color:var(--paper);
+    font-size:.8rem;font-weight:600;padding:8px 14px;border-radius:999px;
+    opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;transform:translateX(6px);
+  }
+  .fab:hover .tip{opacity:1;transform:translateX(0)}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- WhatsApp icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4c-4.34 0-7.87 3.53-7.87 7.87 0 1.39.36 2.73 1.05 3.92L4 20l4.32-1.13a7.86 7.86 0 0 0 3.76.96h.003c4.34 0 7.87-3.53 7.87-7.87a7.83 7.83 0 0 0-2.32-5.64zm-5.55 12.12h-.003a6.53 6.53 0 0 1-3.32-.91l-.24-.14-2.47.65.66-2.41-.16-.25a6.53 6.53 0 0 1-1-3.51c0-3.6 2.93-6.53 6.54-6.53a6.5 6.5 0 0 1 4.62 1.92 6.5 6.5 0 0 1 1.91 4.62c0 3.6-2.93 6.53-6.53 6.53zm3.58-4.89c-.2-.1-1.17-.58-1.35-.64-.18-.07-.31-.1-.44.1-.13.2-.5.64-.62.77-.11.13-.23.15-.42.05-.2-.1-.83-.31-1.58-.98-.58-.52-.98-1.16-1.09-1.36-.11-.2-.01-.31.09-.4.09-.09.2-.23.3-.35.1-.11.13-.2.2-.33.07-.13.03-.25-.02-.35-.05-.1-.44-1.06-.6-1.45-.16-.38-.32-.33-.44-.34h-.38c-.13 0-.34.05-.52.25-.18.2-.68.67-.68 1.63s.7 1.9.79 2.03c.1.13 1.36 2.08 3.3 2.91.46.2.82.32 1.1.41.46.15.88.13 1.21.08.37-.06 1.17-.48 1.33-.94.16-.46.16-.85.11-.94-.05-.08-.18-.13-.38-.23z"/></symbol>
+</svg>
+
+<!-- 1. HERO -->
+<header class="hero">
+  <div class="hero-bg" role="img" aria-label="King Yin holding a hand drum">
+    <img src="images/king-yin-drum.png" alt="King Yin holding a hand drum" loading="eager" style="object-position:74% 18%">
+    <div class="hero-scrim"></div>
+  </div>
+  <div class="hero-content">
+    <div class="txt">
+      <p class="eyebrow">Sound Journeys · Meditation Training · Voice Opening</p>
+      <h1>Come home to yourself through sound.</h1>
+      <p>Bespoke sound, meditation and voice sessions with King Yin - private 1-2-1 and group sessions, in person or online.</p>
+      <div class="meta">
+        <span class="chip">1-2-1</span>
+        <span class="chip">Bespoke Programmes &amp; Retreats</span>
+        <span class="chip hot">TATE Modern · Rubin Museum · Glastonbury</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- 3. ABOUT + GALLERY -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="row">
+      <div class="ph sage" role="img" aria-label="King Yin by the coast">
+        <img src="images/King%20Yin%20by%20coast.PNG" alt="King Yin by the coast" loading="lazy">
+      </div>
+      <div>
+        <p class="eyebrow">Your practitioner</p>
+        <h2>Hi, I'm King Yin.</h2>
+        <p class="lead">I draw on decades of practice in yoga, tai chi, reiki, sound &amp; energy healing, Tibetan Buddhism and Dzogchen, and have led sound journeys everywhere from Tate Modern and the Rubin Museum's Mandala Lab to Glastonbury Festival and corporate wellbeing programmes. My work is also authorised by several senior Buddhist teachers. Every session is intuition-led, with my core intentions to leave you feeling more grounded, centred and in touch with your true nature.</p>
+      </div>
+    </div>
+    <div class="gallery" id="gallery" aria-label="Photo gallery"></div>
+    <p class="hint">Swipe →</p>
+  </div>
+</section>
+
+<!-- 4. AUDIO -->
+<section class="audio" id="listen">
+  <div class="wrap">
+    <p class="eyebrow">Listen first</p>
+    <h2>This is what it sounds like.</h2>
+    <p class="lead" style="color:var(--charcoal-2)">A short excerpt of live shruti box and voice. Headphones recommended.</p>
+    <div class="player" id="player">
+      <button class="play" id="playBtn" aria-label="Play audio sample">
+        <svg class="tri" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      </button>
+      <div class="track">
+        <strong>Shruti + voice sample</strong>
+        <div class="bar" id="bar"><i id="fill"></i></div>
+        <span class="time"><span id="cur">0:00</span> / <span id="dur">7:29</span></span>
+      </div>
+      <audio id="audio" preload="none" src="sample.mp3"></audio>
+    </div>
+  </div>
+</section>
+
+<!-- 5. WHAT TO EXPECT -->
+<section id="expect">
+  <div class="wrap">
+    <p class="eyebrow">Your first time</p>
+    <h2>What to expect</h2>
+    <p class="lead">No experience needed. Nothing to prepare. Just turn up.</p>
+    <ol class="steps">
+      <li><div><b>Settle</b><span>Get comfortable and arrange your place with blankets, cushion and support.</span></div></li>
+      <li><div><b>Movement</b><span>We start with some movement to loosen the body, ground and centre ourselves.</span></div></li>
+      <li><div><b>Sound Journey</b><span>The intuitive sound journey includes intention setting, guided meditation, energetic clearing techniques and a range of instruments, all led by intuition.</span></div></li>
+      <li><div><b>Integration</b><span>A gentle landing, with space and time to reflect.</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 6. SESSIONS -->
+<section class="sessions" id="sessions">
+  <div class="wrap">
+    <p class="eyebrow">Choose your session</p>
+    <h2>1-2-1 or group</h2>
+    <div class="cards">
+      <article class="card feature">
+        <h3>1-2-1 Sound Journey &amp; Wellbeing Coaching</h3>
+        <p class="lead" style="font-size:.95rem">Transformational sessions combining sound healing, shamanic clearing and sacred music to bring clarity, release tension and help you feel more grounded, centred and present - a bespoke, intuition-led container tuned to your own intentions, for strong, long-lasting results.</p>
+        <ul>
+          <li>Fully tailored to your intentions, not a fixed script</li>
+          <li>Sound healing &amp; shamanic clearing</li>
+          <li>Release tension, stress and emotional or creative blocks</li>
+          <li>Deep relaxation with long-lasting, felt results</li>
+          <li>In person or online - London, UK-wide and abroad</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Workshops &amp; Retreats</h3>
+        <p class="tagline">Open Heart, Open Voice - 1 Day · Meditation &amp; Sound Residential Retreats</p>
+        <p class="lead" style="font-size:.95rem">Group days and retreats using movement, breath, sound and voice to clear blocks and reconnect - held for corporate teams, festivals and private groups alike. We clear blocks on the physical and energetic level to connect more deeply to the heart and open the voice, our most authentic, free expression.</p>
+        <ul>
+          <li>Work through blocks and tension using movement, breath &amp; sound</li>
+          <li>Open the heart and find your most free, authentic expression</li>
+          <li>Unlock your voice and learn to sound freely</li>
+          <li>A full transformational sound journey included</li>
+          <li>Sing and connect together as a group - including the Green Tara mantra</li>
+          <li>1-day workshops through to multi-day retreats</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 7. TESTIMONIALS -->
+<section id="reviews">
+  <div class="wrap">
+    <p class="eyebrow">Kind words</p>
+    <h2>What people say</h2>
+    <div class="quotes">
+      <blockquote>
+        <div class="stars">★★★★★</div>
+        <p>"King Yin is the King of Sound transformation. He is extraordinary."</p>
+        <cite>Andrea, Transpersonal Psychotherapist</cite>
+      </blockquote>
+      <blockquote>
+        <div class="stars">★★★★★</div>
+        <p>"One of the most important experiences of healing I've had in my life. I learned so much about how energy moves in just one hour - and afterwards felt like skipping for joy."</p>
+        <cite>Anna · 1-2-1 Session</cite>
+      </blockquote>
+      <blockquote>
+        <div class="stars">★★★★★</div>
+        <p>"A psychedelic expedition into all that was desperate to be seen, felt and healed. A true master of his craft."</p>
+        <cite>Elona · 1-2-1 Session</cite>
+      </blockquote>
+      <blockquote>
+        <div class="stars">★★★★★</div>
+        <p>"King Yin's work is a gift to us, to nurture the tired parts of ourselves, the stressed parts, the vulnerable parts. Like soaking in a hot fragrant bath."</p>
+        <cite>Naomi · 3-Day Retreat</cite>
+      </blockquote>
+      <blockquote>
+        <div class="stars">★★★★★</div>
+        <p>"I feel so much more centred and grounded. I was actually able to sleep - and eat. Thank you."</p>
+        <cite>Gina · Open Heart, Open Voice Retreat</cite>
+      </blockquote>
+      <blockquote>
+        <div class="stars">★★★★★</div>
+        <p>"I feel so powerful and in my body, in myself. Deep gratitude for your wisdom, guidance and integrity."</p>
+        <cite>Olive · 1-2-1 Voice Programme</cite>
+      </blockquote>
+      <blockquote>
+        <div class="stars">★★★★★</div>
+        <p>"King Yin was a calm, professional presence, sensitive to the pressures of modern working life, and trusted completely. The sessions were expertly run and hugely effective."</p>
+        <cite>James Turner, Chief Business Officer · SOMO Global</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FINAL CTA -->
+<section class="final" id="book">
+  <div class="wrap">
+    <h2>Ready when you are.</h2>
+    <p>Message me on WhatsApp to book, or just to ask a question. I reply personally.</p>
+    <a class="btn block" style="margin:0 auto" href="https://wa.me/447466756208?text=I%20am%20interested%20to%20book%20a%20private%20session" data-wa>
+      <span class="wa-badge"><svg><use href="#wa"/></svg></span> Message me on WhatsApp
+    </a>
+    <p class="small">© <span id="yr">2026</span> King Yin · London</p>
+  </div>
+</section>
+
+</main>
+
+<!-- Sticky WhatsApp (mobile) -->
+<div class="sticky" id="sticky">
+  <a class="btn" href="https://wa.me/447466756208?text=I%20am%20interested%20to%20book%20a%20private%20session" data-wa>
+    <span class="wa-badge"><svg><use href="#wa"/></svg></span> Book on WhatsApp
+  </a>
+</div>
+
+<!-- Floating WhatsApp icon (desktop) -->
+<a class="fab" href="https://wa.me/447466756208?text=I%20am%20interested%20to%20book%20a%20private%20session" data-wa aria-label="Book on WhatsApp">
+  <svg><use href="#wa"/></svg>
+  <span class="tip">Book on WhatsApp</span>
+</a>
+
+<script>
+// Audio player
+(function(){
+  var a=document.getElementById('audio'),p=document.getElementById('player'),
+      b=document.getElementById('playBtn'),f=document.getElementById('fill'),
+      c=document.getElementById('cur'),d=document.getElementById('dur'),bar=document.getElementById('bar');
+  function t(s){s=Math.floor(s||0);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+  b.addEventListener('click',function(){a.paused?a.play():a.pause()});
+  a.addEventListener('play',function(){p.classList.add('on');b.setAttribute('aria-label','Pause audio sample')});
+  a.addEventListener('pause',function(){p.classList.remove('on');b.setAttribute('aria-label','Play audio sample')});
+  a.addEventListener('ended',function(){p.classList.remove('on');f.style.width='0'});
+  a.addEventListener('loadedmetadata',function(){d.textContent=t(a.duration)});
+  a.addEventListener('timeupdate',function(){
+    if(a.duration){f.style.width=(a.currentTime/a.duration*100)+'%'}
+    c.textContent=t(a.currentTime);
+  });
+  bar.addEventListener('click',function(e){
+    if(!a.duration)return;
+    var r=bar.getBoundingClientRect();a.currentTime=((e.clientX-r.left)/r.width)*a.duration;
+  });
+})();
+
+// Auto-populate the gallery from images/gallery/gallery-01.jpg, gallery-02.jpg, …
+// Just drop files into that folder named gallery-01.jpg, gallery-02.jpg etc (no gaps
+// bigger than 2 in a row) and they'll show up here automatically - no HTML edits needed.
+(function(){
+  var g=document.getElementById('gallery');
+  if(!g)return;
+  var i=1,misses=0,maxMiss=3,maxTry=60;
+  function tryLoad(){
+    if(i>maxTry||misses>=maxMiss)return;
+    var n=String(i).padStart(2,'0');
+    var src='images/gallery/gallery-'+n+'.jpg';
+    var img=new Image();
+    img.onload=function(){
+      misses=0;
+      var div=document.createElement('div');
+      div.className='ph';
+      var el=document.createElement('img');
+      el.src=src;el.alt='King Yin sound journey session';el.loading='lazy';
+      div.appendChild(el);
+      g.appendChild(div);
+      i++;tryLoad();
+    };
+    img.onerror=function(){misses++;i++;tryLoad()};
+    img.src=src;
+  }
+  tryLoad();
+})();
+
+// Hide sticky button when the final CTA is on screen
+(function(){
+  var s=document.getElementById('sticky'),f=document.getElementById('book');
+  if(!('IntersectionObserver' in window))return;
+  new IntersectionObserver(function(e){s.classList.toggle('hide',e[0].isIntersecting)},{threshold:.25}).observe(f);
+})();
+
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
