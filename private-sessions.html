@@ -9,7 +9,7 @@
 <!--
   BEFORE PUBLISHING
   1. Prices, dates and a couple of practical details still need filling in - search for [ ] brackets.
-  2. Gallery uses images/gallery/gallery-01.jpg … gallery-22.jpg (real photos, upload as a batch).
+  2. Gallery reads whatever's in gallery/ at the repo root (real photos), excluding gallery-17 (bad dimensions).
   3. Audio sample is sample.mp3, next to this file (full ~7:29 shruti + voice track, 128kbps).
   4. Hero photo is images/king-yin-drum.png. About-section photo is images/King Yin by coast.PNG.
 -->
@@ -33,7 +33,7 @@ h1{font-size:clamp(2.1rem,9vw,3.4rem)}
 h2{font-size:clamp(1.6rem,6.5vw,2.15rem);margin-bottom:.65rem}
 h3{font-size:1.3rem}
 p{max-width:60ch}
-section{padding:52px var(--gut)}
+section{padding:44px var(--gut)}
 .wrap{max-width:720px;margin:0 auto}
 .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:.7rem}
 .lead{color:var(--ink-2);font-size:1.05rem}
@@ -129,13 +129,18 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 .about{background:var(--paper)}
 .about .row{display:grid;gap:22px}
 .about .ph{aspect-ratio:4/5;max-width:360px}
-.gallery{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:28px calc(var(--gut)*-1) 0;padding:0 var(--gut);scrollbar-width:none}
+.carousel{position:relative;margin-top:20px}
+.gallery{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--gut)*-1);padding:0 var(--gut);scrollbar-width:none}
 .gallery::-webkit-scrollbar{display:none}
 .gallery .ph{flex:none;width:72%;max-width:300px;aspect-ratio:1/1;scroll-snap-align:center}
+.gallery.empty{display:flex;align-items:center;justify-content:center;height:0;overflow:visible}
+.gallery-msg{display:none;color:var(--ink-2);font-size:.9rem;padding:18px 0}
+.gallery-msg.show{display:block}
 .hint{font-size:.8rem;color:var(--ink-2);margin-top:10px}
+.arrow{display:none}
 
 /* 9 Final CTA */
-.final{background:var(--paper-2);color:var(--ink);text-align:center;padding:60px var(--gut) 68px;border-top:1px solid var(--line)}
+.final{background:var(--paper-2);color:var(--ink);text-align:center;border-top:1px solid var(--line)}
 .final h2{color:var(--ink)}
 .final p{margin:12px auto 26px;color:var(--ink-2)}
 .final .btn{max-width:360px}
@@ -150,10 +155,24 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 .fab{display:none}
 
 @media(min-width:760px){
-  section{padding:80px var(--gut)}
+  section{padding:64px var(--gut)}
   .cards{grid-template-columns:1fr 1fr}
   .about .row{grid-template-columns:320px 1fr;align-items:center;gap:40px}
   .gallery .ph{width:240px}
+  .hint{display:none}
+  .arrow{
+    display:flex;align-items:center;justify-content:center;
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:var(--white);color:var(--ink);cursor:pointer;z-index:2;
+    box-shadow:0 8px 20px rgba(36,32,25,.1);
+    opacity:0;transition:opacity .2s,transform .2s;
+  }
+  .arrow svg{width:18px;height:18px}
+  .carousel:hover .arrow{opacity:1}
+  .arrow.prev{left:-6px}
+  .arrow.next{right:-6px}
+  .arrow:hover{transform:translateY(-50%) scale(1.06)}
   .hero-content{padding:56px 48px 72px}
   .sticky{display:none}
   body{padding-bottom:0}
@@ -220,7 +239,16 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
         <p class="lead">I draw on decades of practice in yoga, tai chi, reiki, sound &amp; energy healing, Tibetan Buddhism and Dzogchen, and have led sound journeys everywhere from Tate Modern and the Rubin Museum's Mandala Lab to Glastonbury Festival and corporate wellbeing programmes. My work is also authorised by several senior Buddhist teachers. Every session is intuition-led, with my core intentions to leave you feeling more grounded, centred and in touch with your true nature.</p>
       </div>
     </div>
-    <div class="gallery" id="gallery" aria-label="Photo gallery"></div>
+    <div class="carousel">
+      <button class="arrow prev" id="galPrev" aria-label="Previous photos" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="gallery" id="gallery" aria-label="Photo gallery"></div>
+      <button class="arrow next" id="galNext" aria-label="Next photos" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+    <p class="gallery-msg" id="galleryMsg">Photos coming soon.</p>
     <p class="hint">Swipe →</p>
   </div>
 </section>
@@ -389,32 +417,76 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
   });
 })();
 
-// Auto-populate the gallery from images/gallery/gallery-01.jpg, gallery-02.jpg, …
-// Just drop files into that folder named gallery-01.jpg, gallery-02.jpg etc (no gaps
-// bigger than 2 in a row) and they'll show up here automatically - no HTML edits needed.
+// Auto-populate the gallery carousel with whatever image files are actually sitting
+// in gallery/ on GitHub - reads the real folder listing via the GitHub API, so you
+// can add, remove or rename photos there and this page just picks them up.
+// (Repo/path below must match where the photos live.)
 (function(){
   var g=document.getElementById('gallery');
   if(!g)return;
-  var i=1,misses=0,maxMiss=3,maxTry=60;
-  function tryLoad(){
-    if(i>maxTry||misses>=maxMiss)return;
-    var n=String(i).padStart(2,'0');
-    var src='images/gallery/gallery-'+n+'.jpg';
-    var img=new Image();
-    img.onload=function(){
-      misses=0;
-      var div=document.createElement('div');
-      div.className='ph';
-      var el=document.createElement('img');
-      el.src=src;el.alt='King Yin sound journey session';el.loading='lazy';
-      div.appendChild(el);
-      g.appendChild(div);
-      i++;tryLoad();
-    };
-    img.onerror=function(){misses++;i++;tryLoad()};
-    img.src=src;
+  var REPO_API='https://api.github.com/repos/CuckooHill/lead-with-real/contents/gallery';
+  var IMG_RE=/\.(jpe?g|png|webp|gif)$/i;
+  // gallery-17 has the wrong dimensions - always skip it, whatever extension it has.
+  var EXCLUDE=/^gallery-17\.[a-z]+$/i;
+
+  function addTile(src){
+    var div=document.createElement('div');
+    div.className='ph';
+    var el=document.createElement('img');
+    el.src=src;el.alt='King Yin sound journey session';el.loading='lazy';
+    div.appendChild(el);
+    g.appendChild(div);
   }
-  tryLoad();
+
+  function finish(found){
+    var msg=document.getElementById('galleryMsg'),hint=document.querySelector('.hint'),
+        prev=document.getElementById('galPrev'),next=document.getElementById('galNext');
+    if(found===0){
+      if(msg)msg.classList.add('show');
+      if(hint)hint.style.display='none';
+      if(prev)prev.style.display='none';
+      if(next)next.style.display='none';
+      return;
+    }
+    if(prev&&next){
+      var step=function(){var t=g.querySelector('.ph');return t?t.getBoundingClientRect().width+12:280};
+      prev.addEventListener('click',function(){g.scrollBy({left:-step(),behavior:'smooth'})});
+      next.addEventListener('click',function(){g.scrollBy({left:step(),behavior:'smooth'})});
+    }
+  }
+
+  // Primary: ask GitHub what's actually in the folder right now.
+  fetch(REPO_API,{headers:{'Accept':'application/vnd.github+json'}})
+    .then(function(r){ if(!r.ok) throw new Error('api'); return r.json(); })
+    .then(function(list){
+      if(!Array.isArray(list)) throw new Error('bad-list');
+      var files=list.filter(function(f){return f.type==='file'&&IMG_RE.test(f.name)&&!EXCLUDE.test(f.name)})
+                     .sort(function(a,b){return a.name.localeCompare(b.name,undefined,{numeric:true,sensitivity:'base'})});
+      if(!files.length) throw new Error('empty');
+      files.forEach(function(f){ addTile(f.download_url); });
+      finish(files.length);
+    })
+    .catch(function(){
+      // Fallback if the API is unreachable/rate-limited: probe sequential filenames
+      // (gallery-01.jpg, gallery-02.jpg, …), tolerating small gaps in the numbering.
+      var i=1,misses=0,maxMiss=4,maxTry=60,found=0;
+      var exts=['.jpg','.JPG','.jpeg','.png'];
+      function tryExt(n,idx,onFound,onFail){
+        if(idx>=exts.length){onFail();return}
+        var src='gallery/gallery-'+n+exts[idx];
+        var img=new Image();
+        img.onload=function(){onFound(src)};
+        img.onerror=function(){tryExt(n,idx+1,onFound,onFail)};
+        img.src=src;
+      }
+      function step(){
+        if(i>maxTry||misses>=maxMiss){finish(found);return}
+        if(i===17){i++;step();return} // wrong dimensions - always skip
+        var n=String(i).padStart(2,'0');
+        tryExt(n,0,function(src){misses=0;found++;i++;addTile(src);step()},function(){misses++;i++;step()});
+      }
+      step();
+    });
 })();
 
 // Hide sticky button when the final CTA is on screen
