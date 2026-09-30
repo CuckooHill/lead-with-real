@@ -580,6 +580,33 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 
 document.getElementById('yr').textContent=new Date().getFullYear();
 
+// Gentle scroll-reveal - applied sparingly to section titles, photos and the
+// "what to expect" steps (not the hero, which is already visible on load,
+// and not every testimonial/chip, to keep it subtle rather than busy).
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+
+  var targets=document.querySelectorAll('main h2, main .eyebrow, .about .ph, .card-photo, .steps li');
+  targets.forEach(function(el,i){
+    el.classList.add('reveal');
+  });
+  // Small stagger within the steps list so they cascade in one after another.
+  document.querySelectorAll('.steps li').forEach(function(li,i){
+    li.style.transitionDelay=(i*0.08)+'s';
+  });
+
+  var observer=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  targets.forEach(function(el){observer.observe(el)});
+})();
+
 // Meta Pixel: track every WhatsApp booking button (final CTA, mobile sticky
 // bar, desktop floating icon) as a Contact event - this is the page's only
 // conversion action.
