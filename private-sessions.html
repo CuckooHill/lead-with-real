@@ -582,20 +582,29 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 
 document.getElementById('yr').textContent=new Date().getFullYear();
 
-// Gentle scroll-reveal - applied sparingly to section titles, photos and the
-// "what to expect" steps (not the hero, which is already visible on load,
-// and not every testimonial/chip, to keep it subtle rather than busy).
+// Gentle scroll-reveal - titles move together with the text that follows
+// them, images and the "what to expect" steps get the same treatment, and
+// testimonials get a slightly livelier entrance. Not applied to the hero
+// (already visible on load) or the chips, to keep it from feeling busy.
 (function(){
   if(!('IntersectionObserver' in window))return;
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 
-  var targets=document.querySelectorAll('main h2, main .eyebrow, .about .ph, .card-photo, .steps li');
-  targets.forEach(function(el,i){
-    el.classList.add('reveal');
-  });
+  var targets=document.querySelectorAll(
+    'main h2, main .eyebrow, main p.lead, .final .wrap > p:not(.small), .about .ph, .card-photo, .steps li'
+  );
+  targets.forEach(function(el){ el.classList.add('reveal'); });
   // Small stagger within the steps list so they cascade in one after another.
   document.querySelectorAll('.steps li').forEach(function(li,i){
     li.style.transitionDelay=(i*0.08)+'s';
+  });
+
+  // Testimonials get their own livelier pop-and-rise entrance, staggered so
+  // they cascade in rather than all arriving at once.
+  var quotes=document.querySelectorAll('#reviews blockquote');
+  quotes.forEach(function(bq,i){
+    bq.classList.add('reveal-quote');
+    bq.style.transitionDelay=Math.min(i*0.1,0.4)+'s';
   });
 
   var observer=new IntersectionObserver(function(entries){
@@ -607,6 +616,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
     });
   },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
   targets.forEach(function(el){observer.observe(el)});
+  quotes.forEach(function(el){observer.observe(el)});
 })();
 
 // Meta Pixel: track every WhatsApp booking button (final CTA, mobile sticky
