@@ -157,12 +157,10 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 .gallery-msg.show{display:block}
 .arrow{display:none}
 
-/* Gentle scroll-reveal - class is added by JS only, so content is fully
-   visible by default with JS off or reduced motion preferred. */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
-.reveal.in-view{opacity:1;transform:none}
-.reveal-quote{opacity:0;transform:translateY(26px) scale(.96);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
-.reveal-quote.in-view{opacity:1;transform:none}
+/* Gentle scroll-tied motion: opacity/transform are set inline, frame by
+   frame, by JS as the page scrolls - there is no CSS state here, so with
+   JS off or reduced motion preferred, everything just stays fully visible
+   at its normal position by default. */
 
 /* 9 Final CTA */
 .final{background:var(--paper-2);color:var(--ink);text-align:center;border-top:1px solid var(--line)}
@@ -582,83 +580,111 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 
 document.getElementById('yr').textContent=new Date().getFullYear();
 
-// Gentle scroll-reveal, driven section by section: a section's own
-// visibility is the only trigger for anything inside it, so a title and its
-// body text always move together, in sync, rather than each element firing
-// on its own scroll position. Repeating tiles (session cards, steps,
-// testimonials) each move as one solid unit - an image never animates apart
-// from the card/tile it belongs to - and simply cascade relative to each
-// other via a small delay. The hero is left alone (already visible on load).
+// Gentle scroll-tied motion: every element's opacity/rise is a continuous
+// function of scroll position (recomputed on every scroll frame), not a
+// one-off trigger - so things progressively settle into place in real time
+// as you scroll, rather than snapping in at a threshold.
+//
+// Elements are grouped so the effect still respects what was asked earlier:
+// - A section's own heading/body-text group all read their progress from
+//   the SAME reference point (the section itself), so they move perfectly
+//   in sync with one another - never independently.
+// - Repeating tiles (session cards, steps, testimonials) each get their own
+//   progress, taken from the tile itself, so the tile - photo, heading,
+//   copy, list, all of it - moves as one solid unit (the transform is set
+//   on the outer tile element, so anything inside just rides along with
+//   it), while naturally cascading relative to each other as they sit at
+//   different scroll positions.
+// - The hero is left alone (already fully visible on load).
 (function(){
-  if(!('IntersectionObserver' in window))return;
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 
-  function tag(el){ if(el) el.classList.add('reveal'); }
-  function tagTile(el,i){ if(el){ el.classList.add('reveal'); el.style.transitionDelay=(i*0.1)+'s'; } }
-  function tagQuote(el,i){ if(el){ el.classList.add('reveal-quote'); el.style.transitionDelay=Math.min(i*0.1,0.4)+'s'; } }
+  function clamp(v,a,b){ return v<a?a:(v>b?b:v); }
 
-  // About: the whole section - photo and bio text - moves together as one.
+  var units=[]; // {el, refEl, rise, scale}
+
+  function addGroup(refEl, elements, opts){
+    if(!refEl) return;
+    opts=opts||{};
+    elements.forEach(function(el){
+      if(el) units.push({el:el, refEl:refEl, rise:opts.rise||22, scale:opts.scale||0});
+    });
+  }
+  function addTiles(elements, opts){
+    opts=opts||{};
+    elements.forEach(function(el){
+      if(el) units.push({el:el, refEl:el, rise:opts.rise||24, scale:opts.scale||0});
+    });
+  }
+
+  // About: photo + bio text all read the section's own position, so they
+  // rise and fade together as a single beat.
   var about=document.getElementById('about');
   if(about){
-    tag(about.querySelector('.ph'));
-    tag(about.querySelector('.eyebrow'));
-    tag(about.querySelector('h2'));
-    tag(about.querySelector('p.lead'));
+    addGroup(about, [about.querySelector('.ph'), about.querySelector('.eyebrow'), about.querySelector('h2'), about.querySelector('p.lead')]);
   }
 
   // Listen: intro text moves together.
   var listen=document.getElementById('listen');
   if(listen){
-    tag(listen.querySelector('.eyebrow'));
-    tag(listen.querySelector('h2'));
-    tag(listen.querySelector('p.lead'));
+    addGroup(listen, [listen.querySelector('.eyebrow'), listen.querySelector('h2'), listen.querySelector('p.lead')]);
   }
 
-  // Expect: intro text moves together; each step is its own tile, cascading.
+  // Expect: intro text moves together; each step is its own tile, cascading
+  // naturally as they're stacked down the page.
   var expect=document.getElementById('expect');
   if(expect){
-    tag(expect.querySelector('.eyebrow'));
-    tag(expect.querySelector('h2'));
-    tag(expect.querySelector('p.lead'));
-    expect.querySelectorAll('.steps li').forEach(tagTile);
+    addGroup(expect, [expect.querySelector('.eyebrow'), expect.querySelector('h2'), expect.querySelector('p.lead')]);
+    addTiles(Array.prototype.slice.call(expect.querySelectorAll('.steps li')));
   }
 
-  // Sessions: intro text moves together; each whole card is its own tile, so
-  // its photo, heading, copy and list all move as one with the card.
+  // Sessions: intro text moves together; each whole card is its own tile,
+  // so its photo, heading, copy and list all move as one with the card.
   var sessions=document.getElementById('sessions');
   if(sessions){
-    tag(sessions.querySelector('.eyebrow'));
-    tag(sessions.querySelector('h2'));
-    sessions.querySelectorAll('.card').forEach(tagTile);
+    addGroup(sessions, [sessions.querySelector('.eyebrow'), sessions.querySelector('h2')]);
+    addTiles(Array.prototype.slice.call(sessions.querySelectorAll('.card')));
   }
 
   // Reviews: intro text moves together; each testimonial is its own tile
-  // with a slightly livelier pop-and-rise entrance, cascading in.
+  // with a slightly livelier pop-and-rise, cascading in.
   var reviews=document.getElementById('reviews');
   if(reviews){
-    tag(reviews.querySelector('.eyebrow'));
-    tag(reviews.querySelector('h2'));
-    reviews.querySelectorAll('blockquote').forEach(tagQuote);
+    addGroup(reviews, [reviews.querySelector('.eyebrow'), reviews.querySelector('h2')]);
+    addTiles(Array.prototype.slice.call(reviews.querySelectorAll('blockquote')), {scale:.04});
   }
 
   // Final CTA: label, copy and button all move together (copyright excluded).
   var book=document.getElementById('book');
   if(book){
-    book.querySelectorAll('.wrap > *:not(.small)').forEach(function(el){ tag(el); });
+    addGroup(book, Array.prototype.slice.call(book.querySelectorAll('.wrap > *:not(.small)')));
   }
 
-  var sections=[about,listen,expect,sessions,reviews,book].filter(Boolean);
-  var observer=new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        entry.target.querySelectorAll('.reveal, .reveal-quote').forEach(function(el){
-          el.classList.add('in-view');
-        });
-        observer.unobserve(entry.target);
-      }
+  if(!units.length) return;
+  units.forEach(function(u){ u.el.style.willChange='opacity, transform'; });
+
+  var ticking=false;
+  function update(){
+    ticking=false;
+    var vh=window.innerHeight;
+    // Progress runs from 0 (top edge at 92% down the viewport - not yet
+    // entered) to 1 (top edge has reached 58% up the viewport - settled).
+    var entryStart=vh*0.92, entryEnd=vh*0.58, span=entryStart-entryEnd;
+    units.forEach(function(u){
+      var rect=u.refEl.getBoundingClientRect();
+      var p=clamp((entryStart-rect.top)/span,0,1);
+      var eased=1-Math.pow(1-p,2); // ease-out, so the settle feels natural
+      u.el.style.opacity=eased;
+      var ty=(1-eased)*u.rise;
+      u.el.style.transform=u.scale
+        ? 'translateY('+ty.toFixed(2)+'px) scale('+(1-(1-eased)*u.scale).toFixed(3)+')'
+        : 'translateY('+ty.toFixed(2)+'px)';
     });
-  },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
-  sections.forEach(function(sec){observer.observe(sec)});
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  update(); // set the correct initial state immediately - no flash of full content
 })();
 
 // Meta Pixel: track every WhatsApp booking button (final CTA, mobile sticky
