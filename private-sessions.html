@@ -582,41 +582,83 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 
 document.getElementById('yr').textContent=new Date().getFullYear();
 
-// Gentle scroll-reveal - titles move together with the text that follows
-// them, images and the "what to expect" steps get the same treatment, and
-// testimonials get a slightly livelier entrance. Not applied to the hero
-// (already visible on load) or the chips, to keep it from feeling busy.
+// Gentle scroll-reveal, driven section by section: a section's own
+// visibility is the only trigger for anything inside it, so a title and its
+// body text always move together, in sync, rather than each element firing
+// on its own scroll position. Repeating tiles (session cards, steps,
+// testimonials) each move as one solid unit - an image never animates apart
+// from the card/tile it belongs to - and simply cascade relative to each
+// other via a small delay. The hero is left alone (already visible on load).
 (function(){
   if(!('IntersectionObserver' in window))return;
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 
-  var targets=document.querySelectorAll(
-    'main h2, main .eyebrow, main p.lead, .final .wrap > p:not(.small), .about .ph, .card-photo, .steps li'
-  );
-  targets.forEach(function(el){ el.classList.add('reveal'); });
-  // Small stagger within the steps list so they cascade in one after another.
-  document.querySelectorAll('.steps li').forEach(function(li,i){
-    li.style.transitionDelay=(i*0.08)+'s';
-  });
+  function tag(el){ if(el) el.classList.add('reveal'); }
+  function tagTile(el,i){ if(el){ el.classList.add('reveal'); el.style.transitionDelay=(i*0.1)+'s'; } }
+  function tagQuote(el,i){ if(el){ el.classList.add('reveal-quote'); el.style.transitionDelay=Math.min(i*0.1,0.4)+'s'; } }
 
-  // Testimonials get their own livelier pop-and-rise entrance, staggered so
-  // they cascade in rather than all arriving at once.
-  var quotes=document.querySelectorAll('#reviews blockquote');
-  quotes.forEach(function(bq,i){
-    bq.classList.add('reveal-quote');
-    bq.style.transitionDelay=Math.min(i*0.1,0.4)+'s';
-  });
+  // About: the whole section - photo and bio text - moves together as one.
+  var about=document.getElementById('about');
+  if(about){
+    tag(about.querySelector('.ph'));
+    tag(about.querySelector('.eyebrow'));
+    tag(about.querySelector('h2'));
+    tag(about.querySelector('p.lead'));
+  }
 
+  // Listen: intro text moves together.
+  var listen=document.getElementById('listen');
+  if(listen){
+    tag(listen.querySelector('.eyebrow'));
+    tag(listen.querySelector('h2'));
+    tag(listen.querySelector('p.lead'));
+  }
+
+  // Expect: intro text moves together; each step is its own tile, cascading.
+  var expect=document.getElementById('expect');
+  if(expect){
+    tag(expect.querySelector('.eyebrow'));
+    tag(expect.querySelector('h2'));
+    tag(expect.querySelector('p.lead'));
+    expect.querySelectorAll('.steps li').forEach(tagTile);
+  }
+
+  // Sessions: intro text moves together; each whole card is its own tile, so
+  // its photo, heading, copy and list all move as one with the card.
+  var sessions=document.getElementById('sessions');
+  if(sessions){
+    tag(sessions.querySelector('.eyebrow'));
+    tag(sessions.querySelector('h2'));
+    sessions.querySelectorAll('.card').forEach(tagTile);
+  }
+
+  // Reviews: intro text moves together; each testimonial is its own tile
+  // with a slightly livelier pop-and-rise entrance, cascading in.
+  var reviews=document.getElementById('reviews');
+  if(reviews){
+    tag(reviews.querySelector('.eyebrow'));
+    tag(reviews.querySelector('h2'));
+    reviews.querySelectorAll('blockquote').forEach(tagQuote);
+  }
+
+  // Final CTA: label, copy and button all move together (copyright excluded).
+  var book=document.getElementById('book');
+  if(book){
+    book.querySelectorAll('.wrap > *:not(.small)').forEach(function(el){ tag(el); });
+  }
+
+  var sections=[about,listen,expect,sessions,reviews,book].filter(Boolean);
   var observer=new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
       if(entry.isIntersecting){
-        entry.target.classList.add('in-view');
+        entry.target.querySelectorAll('.reveal, .reveal-quote').forEach(function(el){
+          el.classList.add('in-view');
+        });
         observer.unobserve(entry.target);
       }
     });
   },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
-  targets.forEach(function(el){observer.observe(el)});
-  quotes.forEach(function(el){observer.observe(el)});
+  sections.forEach(function(sec){observer.observe(sec)});
 })();
 
 // Meta Pixel: track every WhatsApp booking button (final CTA, mobile sticky
