@@ -158,11 +158,6 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 .hint{font-size:.8rem;color:var(--ink-2);margin-top:10px}
 .arrow{display:none}
 
-/* 8b Closing photo band */
-.closing-band{position:relative;height:42vh;min-height:280px;max-height:480px;overflow:hidden}
-.closing-band .ph{position:absolute;inset:0;border-radius:0}
-.closing-band .ph span{font-size:.85rem}
-
 /* 9 Final CTA */
 .final{background:var(--paper-2);color:var(--ink);text-align:center;border-top:1px solid var(--line)}
 .final h2{color:var(--ink)}
@@ -171,7 +166,7 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 .small{font-size:.8rem;color:var(--ink-2);margin-top:24px}
 
 /* Sticky WhatsApp (mobile) */
-.sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:12px var(--gut) calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(250,248,244,.98) 60%,rgba(250,248,244,0));display:flex;justify-content:center;transition:transform .3s,opacity .3s}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:12px var(--gut) calc(12px + env(safe-area-inset-bottom));display:flex;justify-content:center;transition:transform .3s,opacity .3s}
 .sticky .btn{width:auto;max-width:420px}
 .sticky.hide{transform:translateY(120%);opacity:0;pointer-events:none}
 
@@ -397,18 +392,14 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
   </div>
 </section>
 
-<!-- 8b. CLOSING PHOTO -->
-<div class="closing-band ph dusk" data-gallery-slot="closing-band" role="img" aria-label="Closing photo placeholder">
-  <span>PHOTO - tell Claude which gallery number</span>
-</div>
-
 <!-- 9. FINAL CTA -->
 <section class="final" id="book">
   <div class="wrap">
+    <p class="eyebrow">Bookings</p>
     <h2>Ready when you are.</h2>
-    <p>Message me on WhatsApp to book, or just to ask a question. I reply personally.</p>
+    <p>Message on WhatsApp to book or feel free to ask a question. I reply personally.</p>
     <a class="btn block" style="margin:0 auto" href="https://wa.me/447466756208?text=I%20am%20interested%20to%20book%20a%20private%20session" data-wa>
-      <span class="wa-badge"><svg><use href="#wa"/></svg></span> Message me on WhatsApp
+      <span class="wa-badge"><svg><use href="#wa"/></svg></span> Book a Session
     </a>
     <p class="small">© <span id="yr">2026</span> King Yin · London</p>
   </div>
@@ -419,14 +410,14 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 <!-- Sticky WhatsApp (mobile) -->
 <div class="sticky" id="sticky">
   <a class="btn" href="https://wa.me/447466756208?text=I%20am%20interested%20to%20book%20a%20private%20session" data-wa>
-    <span class="wa-badge"><svg><use href="#wa"/></svg></span> Book on WhatsApp
+    <span class="wa-badge"><svg><use href="#wa"/></svg></span> Book a Session
   </a>
 </div>
 
 <!-- Floating WhatsApp icon (desktop) -->
-<a class="fab" href="https://wa.me/447466756208?text=I%20am%20interested%20to%20book%20a%20private%20session" data-wa aria-label="Book on WhatsApp">
+<a class="fab" href="https://wa.me/447466756208?text=I%20am%20interested%20to%20book%20a%20private%20session" data-wa aria-label="Book a Session">
   <svg><use href="#wa"/></svg>
-  <span class="tip">Book on WhatsApp</span>
+  <span class="tip">Book a Session</span>
 </a>
 
 <script>
