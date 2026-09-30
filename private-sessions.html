@@ -157,6 +157,11 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 .gallery-msg.show{display:block}
 .arrow{display:none}
 
+/* Gentle scroll-reveal - class is added by JS only, so content is fully
+   visible by default with JS off or reduced motion preferred. */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in-view{opacity:1;transform:none}
+
 /* 9 Final CTA */
 .final{background:var(--paper-2);color:var(--ink);text-align:center;border-top:1px solid var(--line)}
 .final p{margin:0 auto 20px;color:var(--ink-2)}
