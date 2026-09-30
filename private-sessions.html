@@ -2,6 +2,23 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2205701676995029');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2205701676995029&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>King Yin | Sound Journeys, Meditation & Voice</title>
 <meta name="description" content="Bespoke sound healing, shamanic clearing and voice work with King Yin. Private and group sessions, London and online. Book on WhatsApp.">
@@ -530,6 +547,15 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 })();
 
 document.getElementById('yr').textContent=new Date().getFullYear();
+
+// Meta Pixel: track every WhatsApp booking button (final CTA, mobile sticky
+// bar, desktop floating icon) as a Contact event - this is the page's only
+// conversion action.
+document.querySelectorAll('[data-wa]').forEach(function (a) {
+  a.addEventListener('click', function () {
+    if (typeof fbq === 'function') fbq('track', 'Contact');
+  });
+});
 </script>
 </body>
 </html>
