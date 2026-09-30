@@ -42,7 +42,7 @@ src="https://www.facebook.com/tr?id=2205701676995029&ev=PageView&noscript=1"
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px;padding-bottom:92px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{color:inherit}
 h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.14;letter-spacing:-.01em}
@@ -149,21 +149,20 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 .about .row{display:grid;gap:22px}
 .about .ph{aspect-ratio:4/5;max-width:360px}
 .carousel{position:relative;margin-top:20px}
-.gallery{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--gut)*-1);padding:0 var(--gut);scrollbar-width:none}
+.gallery{display:flex;gap:12px;overflow-x:auto;margin:0 calc(var(--gut)*-1);padding:0 var(--gut);scrollbar-width:none}
 .gallery::-webkit-scrollbar{display:none}
 .gallery .ph{flex:none;width:72%;max-width:300px;aspect-ratio:1/1;scroll-snap-align:center}
 .gallery.empty{display:flex;align-items:center;justify-content:center;height:0;overflow:visible}
 .gallery-msg{display:none;color:var(--ink-2);font-size:.9rem;padding:18px 0}
 .gallery-msg.show{display:block}
-.hint{font-size:.8rem;color:var(--ink-2);margin-top:10px}
 .arrow{display:none}
 
 /* 9 Final CTA */
 .final{background:var(--paper-2);color:var(--ink);text-align:center;border-top:1px solid var(--line)}
-.final h2{color:var(--ink)}
 .final p{margin:12px auto 26px;color:var(--ink-2)}
+.final .final-eyebrow{font-size:1.6rem;letter-spacing:.04em;margin-bottom:16px;font-family:var(--serif);font-weight:500;text-transform:none}
 .final .btn{max-width:360px}
-.small{font-size:.8rem;color:var(--ink-2);margin-top:24px}
+.small{font-size:.8rem;color:var(--ink-2);margin-top:16px}
 
 /* Sticky WhatsApp (mobile) */
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:12px var(--gut) calc(12px + env(safe-area-inset-bottom));display:flex;justify-content:center;transition:transform .3s,opacity .3s}
@@ -177,7 +176,6 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
   section{padding:64px var(--gut)}
   .about .row{grid-template-columns:320px 1fr;align-items:center;gap:40px}
   .gallery .ph{width:240px}
-  .hint{display:none}
   .arrow{
     display:flex;align-items:center;justify-content:center;
     position:absolute;top:50%;transform:translateY(-50%);
@@ -267,7 +265,6 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
       </button>
     </div>
     <p class="gallery-msg" id="galleryMsg">Photos coming soon.</p>
-    <p class="hint">Swipe →</p>
   </div>
 </section>
 
@@ -393,12 +390,11 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 </section>
 
 <!-- 9. FINAL CTA -->
-<section class="final" id="book">
+<section class="final" id="book" style="padding-bottom:20px">
   <div class="wrap">
-    <p class="eyebrow">Bookings</p>
-    <h2>Ready when you are.</h2>
+    <p class="eyebrow final-eyebrow">Bookings</p>
     <p>Message on WhatsApp to book or feel free to ask a question. I reply personally.</p>
-    <a class="btn block" style="margin:0 auto" href="https://wa.me/447466756208?text=I%20am%20interested%20to%20book%20a%20private%20session" data-wa>
+    <a class="btn" href="https://wa.me/447466756208?text=I%20am%20interested%20to%20book%20a%20private%20session" data-wa>
       <span class="wa-badge"><svg><use href="#wa"/></svg></span> Book a Session
     </a>
     <p class="small">© <span id="yr">2026</span> King Yin · London</p>
@@ -464,11 +460,10 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
   }
 
   function finish(found){
-    var msg=document.getElementById('galleryMsg'),hint=document.querySelector('.hint'),
+    var msg=document.getElementById('galleryMsg'),
         prev=document.getElementById('galPrev'),next=document.getElementById('galNext');
     if(found===0){
       if(msg)msg.classList.add('show');
-      if(hint)hint.style.display='none';
       if(prev)prev.style.display='none';
       if(next)next.style.display='none';
       return;
@@ -477,6 +472,46 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
       var step=function(){var t=g.querySelector('.ph');return t?t.getBoundingClientRect().width+12:280};
       prev.addEventListener('click',function(){g.scrollBy({left:-step(),behavior:'smooth'})});
       next.addEventListener('click',function(){g.scrollBy({left:step(),behavior:'smooth'})});
+    }
+    startAutoScroll();
+  }
+
+  // Slow, continuous auto-scroll through the gallery - starts immediately on
+  // both mobile and desktop, pauses the moment someone touches/hovers or
+  // scrolls it themselves, and loops back to the start once it reaches the end.
+  function startAutoScroll(){
+    var SPEED=0.35; // px per frame (~21px/s at 60fps) - slow, ambient movement
+    var paused=false, resumeTimer=null;
+    // Track position as a float ourselves - scrollLeft rounds to whole pixels,
+    // so accumulating sub-pixel amounts directly into it would round down to
+    // 0 every single frame and the gallery would never actually move.
+    var pos=g.scrollLeft;
+
+    function pause(){
+      paused=true;
+      clearTimeout(resumeTimer);
+      resumeTimer=setTimeout(function(){
+        pos=g.scrollLeft; // resync in case the person scrolled it manually
+        paused=false;
+      },2500);
+    }
+    ['pointerdown','touchstart','wheel'].forEach(function(evt){
+      g.addEventListener(evt,pause,{passive:true});
+    });
+
+    function tick(){
+      if(!paused){
+        var max=g.scrollWidth-g.clientWidth;
+        if(max>0){
+          pos+=SPEED;
+          if(pos>=max) pos=0;
+          g.scrollLeft=pos;
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      requestAnimationFrame(tick);
     }
   }
 
