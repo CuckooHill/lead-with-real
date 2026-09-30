@@ -117,6 +117,8 @@ section{padding:44px var(--gut)}
 .card li::before{content:"✓";flex:none;width:20px;height:20px;margin-top:.05em;border-radius:50%;background:var(--sage);color:#fff;font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center}
 .card.feature li::before{background:var(--gold)}
 .card .tagline{font-size:.82rem;color:var(--gold-deep);font-weight:600;letter-spacing:.01em;margin-top:-8px}
+.card-photo{aspect-ratio:16/10;margin:-26px -26px 4px}
+.card-photo.ph{border-radius:var(--r) var(--r) 0 0}
 
 /* 6 Testimonials */
 .quotes{display:grid;gap:14px;margin-top:20px}
@@ -139,6 +141,11 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 .hint{font-size:.8rem;color:var(--ink-2);margin-top:10px}
 .arrow{display:none}
 
+/* 8b Closing photo band */
+.closing-band{position:relative;height:42vh;min-height:280px;max-height:480px;overflow:hidden}
+.closing-band .ph{position:absolute;inset:0;border-radius:0}
+.closing-band .ph span{font-size:.85rem}
+
 /* 9 Final CTA */
 .final{background:var(--paper-2);color:var(--ink);text-align:center;border-top:1px solid var(--line)}
 .final h2{color:var(--ink)}
@@ -156,7 +163,6 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
 
 @media(min-width:760px){
   section{padding:64px var(--gut)}
-  .cards{grid-template-columns:1fr 1fr}
   .about .row{grid-template-columns:320px 1fr;align-items:center;gap:40px}
   .gallery .ph{width:240px}
   .hint{display:none}
@@ -296,7 +302,11 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
     <h2>1-2-1 or group</h2>
     <div class="cards">
       <article class="card feature">
-        <h3>1-2-1 Sound Journey &amp; Wellbeing Coaching</h3>
+        <div class="card-photo ph gold" data-gallery-slot="121-card">
+          <span>Photo pending - gallery-17</span>
+          <img id="card121Photo" alt="1-2-1 &amp; group sessions with King Yin" loading="lazy">
+        </div>
+        <h3>1-2-1 &amp; Group Sessions</h3>
         <p class="lead" style="font-size:.95rem">Transformational sessions combining sound healing, shamanic clearing and sacred music to bring clarity, release tension and help you feel more grounded, centred and present - a bespoke, intuition-led container tuned to your own intentions, for strong, long-lasting results.</p>
         <ul>
           <li>Fully tailored to your intentions, not a fixed script</li>
@@ -307,8 +317,10 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
         </ul>
       </article>
       <article class="card">
+        <div class="card-photo ph sage" data-gallery-slot="workshops-card">
+          <img id="cardWorkshopPhoto" alt="Workshops and retreats with King Yin" loading="lazy">
+        </div>
         <h3>Workshops &amp; Retreats</h3>
-        <p class="tagline">Open Heart, Open Voice - 1 Day · Meditation &amp; Sound Residential Retreats</p>
         <p class="lead" style="font-size:.95rem">Group days and retreats using movement, breath, sound and voice to clear blocks and reconnect - held for corporate teams, festivals and private groups alike. We clear blocks on the physical and energetic level to connect more deeply to the heart and open the voice, our most authentic, free expression.</p>
         <ul>
           <li>Work through blocks and tension using movement, breath &amp; sound</li>
@@ -367,6 +379,11 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
     </div>
   </div>
 </section>
+
+<!-- 8b. CLOSING PHOTO -->
+<div class="closing-band ph dusk" data-gallery-slot="closing-band" role="img" aria-label="Closing photo placeholder">
+  <span>PHOTO - tell Claude which gallery number</span>
+</div>
 
 <!-- 9. FINAL CTA -->
 <section class="final" id="book">
@@ -487,6 +504,22 @@ blockquote cite{display:block;margin-top:10px;font-style:normal;font-size:.85rem
       }
       step();
     });
+})();
+
+// Load the two Sessions-card photos, trying a few extensions since the exact one
+// isn't known in advance. If a photo hasn't been uploaded yet, the img just stays
+// hidden and the card falls back to its placeholder colour + label.
+(function(){
+  var exts=['.jpg','.JPG','.jpeg','.png'];
+  function trySrc(img,base,i){
+    if(!img)return;
+    i=i||0;
+    if(i>=exts.length){img.style.display='none';return}
+    img.onerror=function(){trySrc(img,base,i+1)};
+    img.src=base+exts[i];
+  }
+  trySrc(document.getElementById('card121Photo'),'gallery/gallery-17');
+  trySrc(document.getElementById('cardWorkshopPhoto'),'gallery/gallery-09');
 })();
 
 // Hide sticky button when the final CTA is on screen
