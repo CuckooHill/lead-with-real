@@ -663,13 +663,31 @@ document.getElementById('yr').textContent=new Date().getFullYear();
   if(!units.length) return;
   units.forEach(function(u){ u.el.style.willChange='opacity, transform'; });
 
+  // On mobile, the sticky WhatsApp bar sits fixed over the bottom of the
+  // screen - starting the fade right at the very bottom edge meant content
+  // was still fading in while it was down behind/right next to that bar.
+  // Reserve its height (when it's actually showing) so the whole reveal
+  // plays out higher up, clear of it.
+  var sticky=document.getElementById('sticky');
+  function bottomInset(){
+    if(!sticky) return 0;
+    if(getComputedStyle(sticky).display==='none') return 0;
+    if(sticky.classList.contains('hide')) return 0;
+    return sticky.getBoundingClientRect().height + 16;
+  }
+
   var ticking=false;
   function update(){
     ticking=false;
     var vh=window.innerHeight;
-    // Progress runs from 0 (top edge at 92% down the viewport - not yet
-    // entered) to 1 (top edge has reached 58% up the viewport - settled).
-    var entryStart=vh*0.92, entryEnd=vh*0.58, span=entryStart-entryEnd;
+    // Progress runs from 0 (top edge just clear of the sticky bar / bottom
+    // of the viewport - not yet entered) to 1 (top edge well up the
+    // screen - settled, comfortably above where that bar sits). Deliberately
+    // a long run (most of a screen's height) so a normal fast scroll or
+    // flick can't skip straight over it - a narrow window was getting blown
+    // through in one gesture, especially scrolling off the hero, which read
+    // as "not animating at all".
+    var entryStart=vh-bottomInset(), entryEnd=vh*0.22, span=entryStart-entryEnd;
     units.forEach(function(u){
       var rect=u.refEl.getBoundingClientRect();
       var p=clamp((entryStart-rect.top)/span,0,1);
@@ -684,6 +702,9 @@ document.getElementById('yr').textContent=new Date().getFullYear();
   function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
+  // Images (hero photo, gallery) loading in can shift every section's
+  // position after the first paint - recheck once everything's settled.
+  window.addEventListener('load', onScroll);
   update(); // set the correct initial state immediately - no flash of full content
 })();
 
