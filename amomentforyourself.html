@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2205701676995029');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2205701676995029&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>King Yin | Check Out This Sound</title>
+<meta name="description" content="A sound journey with King Yin. Watch, and book your own session on WhatsApp.">
+<meta name="theme-color" content="#faf7f2">
+<!--
+  BEFORE PUBLISHING
+  1. This is a stripped-down, shareable clone of private-sessions.html - just
+     the hero, a vertical video and the persistent WhatsApp button. It must
+     sit in the same folder as private-sessions.html so images/king-yin-drum.png
+     and the WhatsApp number stay correct.
+  2. Drop the real video in and replace the placeholder <div class="video-ph">
+     block with a <video> (or embed) - see the comment next to it.
+  3. Hero photo is images/king-yin-drum.png.
+-->
+<style>
+:root{
+  --ink:#242019; --ink-2:#6e6255; --paper:#faf8f4; --paper-2:#f1ebe0; --line:#e6ddce;
+  --gold:#a9824a; --gold-deep:#8a6a3a;
+  --charcoal:#211d1a;
+  --wa:#25d366; --wa-deep:#146c43; --wa-deeper:#0e4a30; --white:#ffffff;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --r:20px; --gut:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1{font-family:var(--serif);font-weight:500;line-height:1.14;letter-spacing:-.01em;font-size:clamp(2.1rem,9vw,3.4rem)}
+p{max-width:60ch}
+section{padding:44px var(--gut)}
+.wrap{max-width:720px;margin:0 auto}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.7rem;min-height:54px;padding:0 20px 0 6px;border-radius:999px;background:linear-gradient(135deg,var(--wa-deep),var(--wa-deeper));color:#fdfbf7;font-weight:600;font-size:.98rem;letter-spacing:.01em;text-decoration:none;border:0;cursor:pointer;box-shadow:0 12px 26px rgba(14,74,48,.32);transition:transform .15s,box-shadow .2s,background .3s}
+.btn:hover{background:linear-gradient(135deg,#187f51,#125a3a);box-shadow:0 14px 30px rgba(14,74,48,.4)}
+.btn:active{transform:scale(.98)}
+.btn .wa-badge{flex:none;width:36px;height:36px;border-radius:50%;background:var(--white);display:inline-flex;align-items:center;justify-content:center}
+.btn svg{width:20px;height:20px;flex:none;color:var(--wa-deep)}
+
+/* 1 Hero - full-bleed photo, text overlaid, at every width */
+.hero{position:relative;min-height:100svh;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;color:var(--paper)}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-scrim{position:absolute;inset:0;background:
+    linear-gradient(to top, rgba(20,17,14,.86) 0%, rgba(20,17,14,.45) 42%, rgba(20,17,14,.08) 68%, rgba(20,17,14,0) 100%),
+    linear-gradient(to right, rgba(20,17,14,.28) 0%, rgba(20,17,14,0) 55%)}
+.hero-content{position:relative;z-index:1;width:100%;padding:40px var(--gut) 100px}
+.hero .txt{max-width:720px;margin:0 auto}
+.hero h1{color:var(--paper)}
+
+/* 2 Vertical video */
+.watch{background:var(--paper)}
+.watch .wrap{text-align:center}
+.video-ph{display:block;aspect-ratio:9/16;max-width:380px;width:100%;margin:20px auto 0;border-radius:var(--r);background:#000;object-fit:cover}
+.read-more{display:inline-block;margin-top:18px;color:var(--gold-deep);font-weight:600;font-size:.95rem;text-decoration:underline;text-underline-offset:3px}
+
+/* Sticky WhatsApp (mobile) */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:12px var(--gut) calc(12px + env(safe-area-inset-bottom));display:flex;justify-content:center}
+.sticky .btn{width:auto;max-width:420px;padding:0 14px 0 6px}
+
+/* Floating WhatsApp icon (desktop) */
+.fab{display:none}
+
+/* Share icon */
+.share-btn{
+  position:fixed;top:calc(16px + env(safe-area-inset-top));right:16px;z-index:60;
+  width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(36,32,25,.55);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--paper);box-shadow:0 8px 20px rgba(0,0,0,.25);
+  transition:transform .15s,background .2s;
+}
+.share-btn:hover{background:rgba(36,32,25,.75)}
+.share-btn:active{transform:scale(.94)}
+.share-btn svg{width:20px;height:20px}
+.share-toast{
+  position:fixed;left:50%;bottom:92px;transform:translate(-50%,8px);
+  background:var(--charcoal);color:var(--paper);font-size:.85rem;font-weight:600;
+  padding:10px 18px;border-radius:999px;z-index:61;
+  opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;
+}
+.share-toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(min-width:760px){
+  section{padding:64px var(--gut)}
+  .hero-content{padding:56px 48px 130px}
+  .sticky{display:none}
+
+  .fab{
+    display:flex;align-items:center;justify-content:center;
+    position:fixed;right:24px;top:50%;transform:translateY(-50%);
+    width:54px;height:54px;border-radius:50%;
+    background:linear-gradient(135deg,var(--wa-deep),var(--wa-deeper));color:#fdfbf7;
+    box-shadow:0 10px 26px rgba(14,74,48,.34);
+    z-index:50;text-decoration:none;transition:transform .2s,box-shadow .2s,background .3s;
+  }
+  .fab:hover{transform:translateY(-50%) scale(1.07);background:linear-gradient(135deg,#187f51,#125a3a);box-shadow:0 12px 30px rgba(14,74,48,.42)}
+  .fab svg{width:28px;height:28px}
+  .fab .tip{
+    position:absolute;right:70px;white-space:nowrap;background:var(--charcoal);color:var(--paper);
+    font-size:.8rem;font-weight:600;padding:8px 14px;border-radius:999px;
+    opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;transform:translateX(6px);
+  }
+  .fab:hover .tip{opacity:1;transform:translateX(0)}
+  .share-toast{bottom:40px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- WhatsApp icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4c-4.34 0-7.87 3.53-7.87 7.87 0 1.39.36 2.73 1.05 3.92L4 20l4.32-1.13a7.86 7.86 0 0 0 3.76.96h.003c4.34 0 7.87-3.53 7.87-7.87a7.83 7.83 0 0 0-2.32-5.64zm-5.55 12.12h-.003a6.53 6.53 0 0 1-3.32-.91l-.24-.14-2.47.65.66-2.41-.16-.25a6.53 6.53 0 0 1-1-3.51c0-3.6 2.93-6.53 6.54-6.53a6.5 6.5 0 0 1 4.62 1.92 6.5 6.5 0 0 1 1.91 4.62c0 3.6-2.93 6.53-6.53 6.53zm3.58-4.89c-.2-.1-1.17-.58-1.35-.64-.18-.07-.31-.1-.44.1-.13.2-.5.64-.62.77-.11.13-.23.15-.42.05-.2-.1-.83-.31-1.58-.98-.58-.52-.98-1.16-1.09-1.36-.11-.2-.01-.31.09-.4.09-.09.2-.23.3-.35.1-.11.13-.2.2-.33.07-.13.03-.25-.02-.35-.05-.1-.44-1.06-.6-1.45-.16-.38-.32-.33-.44-.34h-.38c-.13 0-.34.05-.52.25-.18.2-.68.67-.68 1.63s.7 1.9.79 2.03c.1.13 1.36 2.08 3.3 2.91.46.2.82.32 1.1.41.46.15.88.13 1.21.08.37-.06 1.17-.48 1.33-.94.16-.46.16-.85.11-.94-.05-.08-.18-.13-.38-.23z"/></symbol>
+</svg>
+
+<!-- Share icon -->
+<button class="share-btn" id="shareBtn" type="button" aria-label="Share this">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+  </svg>
+</button>
+<div class="share-toast" id="shareToast">Link copied</div>
+
+<!-- 1. HERO -->
+<header class="hero">
+  <div class="hero-bg" role="img" aria-label="King Yin holding a hand drum">
+    <img src="images/king-yin-drum.png" alt="King Yin holding a hand drum" loading="eager" style="object-position:74% 18%">
+    <div class="hero-scrim"></div>
+  </div>
+  <div class="hero-content">
+    <div class="txt">
+      <h1>Take a few minutes for yourself</h1>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- 2. VERTICAL VIDEO -->
+<section class="watch" id="watch">
+  <div class="wrap">
+    <video class="video-ph" controls playsinline preload="metadata">
+      <source src="/videos/Moment1.mp4" type="video/mp4">
+    </video>
+    <a class="read-more" href="private-sessions.html">Read more</a>
+  </div>
+</section>
+
+</main>
+
+<!-- Sticky WhatsApp (mobile) -->
+<div class="sticky" id="sticky">
+  <a class="btn" href="https://wa.me/447466756208?text=I%20am%20interested%20to%20book%20a%20private%20session" data-wa>
+    <span class="wa-badge"><svg><use href="#wa"/></svg></span> Book a Session
+  </a>
+</div>
+
+<!-- Floating WhatsApp icon (desktop) -->
+<a class="fab" href="https://wa.me/447466756208?text=I%20am%20interested%20to%20book%20a%20private%20session" data-wa aria-label="Book a Session">
+  <svg><use href="#wa"/></svg>
+  <span class="tip">Book a Session</span>
+</a>
+
+<script>
+// Share icon: use the device's native share sheet when available (pre-filled
+// with the "Check out this sound!" message and this page's link); fall back
+// to opening WhatsApp's own share-to-any-contact flow with the same message,
+// and if even that's unavailable, copy the message + link to the clipboard.
+(function(){
+  var btn=document.getElementById('shareBtn'),toast=document.getElementById('shareToast');
+  if(!btn)return;
+  var MESSAGE='Check out this sound!';
+  // Always share the real, public URL - location.href isn't reliable here
+  // (it can resolve to something like about:srcdoc in a preview/testing
+  // context rather than the live page address).
+  var SHARE_URL='https://www.leadwithreal.com/amomentforyourself.html';
+
+  function showToast(text){
+    toast.textContent=text;
+    toast.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t=setTimeout(function(){ toast.classList.remove('show'); },2200);
+  }
+
+  btn.addEventListener('click',function(){
+    var url=SHARE_URL;
+    if(navigator.share){
+      navigator.share({title:document.title,text:MESSAGE,url:url}).catch(function(){ /* cancelled - do nothing */ });
+      return;
+    }
+    var waShare='https://wa.me/?text='+encodeURIComponent(MESSAGE+' '+url);
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(MESSAGE+' '+url).then(function(){
+        showToast('Link copied');
+      }).catch(function(){ /* ignore */ });
+    }
+    window.open(waShare,'_blank');
+  });
+})();
+
+// Meta Pixel: track the WhatsApp booking button (final sticky bar / desktop
+// floating icon) as a Contact event.
+document.querySelectorAll('[data-wa]').forEach(function (a) {
+  a.addEventListener('click', function () {
+    if (typeof fbq === 'function') fbq('track', 'Contact');
+  });
+});
+</script>
+</body>
+</html>
